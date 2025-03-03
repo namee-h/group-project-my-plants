@@ -9,7 +9,36 @@
 </head>
 <body>
     <!-- 식물등록페이지 종호님 작업공간 사용할 branch: project_jongho -->
-    test
+    <div class="parent-container">
+        <div class="logo-container">
+            <img class="logo-img" src="../asset/logo_demo.png" alt="로고">
+        </div>
+        <div class="plant-form">
+            <h2>🌱 식물 등록</h2>
+            <form id="plantForm">
+                <label for="plantName">식물 이름</label>
+                <input type="text" id="plantName" placeholder="예: 다육이" required>
+
+                <label for="plantImage">식물 이미지</label>
+                <input type="file" id="plantImage" accept="image/*">
+
+                <label for="plantType">식물 종류</label>
+                <select id="plantType">
+                    <option value="">식물 종류를 불러오는 중...</option>
+                </select>
+
+                <label for="plantStartDate">키우기 시작한 날짜</label>
+                <input type="date" id="plantStartDate" required>
+
+
+                <label for="plantDescription">식물 정보</label>
+                <textarea id="plantDescription" rows="4" placeholder="식물에 대한 간단한 정보를 입력하세요."></textarea>
+
+                <button type="submit" class="submit-button">등록하기</button>
+                <button type="reset" class="reset-button">취소하기</button>
+            </form>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="update.js"></script>
 </body>
