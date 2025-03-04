@@ -6,6 +6,35 @@
     min-height: 100vh;
 }
 
+/*header*/
+#index-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f0f0f0;
+  }
+#index-logo {
+    width: 50px;
+    height: auto;
+}
+#index-login {
+    background-color: #4CAF50;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+#index-login a {
+    text-decoration: none;
+    color: white;
+  }
+  
+#index-login:hover {
+    background-color: #45a049;
+}
+
 #logo_area{
     display: flex;
     text-align: center;
@@ -13,6 +42,7 @@
     margin-bottom: 20px;
 }
 
+/*로그인 폼*/
 .logo {
     display: block;
     margin: 0 auto 10px;
