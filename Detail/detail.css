@@ -11,6 +11,7 @@
     border: 1px solid #000;
     border-radius: 15px;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .detail-img-box .detail-img {
@@ -27,9 +28,73 @@
 .detail-info-name {
     padding-right: 10px;
     text-align: right;
+    font-size: 1.2rem;
 }
 
 .detail-name {
     padding-left: 10px;
     text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.detail-water-box {
+    border:2px solid rgb(37, 76, 218);
+}
+
+.detail-water-name { 
+    text-align: left;
+    font-size: 1.2rem;
+    color: rgb(37, 76, 218);
+    font-weight: bold;
+}
+
+.detail-water-list {
+    margin-top: 20px;
+}
+
+.detail-water-info {
+    border-radius: 10px;
+}
+
+.detail-water-day {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    text-align: left;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+    background-color: #000;
+}
+
+.detail-water-day.sat {
+    background-color: #2229d6;
+}
+
+.detail-water-day.sun {
+    background-color: #f71b1b;
+}
+
+.detail-water-text {
+    position: relative;
+    width: 100%;
+    height: 20vh;
+    border: 2px solid #000;
+    border-top: 0;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.detail-water-text.today {
+    background-color: beige;
+}
+
+.detail-water-text .detail-water-img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 3rem;
+}
+
+.detail-history-box {
+    border:2px solid #53b133;
 }
