@@ -94,7 +94,8 @@
 
 const apiKey = "g5riRcq5JDjWlHCMEXffSADFbTjZixLYxf38oWbtYw8"; // 🔹 여기에 본인의 Trefle API 키를 입력하세요.
 const apiUrl = `https://trefle.io/api/v1/species?token=${apiKey}`;
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
 
 async function fetchPlantTypes() {
     try {
@@ -110,19 +111,16 @@ async function fetchPlantTypes() {
 
         let combinedData = []; // 두 페이지 데이터를 합칠 배열
         
-        // 첫 번째 페이지 데이터 불러오기
-        const firstPageResponse = await fetch(proxyUrl + apiUrl + "&page=1");
-        const firstPageData = await firstPageResponse.json();
-        if (firstPageData && firstPageData.data) {
-            combinedData = combinedData.concat(firstPageData.data); // 첫 번째 페이지 데이터 추가
+        for (let page = 1; page <= 36; page++) {
+            const response = await fetch(proxyUrl + apiUrl + `&page=${page}`);
+            const data = await response.json();
+            if (data && data.data) {
+                combinedData = combinedData.concat(data.data); // 각 페이지의 데이터를 결합
+            } else {
+                console.error(`${page} 페이지의 데이터를 불러오는 데 실패했습니다.`);
+            }
         }
 
-        // 두 번째 페이지 데이터 불러오기
-        const secondPageResponse = await fetch(proxyUrl + apiUrl + "&page=2");
-        const secondPageData = await secondPageResponse.json();
-        if (secondPageData && secondPageData.data) {
-            combinedData = combinedData.concat(secondPageData.data); // 두 번째 페이지 데이터 추가
-        }
         console.log("data :",combinedData)
         // 데이터가 모두 합쳐졌으면 드롭다운에 추가
         if (combinedData.length > 0) {
