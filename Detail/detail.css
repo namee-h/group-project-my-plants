@@ -96,5 +96,22 @@
 }
 
 .detail-history-box {
-    border:2px solid #53b133;
+    border:3px solid #53b133;
+}
+
+.detail-history-name {
+    text-align: left;
+    font-size: 1.2rem;
+    color: #53b133;
+    font-weight: bold;
+}
+
+.detail-history-list {
+    margin-top: 20px;
+}
+
+.detail-history-img {
+    height: 20vh;
+    background-position: center;
+    background-size: cover;
 }
