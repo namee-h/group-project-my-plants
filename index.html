@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Plants</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>My Plants index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="asset/yiseul_logo.webp">
 </head>
 <body>
     <!-- 메인페이지 다예님 작업공간 사용할 branch: project_daye -->
     <section class="index-body">
         <header id="index-header">
             <div id="index-logo-area">
-                <img src="asset/logo_daye.png" alt="logo" id="index-logo">
+                <img src="asset/logo_sara.png" alt="logo" id="index-logo">
             </div>
             <div id="nav_area">
                 <nav>
@@ -23,8 +28,40 @@
             </div>
         </header>
 
-        <section id="index-myPlants">
-            <div id="index-myPlantsList">
+        <section class="index-banner-section">
+            <h2>이벤트 배너</h2>
+            <p>이벤트 배너를 클릭하면 이벤트 페이지로 이동합니다.</p>
+
+            <div class="index-banner-slider">
+                <div class="index-swiper-wrapper">
+                    <div class="index-swiper-slide">
+                        <a href="#">
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MTRfMjQ0%2FMDAxNjE4MzgwNTEzMTE4.r9RnF771r2PBf0HK9L-RUm7PjYgZpfYqb6n6zzjLZQ4g.s2M9try6tyryyQFzWPF3Y6yUUMnYBdoKUTXKm66oyKog.JPEG.cona0512%2F%25BB%25E7%25BA%25BB_-172212009_214056140473042_7126680515681812536_n.jpg&type=sc960_832" alt="이벤트 배너 1">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="banner2.jpg" alt="이벤트 배너 2">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="banner3.jpg" alt="이벤트 배너 3">
+                        </a>
+                    </div>
+                </div>
+
+                <button class="index-swiper-prev"> < </button>
+                <button class="index-swiper-next"> > </button>
+
+                <div class="index-swiper-pagination">
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="index-my-plants">
+            <div id="index-my-plants-list">
                 <a href="#" class="index-plant">
                 <span class="index-water">💧</span>
                 <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340" alt="식물1">
@@ -34,13 +71,13 @@
                 <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340" alt="식물2">
                 </a>
 
-                <button id="index-addPlant" class="index-plant">
+                <button id="index-add-plant" class="index-plant">
                     +
                 </button>
             </div>
         </section>
                 
-        <main id="index-feedSection">
+        <main id="index-feed-section">
             <h2>식물 피드</h2>
             <div id="index-feed">
             </div>
