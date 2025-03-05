@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios 파일 업로드 기능</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <button id="btn-file-upload">파일 업로드</button>
+    <input
+      type="file"
+      id="upload-file"
+      style="display: none"
+      accept="image/*"
+    />
+    <script>
+      const inputFileUpload = document.querySelector("#upload-file");
+
+      const fileupload = (event) => {
+        const formData = new FormData();
+        formData.append("files", event.target.files[0]);
+
+        axios({
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+          },
+          url: "localhost:5500/asset/detail", // 파일 업로드 요청 URL
+          method: "POST",
+          data: formData,
+        }).then((response) => {
+          inputFileUpload.value = "";
+        });
+      };
+
+      inputFileUpload.addEventListener("change", fileupload);
+
+      document
+        .querySelector("#btn-file-upload")
+        .addEventListener("click", () => {
+          inputFileUpload.click();
+        });
+    </script>
+  </body>
+</html>
