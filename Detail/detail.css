@@ -1,11 +1,13 @@
+.borders {
+    border: 1px solid red;
+}
 .detail-body {
     width: 100%;
     height: 100vh;
     padding-top: 10px;
 }
 
-
-.detail-row-box {
+.detail-row-box-area {
     padding: 2rem;
     width: 100%;
     border: 1px solid #000;
@@ -14,16 +16,10 @@
     margin-bottom: 2rem;
 }
 
-.detail-img-box .detail-img {
+.detail-img {
     max-height: 30vh;
 }
 
-.detail-info-list {
-    margin-top: 20px;
-}
-.detail-info-list .row {
-    margin-bottom: 10px;
-}
 
 .detail-info-name {
     padding-right: 10px;
@@ -38,7 +34,7 @@
     font-weight: bold;
 }
 
-.detail-water-box {
+.detail-water-box-border {
     border:2px solid rgb(37, 76, 218);
 }
 
@@ -78,7 +74,8 @@
 .detail-water-text {
     position: relative;
     width: 100%;
-    height: 20vh;
+    max-height: 20vh;
+    aspect-ratio: 1/1;
     border: 2px solid #000;
     border-top: 0;
     border-radius: 0 0 0.5rem 0.5rem;
@@ -95,7 +92,7 @@
     width: 3rem;
 }
 
-.detail-history-box {
+.detail-history-box-border {
     border:3px solid #53b133;
 }
 
@@ -111,7 +108,8 @@
 }
 
 .detail-history-img {
-    height: 20vh;
+    max-height: 20vh;
+    aspect-ratio: 1/1;
     background-position: center;
     background-size: cover;
 }
