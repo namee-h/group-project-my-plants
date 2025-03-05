@@ -32,39 +32,47 @@
             <img src="../asset/logo_sara.png" alt="로고" class="logo">
         </div>
         <div class="form-box mt-3">
-            <form  class="member-form-area" action="#" method="POST">
-                <label for="name">이름:</label>
+            <form onsubmit="return postMemberData(event)" class="member-form-area" >
+                <label for="name">이름 <span>*</span></label>
                 <input type="text" id="name" name="name" required>
         
-                <label for="age">나이:</label>
+                <label for="age">나이 <span>*</span></label>
                 <input type="number" id="age" name="age" required min="1">
         
-                <label for="gender">성별:</label>
+                <label for="gender">성별 <span>*</span></label>
                 <div class="row member-gender">
                     <div class="col-6 form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender1" checked>
-                        <label class="form-check-label" for="gender1">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                        <label class="form-check-label" for="male">
                           남성
                         </label>
                       </div>
                       <div class="col-6 form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender2" >
-                        <label class="form-check-label" for="gender2">
+                        <input class="form-check-input" type="radio" name="gender" value="female" id="female" >
+                        <label class="form-check-label" for="female">
                           여성
                         </label>
                       </div>
                 </div>
         
-                <label for="address">주소:</label>
-                <input type="text" id="address" name="address" required readonly>
+                <label for="address">주소 <span>*</span></label>
+                <input type="text" id="address" name="address" required readonly placeholder="클릭하여 주소를 검색하세요">
         
-                <label for="email">아이디 (이메일):</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">아이디 <span>*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" required>
         
-                <label for="password">비밀번호:</label>
-                <input type="password" id="password" name="password" required minlength="10">
-        
-                <button type="submit">가입하기</button>
+                <label for="password">비밀번호 <span>*</span></label>
+                <input type="password" id="password" name="password" placeholder="password" required minlength="10">
+                
+                <div class="row pt-3">
+                    <a class="col-6 cancel-btn-area text-start" href="../Login/login.html">
+                        <button class="btn btn-outline-secondary" type="button">취소</button>
+                    </a>
+                    <a class="col-6 text-end join-btn-area" href="#">
+                        <button class="btn btn-success" type="submit">가입하기</button>
+                    </a>
+                    
+                </div>
             </form>
         </div>
     </section>
