@@ -17,7 +17,7 @@
     "plants": [
         {
             "id": "1", 
-            "name": "testPlant", 
+            "plant_name": "testPlant", 
             "description": "설명", 
             "category": "꽃", 
             "update_dat": "2025-03-05",
