@@ -38,16 +38,64 @@
   background-color: #f0f0f0;
 }
 
-#index-myPlants {
-  width: 90%;
+.index-banner-section {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
+
+.index-banner-slider {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  overflow: hidden;
+}
+
+.index-swiper-slide img{
+  width: 100%;
+  border-radius: 10px;
+}
+
+.index-swiper-prev, .index-swiper-next {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-swiper-prev:hover, .index-swiper-next:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.index-swiper-prev{
+  left: 10px;
+}
+
+.index-swiper-next{
+  right: 10px;
+}
+
+#index-my-plants {
+  width: 100%;
   max-width: 600px; 
-  margin: 20px auto; 
+  margin: 10px auto; 
   padding: 10px;
   background-color: #f8f9fa;
   border-radius: 10px;
 }
 
-#index-myPlantsList {
+#index-my-plants-list {
   display: flex;
   gap: 15px;
 }
@@ -71,7 +119,7 @@
   border-radius: 8px;
 }
 
-#index-addPlant {
+#index-add-plant {
   font-size: 18px;
   font-weight: bold;
   border: none;
@@ -88,11 +136,12 @@
   text-align: center;
 }
 
-#index-feedSection {
+#index-feed-section {
   padding: 30px;
   width: 90%;
   height: auto;
   max-width: 600px;
+  margin-bottom: 50px;
   text-align: center;
   border: 1px solid #ddd;
   border-radius: 10px;
