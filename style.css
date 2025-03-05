@@ -12,20 +12,33 @@
   height: auto;
 }
 
-#index-login {
-  background-color: #4CAF50;
+#index-auth-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+#index-auth-buttons a {
   border: none;
   font-size: 15px;
   border-radius: 5px;
   padding: 5px 10px;
-}
-
-#index-login a {
   text-decoration: none;
   color: white;
 }
 
+#index-login {
+  background-color: #4CAF50;
+}
+
 #index-login:hover {
+  background-color: #45a049;
+}
+
+#index-signup {
+  background-color: #4CAF50;
+}
+
+#index-signup:hover {
   background-color: #45a049;
 }
 
@@ -124,6 +137,7 @@
   font-weight: bold;
   border: none;
   color: white;
+  text-decoration: none;
 }
 
 .index-water {
