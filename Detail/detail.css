@@ -7,6 +7,13 @@
     padding-top: 10px;
 }
 
+.detail-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:10px;
+}
+
 .detail-row-box-area {
     padding: 2rem;
     width: 100%;
@@ -113,3 +120,22 @@
     background-position: center;
     background-size: cover;
 }
+
+
+/*연필모양 아이콘*/
+.edit-btn{
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    font-size: 15px;
+    display: flex;
+
+}
+.edit-btn:hover {
+    background: #4CAF50; 
+    color: white; 
+}
+.edit-btn:active {
+    background: #388E3C;
+}
+
