@@ -150,3 +150,43 @@ function populatePlantTypeDropdown(plants) {
 
 // 페이지 로드 시 API 호출
 fetchPlantTypes();
+
+//submit onclickEvent - 입력된 데이터 json server에 저장
+document.getElementById("plantForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); // 기본 폼 제출 방지
+
+    // 입력된 데이터 가져오기
+    const plantName = document.getElementById("plantName").value;
+    const plantType = document.getElementById("plantType").value;
+    const plantStartDate = document.getElementById("plantStartDate").value;
+    const plantDescription = document.getElementById("plantDescription").value;
+
+    // JSON 서버로 보낼 데이터 객체 생성
+    const plantData = {
+        name: plantName,
+        type: plantType,
+        startDate: plantStartDate,
+        description: plantDescription
+    };
+
+    try {
+        // JSON 서버에 데이터 저장 (POST 요청)
+        const response = await fetch("http://localhost:3000/plants", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(plantData)
+        });
+
+        if (response.ok) {
+            alert("식물 정보가 성공적으로 저장되었습니다!");
+            document.getElementById("plantForm").reset(); // 폼 초기화
+        } else {
+            alert("데이터 저장에 실패했습니다.");
+        }
+    } catch (error) {
+        console.error("데이터 전송 중 오류 발생:", error);
+        alert("오류가 발생했습니다.");
+    }
+});

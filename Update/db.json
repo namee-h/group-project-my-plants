@@ -1,0 +1,12 @@
+
+{
+    "plants": [
+        {
+        "name": "다육이",
+        "category": "succulent",
+        "update_day": "2025-03-05",
+        "description": "햇빛을 좋아하는 식물",
+        "member_id": 1
+        }
+    ]
+    }
