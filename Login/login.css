@@ -1,5 +1,7 @@
 body{
     overflow: hidden;
+    background-image: url('/asset/cover_img.jpg');
+    background-size: cover;
 }
 .container {
     display: flex;

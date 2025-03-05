@@ -24,5 +24,5 @@ if (sessionValue !== null) {
 
     memberName.classList.remove("display-none");
 } else {
-    console.log(sessionValue);   
+    console.log(sessionValue);
 }
