@@ -94,8 +94,8 @@
 
 const apiKey = "g5riRcq5JDjWlHCMEXffSADFbTjZixLYxf38oWbtYw8"; // 🔹 여기에 본인의 Trefle API 키를 입력하세요.
 const apiUrl = `https://trefle.io/api/v1/species?token=${apiKey}`;
-// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+// const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
 
 async function fetchPlantTypes() {
     try {
@@ -111,7 +111,7 @@ async function fetchPlantTypes() {
 
         let combinedData = []; // 두 페이지 데이터를 합칠 배열
         
-        for (let page = 1; page <= 36; page++) {
+        for (let page = 1; page <= 2; page++) {
             const response = await fetch(proxyUrl + apiUrl + `&page=${page}`);
             const data = await response.json();
             if (data && data.data) {
