@@ -1,5 +1,5 @@
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
-const loginButton = document.getElementById("index-login-button");
+const loginButton = document.getElementById("index-login");
 const memberName = document.getElementById("index-member-name");
 
 if (sessionValue !== null) {
@@ -26,3 +26,25 @@ if (sessionValue !== null) {
 } else {
     console.log(sessionValue);   
 }
+
+// 맨 위로 가기 버튼 추가
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTopButton = document.querySelector("#index-top-button");
+
+    window.addEventListener("scroll", () => {
+        console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
+
+        if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }   );
+
+    backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    })
+});
