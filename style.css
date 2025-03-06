@@ -81,6 +81,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: none;
   background: rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
@@ -88,7 +89,7 @@
 }
 
 .index-swiper-prev:hover, .index-swiper-next:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255);
 }
 
 .index-swiper-prev{
@@ -173,3 +174,22 @@
 .display-none{
   display: none;
 }
+
+/* 맨 위로 가기 버튼 추가 */
+#index-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: max(10px, calc(50% - 380px)); /* 콘텐츠의 max-width 기준 */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+#index-top-button:hover {
+  background-color: #e0e0e0;
+}
+
