@@ -11,10 +11,73 @@
     />
     <link rel="stylesheet" href="member.css">
     <link rel="icon" type="image/x-icon" href="../asset/yiseul_logo.webp">
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+    <header id="index-header">
+        <div id="index-logo-area">
+            <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
+        </div>
+        <div id="nav_area">
+            <nav>
+                <button id="index-login">
+                    <a href="../index.html">Home</a>
+                </button>
+            </nav>
+        </div>
+    </header>
 
+    <section class="container mt-3">
+        <div id="logo_area">
+            <img src="../asset/logo_sara.png" alt="로고" class="logo">
+        </div>
+        <div class="form-box mt-3">
+            <form onsubmit="return postMemberData(event)" class="member-form-area" >
+                <label for="name">이름 <span>*</span></label>
+                <input type="text" id="name" name="name" required>
+        
+                <label for="age">나이 <span>*</span></label>
+                <input type="number" id="age" name="age" required min="1">
+        
+                <label for="gender">성별 <span>*</span></label>
+                <div class="row member-gender">
+                    <div class="col-6 form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                        <label class="form-check-label" for="male">
+                          남성
+                        </label>
+                      </div>
+                      <div class="col-6 form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="female" id="female" >
+                        <label class="form-check-label" for="female">
+                          여성
+                        </label>
+                      </div>
+                </div>
+        
+                <label for="address">주소 <span>*</span></label>
+                <input type="text" id="address" name="address" required readonly placeholder="클릭하여 주소를 검색하세요">
+        
+                <label for="email">아이디 <span>*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" required>
+        
+                <label for="password">비밀번호 <span>*</span></label>
+                <input type="password" id="password" name="password" placeholder="password" required minlength="10">
+                
+                <div class="row pt-3">
+                    <a class="col-6 cancel-btn-area text-start" href="../Login/login.html">
+                        <button class="btn btn-outline-secondary" type="button">취소</button>
+                    </a>
+                    <a class="col-6 text-end join-btn-area" href="#">
+                        <button class="btn btn-success" type="submit">가입하기</button>
+                    </a>
+                    
+                </div>
+            </form>
+        </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="member.js"></script>
 </body>
 </html>
