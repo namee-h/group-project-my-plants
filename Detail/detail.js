@@ -108,50 +108,69 @@ function savePlantData(field, value) {
 // 물 주기 섹션
 document.addEventListener("DOMContentLoaded", () => {
   const waterScheduleContainer = document.querySelector(".water-schedule");
-
-  // 오늘 날짜 가져오기
-  const today = new Date();
+  const selectElement = document.getElementById("floatingSelect");
 
   // 요일 이름 배열
   const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
-  // 앞뒤 총 날짜 계산 (오늘 포함)
-  for (let i = -3; i <= 3; i++) {
-    const currentDate = new Date(today);
-    currentDate.setDate(today.getDate() + i); // 날짜 조정
+  // 물 주기 섹션 생성 함수
+  const generateWaterSchedule = (interval) => {
+    // 기존 내용 초기화
+    waterScheduleContainer.innerHTML = "";
 
-    const day = currentDate.getDate(); // 일자
-    const weekdayIndex = currentDate.getDay(); // 요일 인덱스
-    const weekdayName = weekdays[weekdayIndex]; // 요일 이름
+    // 오늘 날짜 가져오기
+    const today = new Date();
 
-    // div 생성 및 클래스 추가
-    const waterInfoDiv = document.createElement("div");
-    waterInfoDiv.classList.add("col", "detail-water-info");
+    // 11일 범위 날짜 계산
+    for (let i = -5; i <= 5; i++) {
+      const currentDate = new Date(today);
+      currentDate.setDate(today.getDate() + i); // 날짜 조정
 
-    // 요일 스타일 결정
-    let dayClass = "";
-    if (weekdayIndex === 0) dayClass = "sun"; // 일요일
-    else if (weekdayIndex === 6) dayClass = "sat"; // 토요일
+      const day = currentDate.getDate(); // 일자
+      const weekdayIndex = currentDate.getDay(); // 요일 인덱스
+      const weekdayName = weekdays[weekdayIndex]; // 요일 이름
 
-    // 오늘 날짜 강조
-    const isToday = i === 0;
+      // div 생성 및 클래스 추가
+      const waterInfoDiv = document.createElement("div");
+      waterInfoDiv.classList.add("col", "detail-water-info");
 
-    // HTML 내용 설정
-    waterInfoDiv.innerHTML = `
-          <div class="detail-water-day ${dayClass}">${String(day).padStart(
-      2,
-      "0"
-    )} (${weekdayName})</div>
-          <div class="detail-water-text ${isToday ? "today" : ""}">
-              ${
-                isToday || weekdayIndex === 0 || weekdayIndex === 6
-                  ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">`
-                  : ""
-              }
-          </div>
-      `;
+      // 요일 스타일 결정
+      let dayClass = "";
+      if (weekdayIndex === 0) dayClass = "sun"; // 일요일
+      else if (weekdayIndex === 6) dayClass = "sat"; // 토요일
 
-    // 컨테이너에 추가
-    waterScheduleContainer.appendChild(waterInfoDiv);
-  }
+      // 오늘 날짜 강조 여부
+      const isToday = i === 0;
+
+      // 물방울 아이콘 표시 여부 (간격에 따라)
+      const showWaterIcon = i % interval === 0;
+
+      // HTML 내용 설정
+      waterInfoDiv.innerHTML = `
+              <div class="detail-water-day ${dayClass}">${String(day).padStart(
+        2,
+        "0"
+      )} (${weekdayName})</div>
+              <div class="detail-water-text ${isToday ? "today" : ""}">
+                  ${
+                    showWaterIcon
+                      ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">`
+                      : ""
+                  }
+              </div>
+          `;
+
+      // 컨테이너에 추가
+      waterScheduleContainer.appendChild(waterInfoDiv);
+    }
+  };
+
+  // 초기 로드 (매일)
+  generateWaterSchedule(1);
+
+  // 옵션 변경 시 동작
+  selectElement.addEventListener("change", (event) => {
+    const interval = parseInt(event.target.value, 10); // 선택된 간격 값 가져오기
+    generateWaterSchedule(interval);
+  });
 });
