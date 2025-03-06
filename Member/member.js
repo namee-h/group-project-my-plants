@@ -38,7 +38,7 @@ function postMemberData(event) {
   const day = String(today.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`;
 
-  const members = {
+  const member = {
     name: formData.get("name"),
     age: formData.get("age"),
     gender: selectedGender.value, // 체크된 성별 값 추가
@@ -48,9 +48,9 @@ function postMemberData(event) {
     update_dat: formattedDate,
   };
 
-  fetch("http://localhost:4000/members", {
+  fetch("http://localhost:3000/members", {
     method: "POST",
-    body: JSON.stringify(members),
+    body: JSON.stringify(member),
     headers: {
       "content-type": "application/json; charset=UTF-8",
     },
