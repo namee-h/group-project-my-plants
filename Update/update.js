@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 update_day: new Date().toISOString()
             };
 
-            const imgResponse = await fetch("http://localhost:3000/img", {
+            const imgResponse = await fetch("http://localhost:3000/images", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(imgData)

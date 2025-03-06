@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start:json": "json-server --watch Update/db.json --port 3000",
+    "start:json": "json-server --watch db.json --port 3000",
     "start:upload": "node server.js",
     "start": "concurrently \"npm run start:json\" \"npm run start:upload\""
   },
