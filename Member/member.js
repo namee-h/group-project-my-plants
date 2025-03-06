@@ -62,8 +62,8 @@ function postMemberData(event) {
       return response.json();
     })
     .then((result) => {
-      alert("회원가입이 완료되었습니다");
       window.location.href = "/Login/login.html";
+      alert("회원가입이 완료되었습니다");
     })
     .catch((error) => {
       console.error("저장 실패:", error);
