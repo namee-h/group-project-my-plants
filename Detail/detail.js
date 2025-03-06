@@ -110,42 +110,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const waterScheduleContainer = document.querySelector(".water-schedule");
   const selectElement = document.getElementById("floatingSelect");
 
-  // 요일 이름 배열
   const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
-  // 물 주기 섹션 생성 함수
   const generateWaterSchedule = (interval) => {
-    // 기존 내용 초기화
     waterScheduleContainer.innerHTML = "";
 
-    // 오늘 날짜 가져오기
     const today = new Date();
 
     // 11일 범위 날짜 계산
     for (let i = -5; i <= 5; i++) {
       const currentDate = new Date(today);
-      currentDate.setDate(today.getDate() + i); // 날짜 조정
+      currentDate.setDate(today.getDate() + i);
 
-      const day = currentDate.getDate(); // 일자
-      const weekdayIndex = currentDate.getDay(); // 요일 인덱스
-      const weekdayName = weekdays[weekdayIndex]; // 요일 이름
-
-      // div 생성 및 클래스 추가
+      const day = currentDate.getDate();
+      const weekdayIndex = currentDate.getDay();
+      const weekdayName = weekdays[weekdayIndex];
+      // 날짜 요일 물방울 이미지 들어갈 보드 추가
       const waterInfoDiv = document.createElement("div");
       waterInfoDiv.classList.add("col", "detail-water-info");
-
-      // 요일 스타일 결정
+      // 주말 평일 구분
       let dayClass = "";
-      if (weekdayIndex === 0) dayClass = "sun"; // 일요일
-      else if (weekdayIndex === 6) dayClass = "sat"; // 토요일
+      if (weekdayIndex === 0) dayClass = "sun";
+      else if (weekdayIndex === 6) dayClass = "sat";
 
-      // 오늘 날짜 강조 여부
       const isToday = i === 0;
 
-      // 물방울 아이콘 표시 여부 (간격에 따라)
+      // 물방울 아이콘 표시 여부 (옵션에 따라 오늘 날짜 기준 앞뒤로 표시됨 ⚠️ 물주기 시작 날짜 유저 설정 아님 ⚠️
       const showWaterIcon = i % interval === 0;
 
-      // HTML 내용 설정
+      // HTML에 내용 뿌리기
       waterInfoDiv.innerHTML = `
               <div class="detail-water-day ${dayClass}">${String(day).padStart(
         2,
@@ -159,28 +152,26 @@ document.addEventListener("DOMContentLoaded", () => {
                   }
               </div>
           `;
-
-      // 컨테이너에 추가
       waterScheduleContainer.appendChild(waterInfoDiv);
     }
 
-    // 물방울 이미지 클릭 이벤트 추가
+    // 물방울 이미지 클릭 이벤트
     const waterImages = document.querySelectorAll(".detail-water-img");
     waterImages.forEach((img) => {
       img.addEventListener("click", () => {
         if (img.src.includes("detail-water.png")) {
-          img.src = "/asset/detail/detail-water-done.png"; // 완료 상태로 변경
+          img.src = "/asset/detail/detail-water-done.png"; // 회색물방울 (완료상태)
         } else {
-          img.src = "/asset/detail/detail-water.png"; // 다시 원래 상태로 변경
+          img.src = "/asset/detail/detail-water.png"; // 파란색물방울
         }
       });
     });
   };
 
-  // 초기 로드 (매일)
+  // 초기 옵션 로드 (매일)
   generateWaterSchedule(1);
 
-  // 옵션 변경 시 동작
+  // 물주기 옵션 변경 시 동작
   selectElement.addEventListener("change", (event) => {
     const interval = parseInt(event.target.value, 10); // 선택된 간격 값 가져오기
     generateWaterSchedule(interval);
