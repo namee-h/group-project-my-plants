@@ -28,10 +28,12 @@
                 <label for="plantImage">식물 이미지</label>
                 <input type="file" id="plantImage" accept="image/*">
 
-                <label for="plantCategory">식물 종류</label>
-                <select id="plantCategory">
-                    <option value="">식물 종류를 불러오는 중...</option>
-                </select>
+                <label for="plantSearch">식물 종류 검색</label>
+                <input type="text" id="plantSearch" placeholder="식물 종류 검색..." />
+                <div id="searchResults"></div>
+
+                <label for="selectedPlant">선택된 식물 종류</label>
+                <input type="text" id="selectedPlant" readonly />
 
                 <label for="wateringStartDate">물주기 시작 날짜</label>
                 <input type="date" id="wateringStartDate" required>
