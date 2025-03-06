@@ -152,8 +152,6 @@
 // plant.id API 이용하여 fetch
 const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-// const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
 
 document.getElementById("plantSearch").addEventListener("input", async function () {
     const query = this.value.trim();
@@ -208,51 +206,6 @@ function displaySearchResults(results) {
         resultsContainer.appendChild(plantItem);
     });
 }
-
-// 메타데이터 파일 경로
-const metadataPath = 'plantnet300K_metadata.json';
-const speciesPath = 'plantnet300K_species_id_2_name.json';
-
-// 이미지 데이터 경로
-const imageRoot = 'path/to/plantnet300K/images/'; // 실제 이미지 경로로 수정
-
-// 메타데이터 로드
-Promise.all([fetch(metadataPath), fetch(speciesPath)])
-  .then((responses) => Promise.all(responses.map((res) => res.json())))
-  .then(([metadata, species]) => {
-    // 이미지 정보 추출
-    for (const imageId in metadata) {
-      const imageInfo = metadata[imageId];
-      const speciesId = imageInfo.species_id;
-      const speciesName = species[speciesId];
-      const imageFilename = `${imageId}.jpg`;
-      const imagePath = imageRoot + imageFilename;
-
-      // 이미지 로드 및 활용
-      const img = new Image();
-      img.onload = () => {
-        console.log(`Image ID: ${imageId}, Species: ${speciesName}`);
-        // 이미지 활용 (예: 표시)
-        document.body.appendChild(img);
-      };
-      img.onerror = () => {
-        console.log(`Image not found: ${imagePath}`);
-      };
-      img.src = imagePath;
-    }
-  })
-  .catch((error) => console.error('Error loading data:', error));
-
-  //  폼 제출 이벤트 리스너
-document.getElementById('plantForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // 폼 기본 제출 방지
-
-    const startDate = document.getElementById('plantStartDate').value;
-    const selectedPlant = document.getElementById('plantType').value;
-
-    console.log(" 선택한 식물:", selectedPlant);
-    console.log(" 식물 등록 날짜:", startDate);
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     const plantNameInput = document.getElementById("plantName");
@@ -317,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
 
-        const plantCategory = document.getElementById("plantCategory").value;
+        const plantCategory = document.getElementById("selectedPlant").value;
         const wateringStartDate = document.getElementById("wateringStartDate").value;
         const wateringInterval = document.getElementById("wateringInterval").value;
         const plantDescription = document.getElementById("plantDescription").value;
@@ -412,7 +365,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
 
 // 물주기 숫자만 입력되게 하는 function
 function validateNumber(input) {

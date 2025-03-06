@@ -10,251 +10,39 @@
       "etc": null,
       "update_day": "2025-03-06T00:00:00.000Z",
       "id": "456123"
-    },
-    {
-      "id": "4ca1",
-      "name": "1",
-      "age": "123",
-      "gender": "male",
-      "address": "서울 강서구 강서로52길 13",
-      "email": "123@gmail.com",
-      "password": "1235415311515",
-      "update_dat": "2025-03-06"
-    },
-    {
-      "id": "740d",
-      "name": "1",
-      "age": "1",
-      "gender": "male",
-      "address": "충남 천안시 동남구 병천면 5산단로 357-42",
-      "email": "123@gmail.com",
-      "password": "5643135465135135",
-      "update_dat": "2025-03-06"
-    },
-    {
-      "id": "3849",
-      "name": "123",
-      "age": "12",
-      "gender": "male",
-      "address": "서울 강서구 곰달래로23길 5",
-      "email": "123@gmail.com",
-      "password": "456456546845345",
-      "update_dat": "2025-03-06"
-    },
-    {
-      "id": "e12f",
-      "name": "1",
-      "age": "1",
-      "gender": "male",
-      "address": "서울 노원구 동일로231길 13-13",
-      "email": "123@gmail.com",
-      "password": "1231r25qetergtergt",
-      "update_dat": "2025-03-06"
-    },
-    {
-      "id": "41c9",
-      "name": "1",
-      "age": "12",
-      "gender": "male",
-      "address": "서울 강동구 양재대로123길 7",
-      "email": "123@gmail.com",
-      "password": "1wefaertwegtera",
-      "update_dat": "2025-03-06"
     }
   ],
   "plants": [
     {
-      "id": "9711",
+      "id": "e784",
       "plants_name": "123",
-      "description": "test info",
-      "category": "dactylis-glomerata",
-      "member_id": 1,
-      "update_day": "2025-03-05T16:47:28.676Z",
-      "etc": null
-    },
-    {
-      "id": "eca9",
-      "plants_name": "1231231231231231231231231231213",
-      "description": "",
-      "category": "quercus-rotundifolia",
-      "member_id": 1,
-      "update_day": "2025-03-05T16:58:27.470Z",
-      "etc": null
-    },
-    {
-      "id": "d090",
-      "plants_name": "1231231231231231231231233123123123123123332312312312",
       "description": "123",
-      "category": "plantago-lanceolata",
+      "category": "Roseodendron",
       "member_id": 1,
-      "update_day": "2025-03-05T16:59:04.234Z",
-      "etc": null
-    },
-    {
-      "id": "89d4",
-      "plants_name": "ㄹ홀호롷롷ㄹ홀홀홀호롷ㄹ",
-      "description": "123",
-      "category": "urtica-dioica",
-      "member_id": 1,
-      "update_day": "2025-03-05T17:10:19.577Z",
-      "etc": null
-    },
-    {
-      "id": "7120",
-      "plants_name": "1231231231231231231231231231213",
-      "description": "123",
-      "category": "dactylis-glomerata",
-      "member_id": 1,
-      "update_day": "2025-03-05T17:16:37.086Z",
-      "etc": null
-    },
-    {
-      "id": "1b86",
-      "plants_name": "1231231231",
-      "description": "123",
-      "category": "dactylis-glomerata",
-      "member_id": 1,
-      "update_day": "2025-03-05T17:20:06.151Z",
-      "etc": null
-    },
-    {
-      "id": "62a4",
-      "plants_name": "123/",
-      "description": "123",
-      "category": "plantago-lanceolata",
-      "member_id": 1,
-      "update_day": "2025-03-05T17:20:28.766Z",
+      "update_day": "2025-03-06T09:29:01.198Z",
       "etc": null
     }
   ],
   "img": [
     {
-      "id": "e79c",
+      "id": "e223",
       "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
       "plant_history": [],
-      "plants_id": "9711",
+      "plants_id": "e784",
       "etc": null,
-      "update_day": "2025-03-05T16:47:28.690Z"
-    },
-    {
-      "id": "80fc",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "eca9",
-      "etc": null,
-      "update_day": "2025-03-05T16:58:27.487Z"
-    },
-    {
-      "id": "db61",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "d090",
-      "etc": null,
-      "update_day": "2025-03-05T16:59:04.241Z"
-    },
-    {
-      "id": "98eb",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "89d4",
-      "etc": null,
-      "update_day": "2025-03-05T17:10:19.590Z"
-    },
-    {
-      "id": "5700",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "7120",
-      "etc": null,
-      "update_day": "2025-03-05T17:16:37.092Z"
-    },
-    {
-      "id": "8120",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "1b86",
-      "etc": null,
-      "update_day": "2025-03-05T17:20:06.156Z"
-    },
-    {
-      "id": "ece8",
-      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
-      "plant_history": [],
-      "plants_id": "62a4",
-      "etc": null,
-      "update_day": "2025-03-05T17:20:28.772Z"
+      "update_day": "2025-03-06T09:29:01.206Z"
     }
   ],
   "water": [
     {
-      "id": "8502",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-04",
-      "water_check": false,
-      "water_memo": null,
-      "plants_id": "9711",
-      "etc": null,
-      "update_day": "2025-03-05T16:47:28.695Z"
-    },
-    {
-      "id": "9d26",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-10",
-      "water_check": false,
-      "water_memo": [],
-      "plants_id": "eca9",
-      "etc": null,
-      "update_day": "2025-03-05T16:58:27.493Z"
-    },
-    {
-      "id": "9e73",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-03",
-      "water_check": false,
-      "water_memo": [],
-      "plants_id": "d090",
-      "etc": null,
-      "update_day": "2025-03-05T16:59:04.247Z"
-    },
-    {
-      "id": "0dac",
+      "id": "5787",
       "water_cycle": "3",
       "water_start_day": "2025-03-04",
       "water_check": false,
       "water_memo": [],
-      "plants_id": "89d4",
+      "plants_id": "e784",
       "etc": null,
-      "update_day": "2025-03-05T17:10:19.595Z"
-    },
-    {
-      "id": "6553",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-03",
-      "water_check": false,
-      "water_memo": [],
-      "plants_id": "7120",
-      "etc": null,
-      "update_day": "2025-03-05T17:16:37.097Z"
-    },
-    {
-      "id": "0622",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-04",
-      "water_check": false,
-      "water_memo": [],
-      "plants_id": "1b86",
-      "etc": null,
-      "update_day": "2025-03-05T17:20:06.161Z"
-    },
-    {
-      "id": "4d5d",
-      "water_cycle": "3",
-      "water_start_day": "2025-03-04",
-      "water_check": false,
-      "water_memo": [],
-      "plants_id": "62a4",
-      "etc": null,
-      "update_day": "2025-03-05T17:20:28.776Z"
+      "update_day": "2025-03-06T09:29:01.212Z"
     }
   ]
 }
