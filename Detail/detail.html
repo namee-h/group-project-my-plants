@@ -25,14 +25,14 @@
                 <nav>
                     <span id="index-member-name" class="display-none">이도윤님 환영합니다.</span>
                     <button id="index-login">
-                        <a href="/Login/login.html" id="index-login-button">Home</a>
+                        <a href="../index.html" id="index-login-button">Home</a>
                     </button>
                 </nav>
             </div>
         </header>
      </section>
 
-    <section class="detail-body">
+    <section class="detail-body mt-3">
         <div class="container text-center">
             <!-- 식물 info section in-->
             <div class="detail-row-box-area detail-profile">
@@ -97,10 +97,10 @@
 
              <!-- 식물 기록일지 section in -->
             <div class="detail-row-box-area detail-history-box-border">
-                <div class="row ">
-                    <div class="detail-history-name mb-3 col-lg-10 col-md-8 col-sm-6">식물 기록 일지</div>
-                    <div class="detail-add-history col-lg-2 col-md-4 col-sm-6 ">
-                        <input type="file" onchange="readURL(this);">
+                <div class="history-title-area mb-3 ">
+                    <div class="detail-history-name ">식물 기록 일지</div>
+                    <div class="detail-add-history">
+                        <input id="upload-my-plant" type="file" onchange="readURL(this);">
                     </div>
                 </div>
                 <div id="gallery" class="row"></div>

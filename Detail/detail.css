@@ -3,7 +3,7 @@ body{
   overflow-x:hidden;
 }
 .container{
-  max-width:800px;
+  max-width:850px;
 }
 
 .borders {
@@ -192,9 +192,12 @@ body{
 .detail-history-box-border {
   border:2px solid #53b133;
 }
-
+.history-title-area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .detail-history-name {
-  text-align: left;
   font-size: 1.2rem;
   color: #53b133;
   font-weight: bold;
@@ -203,7 +206,9 @@ body{
 .detail-history-list {
   margin-top: 20px;
 }
-
+#upload-my-plant{
+  max-width: 200px;
+}
 .detail-history-img {
   max-height: 20vh;
   aspect-ratio: 1/1;
@@ -228,10 +233,12 @@ body{
 .edit-btn:active {
   background: #388E3C;
 }
-
+/* 푸터 영역 */
 footer {
   background-color: #f8f9fa;
   padding: 20px;
   text-align: center;
 }
-
+footer i:hover{
+  color: #388E3C;
+}
