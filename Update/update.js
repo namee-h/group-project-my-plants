@@ -92,61 +92,281 @@
 //   })
 //   .catch((error) => console.error('Error loading data:', error));
 
-const apiKey = "g5riRcq5JDjWlHCMEXffSADFbTjZixLYxf38oWbtYw8"; // 🔹 여기에 본인의 Trefle API 키를 입력하세요.
-const apiUrl = `https://trefle.io/api/v1/species?token=${apiKey}`;
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-// const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
+// Trefle API 이용하여 fetch
+// // const apiKey = "g5riRcq5JDjWlHCMEXffSADFbTjZixLYxf38oWbtYw8"; // 🔹 Trefle API 키
+// const apiUrl = `https://trefle.io/api/v1/species?token=${apiKey}`;
+// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+// // const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
 
-async function fetchPlantTypes() {
-    try {
-        // const response = await fetch(proxyUrl + apiUrl);
-        // const data = await response.json();
+// async function fetchPlantTypes() {
+//     try {
+//         // const response = await fetch(proxyUrl + apiUrl);
+//         // const data = await response.json();
 
-        // console.log("data :",data)
-        // if (data && data.data) {
-        //     populatePlantTypeDropdown(data.data); // 🔹 드롭다운에 식물 종류 추가
-        // } else {
-        //     console.error("식물 종류를 불러오는 데 실패했습니다.");
-        // }
+//         // console.log("data :",data)
+//         // if (data && data.data) {
+//         //     populatePlantCategoryDropdown(data.data); // 🔹 드롭다운에 식물 종류 추가
+//         // } else {
+//         //     console.error("식물 종류를 불러오는 데 실패했습니다.");
+//         // }
 
-        let combinedData = []; // 두 페이지 데이터를 합칠 배열
+//         let combinedData = []; // 두 페이지 데이터를 합칠 배열
         
-        for (let page = 1; page <= 2; page++) {
-            const response = await fetch(proxyUrl + apiUrl + `&page=${page}`);
-            const data = await response.json();
-            if (data && data.data) {
-                combinedData = combinedData.concat(data.data); // 각 페이지의 데이터를 결합
-            } else {
-                console.error(`${page} 페이지의 데이터를 불러오는 데 실패했습니다.`);
-            }
+//         for (let page = 1; page <= 2; page++) {
+//             const response = await fetch(proxyUrl + apiUrl + `&page=${page}`);
+//             const data = await response.json();
+//             if (data && data.data) {
+//                 combinedData = combinedData.concat(data.data); // 각 페이지의 데이터를 결합
+//             } else {
+//                 console.error(`${page} 페이지의 데이터를 불러오는 데 실패했습니다.`);
+//             }
+//         }
+
+//         console.log("data :",combinedData)
+//         // 데이터가 모두 합쳐졌으면 드롭다운에 추가
+//         if (combinedData.length > 0) {
+//             populatePlantTypeDropdown(combinedData);
+//         } else {
+//             console.error("식물 종류를 불러오는 데 실패했습니다.");
+//         }
+
+//     } catch (error) {
+//         console.error("API 요청 중 오류 발생:", error);
+//     }
+// }
+
+// function populatePlantTypeDropdown(plants) {
+//     const plantCategorySelect = document.getElementById("plantCategory");
+
+//     // 기존 옵션 내용 초기화
+//     plantCategorySelect.innerHTML = `<option value="">식물 종류를 선택하세요</option>`;
+
+//     plants.forEach(plant => {
+//         const option = document.createElement("option");
+//         option.value = plant.slug; // 식물의 슬러그값을 value로 설정
+//         option.textContent = plant.common_name || plant.scientific_name; // 공통 이름 또는 학명
+//         plantCategorySelect.appendChild(option); // 드롭다운에 추가
+//     });
+// }
+
+// plant.id API 이용하여 fetch
+const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
+const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
+
+document.getElementById("plantSearch").addEventListener("input", async function () {
+    const query = this.value.trim();
+    if (query.length < 2) return;
+
+    try {
+        const response = await fetch(apiUrl + encodeURIComponent(query), {
+            method: "GET",
+            headers: {
+                "Api-Key": apiKey,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
         }
 
-        console.log("data :",combinedData)
-        // 데이터가 모두 합쳐졌으면 드롭다운에 추가
-        if (combinedData.length > 0) {
-            populatePlantTypeDropdown(combinedData);
+        const data = await response.json();
+        console.log("API 응답 데이터:", data); // 📌 응답 데이터 확인
+
+        if (data.entities && Array.isArray(data.entities)) {
+            displaySearchResults(data.entities); // 🔹 entities 배열 사용
         } else {
-            console.error("식물 종류를 불러오는 데 실패했습니다.");
+            displaySearchResults([]); // 검색 결과 없음
         }
-
     } catch (error) {
-        console.error("API 요청 중 오류 발생:", error);
+        console.error("식물 검색 오류:", error);
     }
-}
+});
 
-function populatePlantTypeDropdown(plants) {
-    const plantTypeSelect = document.getElementById("plantType");
+function displaySearchResults(results) {
+    const resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = "";
 
-    // 기존 옵션 내용 초기화
-    plantTypeSelect.innerHTML = `<option value="">식물 종류를 선택하세요</option>`;
+    if (!results || results.length === 0) {
+        resultsContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
+        return;
+    }
 
-    plants.forEach(plant => {
-        const option = document.createElement("option");
-        option.value = plant.slug; // 식물의 슬러그값을 value로 설정
-        option.textContent = plant.common_name || plant.scientific_name; // 공통 이름 또는 학명
-        plantTypeSelect.appendChild(option); // 드롭다운에 추가
+    results.forEach((plant) => {
+        const plantItem = document.createElement("div");
+        plantItem.textContent = plant.matched_in || "이름 없음"; // ✅ `matched_in` 값 표시
+
+        plantItem.classList.add("search-item");
+
+        plantItem.addEventListener("click", () => {
+            document.getElementById("selectedPlant").value = plantItem.textContent;
+            resultsContainer.innerHTML = "";
+        });
+
+        resultsContainer.appendChild(plantItem);
     });
 }
 
-// 페이지 로드 시 API 호출
-fetchPlantTypes();
+document.addEventListener("DOMContentLoaded", () => {
+    const plantNameInput = document.getElementById("plantName");
+    const plantNameError = document.getElementById("plantNameError");
+    const plantDescriptionInput = document.getElementById("plantDescription");
+    const plantDescriptionError = document.getElementById("plantDescriptionError");
+    const plantForm = document.getElementById("plantForm");
+
+    // 식물 이름 예외 처리
+    plantNameInput.addEventListener("input", () => {
+        const plantName = plantNameInput.value.trim();
+
+        if (plantName.length > 10) {
+            plantNameError.textContent = "10자 이내로 입력해주세요.";
+            return;
+        }
+
+        const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if (specialChars.test(plantName)) {
+            plantNameError.textContent = "특수문자는 사용할 수 없습니다.";
+            return;
+        }
+
+        plantNameError.textContent = "";
+    });
+
+    // 식물 정보 입력 예외 처리 (수정된 부분)
+    plantDescriptionInput.addEventListener("input", () => {
+        const plantDescription = plantDescriptionInput.value;
+
+        if (plantDescription.length > 100) {
+            plantDescriptionError.textContent = "100자 이내로 입력해주세요.";
+        } else {
+            plantDescriptionError.textContent = "";
+        }
+    });
+
+    plantForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const plantName = plantNameInput.value.trim();
+        if (!plantName) {
+            alert("식물 이름을 입력해주세요.");
+            return;
+        }
+
+        if (plantName.length > 10) {
+            alert("식물 이름을 10자 이내로 입력해주세요.");
+            return;
+        }
+
+        const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if (specialChars.test(plantName)) {
+            alert("특수문자는 사용할 수 없습니다.");
+            return;
+        }
+
+        const plantDescriptionValue = plantDescriptionInput.value;
+        if (plantDescriptionValue.length > 100) {
+            alert("식물 정보는 100자 이내로 입력해주세요.");
+            return;
+        }
+        
+
+        const plantCategory = document.getElementById("selectedPlant").value;
+        const wateringStartDate = document.getElementById("wateringStartDate").value;
+        const wateringInterval = document.getElementById("wateringInterval").value;
+        const plantDescription = document.getElementById("plantDescription").value;
+        const plantImage = document.getElementById("plantImage").files[0];
+
+        const formData = new FormData();
+        formData.append("plantImage", plantImage);
+
+        try {
+            // 이미지 업로드
+            const uploadResponse = await fetch("http://localhost:3001/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!uploadResponse.ok) {
+                throw new Error("이미지 업로드 실패");
+            }
+
+            const uploadResult = await uploadResponse.json();
+            const imageUrl = uploadResult.imageUrl;
+
+            // plants 데이터 저장
+            const plantData = {
+                plants_name: plantName,
+                description: plantDescription,
+                category: plantCategory,
+                member_id: 1,
+                update_day: new Date().toISOString(),
+                etc: null
+            };
+
+            const plantResponse = await fetch("http://localhost:3000/plants", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(plantData)
+            });
+
+            if (!plantResponse.ok) {
+                throw new Error("식물 정보 저장 실패");
+            }
+
+            // plants 데이터 저장 후 id 값 가져오기
+            const plantResult = await plantResponse.json();
+            const plantId = plantResult.id;
+
+            // img 데이터 저장
+            const imgData = {
+                plant_main_img: imageUrl,
+                plant_history: [],
+                plants_id: plantId,
+                etc: null,
+                update_day: new Date().toISOString()
+            };
+
+            const imgResponse = await fetch("http://localhost:3000/images", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(imgData)
+            });
+
+            if (!imgResponse.ok) {
+                throw new Error("이미지 정보 저장 실패");
+            }
+
+            // water 데이터 저장
+            const waterData = {
+                water_cycle: wateringInterval,
+                water_start_day: wateringStartDate,
+                water_check: false,
+                water_memo: [],
+                plants_id: plantId,
+                etc: null,
+                update_day: new Date().toISOString()
+            };
+
+            const waterResponse = await fetch("http://localhost:3000/water", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(waterData)
+            });
+
+            if (!waterResponse.ok) {
+                throw new Error("물주기 정보 저장 실패");
+            }
+
+            alert("데이터가 성공적으로 저장되었습니다.");
+
+        } catch (error) {
+            console.error("오류 발생:", error);
+            alert(`오류가 발생했습니다: ${error.message}`);
+        }
+    });
+});
+
+// 물주기 숫자만 입력되게 하는 function
+function validateNumber(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');  // 숫자만 허용
+}

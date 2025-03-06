@@ -20,24 +20,31 @@
         </header>
         <div class="plant-form">
             <h2>🌱 식물 등록</h2>
-            <form id="plantForm">
+            <form id="plantForm" enctype="multipart/form-data">
                 <label for="plantName">식물 이름</label>
                 <input type="text" id="plantName" placeholder="예: 다육이" required>
+                <p id="plantNameError" style="color: red;"></p>
 
                 <label for="plantImage">식물 이미지</label>
                 <input type="file" id="plantImage" accept="image/*">
 
-                <label for="plantType">식물 종류</label>
-                <select id="plantType">
-                    <option value="">식물 종류를 불러오는 중...</option>
-                </select>
+                <label for="plantSearch">식물 종류 검색</label>
+                <input type="text" id="plantSearch" placeholder="식물 종류 검색..." />
+                <div id="searchResults"></div>
 
-                <label for="plantStartDate">키우기 시작한 날짜</label>
-                <input type="date" id="plantStartDate" required>
+                <label for="selectedPlant">선택된 식물 종류</label>
+                <input type="text" id="selectedPlant" readonly />
+
+                <label for="wateringStartDate">물주기 시작 날짜</label>
+                <input type="date" id="wateringStartDate" required>
+
+                <label for="wateringInterval">물주기 간격 (최대 일수: 30일)</label>
+                <input type="number" id="wateringInterval" min="1" max="30" placeholder="예: 3" required oninput="validateNumber(this)">
 
 
                 <label for="plantDescription">식물 정보</label>
-                <textarea id="plantDescription" rows="4" placeholder="식물에 대한 간단한 정보를 입력하세요."></textarea>
+                <textarea id="plantDescription" rows="4" placeholder="식물에 대한 간단한 정보를 입력하세요.(100자 이내)"></textarea>
+                <div id="plantDescriptionError" style="color: red;"></div>
 
                 <button type="submit" class="submit-button">등록하기</button>
                 <button type="reset" class="reset-button">취소하기</button>

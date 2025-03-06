@@ -10,13 +10,26 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="detail.css" />
     <link rel="icon" type="image/x-icon" href="../asset/yiseul_logo.webp">
   </head>
   <body>
     <!-- 상세페이지 도윤님 작업공간 사용할 branch: project_doyoon -->
      <section>
-        <!-- header 영역 들어갈 예정-->
+        <header id="index-header">
+            <div id="index-logo-area">
+                <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
+            </div>
+            <div id="nav_area">
+                <nav>
+                    <span id="index-member-name" class="display-none">이도윤님 환영합니다.</span>
+                    <button id="index-login">
+                        <a href="/Login/login.html" id="index-login-button">Home</a>
+                    </button>
+                </nav>
+            </div>
+        </header>
      </section>
 
     <section class="detail-body">
@@ -24,59 +37,61 @@
             <!-- 식물 info section in-->
             <div class="detail-row-box-area">
                 <img src="../asset/detail/detail-sample-img.png" class="detail-img" alt="" srcset="">
-                <div class="">
+                <div class="plant_info">
                     <div class="row">
-                        <div class="col detail-info-name">식물 이름</div>
-                        <div class="col detail-name">못난꽃</div>
+                        <div class="col-6 detail-info-name">식물 이름</div>
+                        <div class="col-2 detail-name" id="plant-name"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-name">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col detail-info-name">식물 종류</div>
-                        <div class="col detail-name">1급 보호종</div>
+                        <div class="col-6 detail-info-name">식물 종류</div>
+                        <div class="col-2 detail-name" id="plant-type"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-type">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col detail-info-name">처음 작성일</div>
-                        <div class="col detail-name">2025.03.04</div>
+                        <div class="col-6 detail-info-name">처음 작성일</div>
+                        <div class="col-2 detail-name" id="plant-date"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-date">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- 식물 info section out-->
+            
              <!-- 물주기 info section in -->
             <div class="detail-row-box-area detail-water-box-border">
-                <div class="detail-water-name mb-3">물 주기</div>
-                <div class="row">
-                    <div class="col detail-water-info">
-                        <div class="detail-water-day">05 (수)</div>
-                        <div class="detail-water-text">
-                            <img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">
-                        </div>
-                    </div>
-                    <div class="col detail-water-info">
-                        <div class="detail-water-day">06 (목)</div>
-                        <div class="detail-water-text">
-                            <!-- <img src="/asset/detail/detail-water.png" class="detail-water-img" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="col detail-water-info">
-                        <div class="detail-water-day">07 (금)</div>
-                        <div class="detail-water-text today">
-                            <img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">
-                        </div>
-                    </div>
-                    <div class="col detail-water-info">
-                        <div class="detail-water-day sat">08 (토)</div>
-                        <div class="detail-water-text">
-                            <!-- <img src="/asset/detail/detail-water.png" class="detail-water-img" alt=""> -->
-                        </div>
-                    </div>
-                    <div class="col detail-water-info">
-                        <div class="detail-water-day sun">09 (일)</div>
-                        <div class="detail-water-text">
-                            <img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">
+                <div class="row mb-3">
+                    <div class="col detail-water-name">물 주기</div>
+                    <div class="col-2 text-end">
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                              <option value="1" selected>매일</option>
+                              <option value="2">이틀에 한번</option>
+                              <option value="3">사흘에 한번</option>
+                              <option value="4">나흘에 한번</option>
+                            </select>
+                            <label for="floatingSelect">물주기 간격 바꾸기</label>
                         </div>
                     </div>
                 </div>
+
+                <div class="row water-schedule">
+                    
+                </div> 
             </div>
             <!-- 물주기 info section out -->
+
              <!-- 식물 기록일지 section in -->
             <div class="detail-row-box-area detail-history-box-border">
                 <div class="row ">
@@ -85,6 +100,7 @@
                         <input type="file" onchange="readURL(this);">
                     </div>
                 </div>
+                <div id="gallery" class="row"></div>
                 <div class="row ">
                     <div class="col">
                         <div class="detail-history-img" style="background-image:url('/asset/detail/sample1.jpg');"></div>

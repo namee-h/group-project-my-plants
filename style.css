@@ -12,20 +12,33 @@
   height: auto;
 }
 
-#index-login {
-  background-color: #4CAF50;
+#index-auth-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+#index-auth-buttons a {
   border: none;
   font-size: 15px;
   border-radius: 5px;
   padding: 5px 10px;
-}
-
-#index-login a {
   text-decoration: none;
   color: white;
 }
 
+#index-login {
+  background-color: #4CAF50;
+}
+
 #index-login:hover {
+  background-color: #45a049;
+}
+
+#index-signup {
+  background-color: #4CAF50;
+}
+
+#index-signup:hover {
   background-color: #45a049;
 }
 
@@ -68,6 +81,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: none;
   background: rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
@@ -75,7 +89,7 @@
 }
 
 .index-swiper-prev:hover, .index-swiper-next:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255);
 }
 
 .index-swiper-prev{
@@ -124,6 +138,7 @@
   font-weight: bold;
   border: none;
   color: white;
+  text-decoration: none;
 }
 
 .index-water {
@@ -159,3 +174,22 @@
 .display-none{
   display: none;
 }
+
+/* 맨 위로 가기 버튼 추가 */
+#index-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: max(10px, calc(50% - 380px)); /* 콘텐츠의 max-width 기준 */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+#index-top-button:hover {
+  background-color: #e0e0e0;
+}
+
