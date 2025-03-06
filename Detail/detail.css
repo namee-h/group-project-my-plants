@@ -82,12 +82,14 @@
 .detail-water-list {
     margin-top: 20px;
 }
-
+/* 물주기 스타일 */
+/* 물 주기 스타일 */
 .detail-water-info {
     border-radius: 10px;
-}
-
-.detail-water-day {
+    text-align: center;
+  }
+  
+  .detail-water-day {
     padding: 0.2rem 0.5rem;
     border-radius: 0.5rem 0.5rem 0 0;
     text-align: left;
@@ -95,37 +97,37 @@
     color: #fff;
     font-weight: bold;
     background-color: #000;
-}
-
-.detail-water-day.sat {
-    background-color: #2229d6;
-}
-
-.detail-water-day.sun {
-    background-color: #f71b1b;
-}
-
-.detail-water-text {
+  }
+  
+  .detail-water-day.sat {
+    background-color: #2229d6; /* 토요일 파란색 */
+  }
+  
+  .detail-water-day.sun {
+    background-color: #f71b1b; /* 일요일 빨간색 */
+  }
+  
+  .detail-water-text {
     position: relative;
     width: 100%;
     max-height: 20vh;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1/1; /* 정사각형 */
     border: 2px solid #000;
-    border-top: 0;
+    border-top: none;
     border-radius: 0 0 0.5rem 0.5rem;
-}
-
-.detail-water-text.today {
-    background-color: beige;
-}
-
-.detail-water-text .detail-water-img {
+  }
+  
+  .detail-water-text.today {
+    background-color: beige; /* 오늘 날짜 강조 */
+  }
+  
+  .detail-water-img {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 3rem;
-}
-
+    top: calc(50% - 1.5rem); /* 이미지 세로 중앙 정렬 */
+    left: calc(50% - 1.5rem); /* 이미지 가로 중앙 정렬 */
+    width: 3rem; /* 물방울 아이콘 크기 */
+  }
+  
 .detail-history-box-border {
     border:3px solid #53b133;
 }
