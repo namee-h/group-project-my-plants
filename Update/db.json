@@ -1,0 +1,102 @@
+{
+  "members": [
+    {
+      "name": "홍길동",
+      "age": 30,
+      "gender": "남성",
+      "address": "서울시 강남구",
+      "email": "hong@example.com",
+      "password": "password123",
+      "etc": null,
+      "update_day": "2025-03-06T00:00:00.000Z",
+      "id": "456123"
+    }
+  ],
+  "plants": [
+    {
+      "id": "e784",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Roseodendron",
+      "member_id": 1,
+      "update_day": "2025-03-06T09:29:01.198Z",
+      "etc": null
+    },
+    {
+      "id": "b00e",
+      "plants_name": "1231231231",
+      "description": "123",
+      "category": "Rosa multiflora",
+      "member_id": 1,
+      "update_day": "2025-03-06T09:32:41.743Z",
+      "etc": null
+    },
+    {
+      "id": "2b04",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Rosa rugosa",
+      "member_id": 1,
+      "update_day": "2025-03-06T09:37:26.304Z",
+      "etc": null
+    }
+  ],
+  "images": [
+    {
+      "id": "e223",
+      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
+      "plant_history": [],
+      "plants_id": "e784",
+      "etc": null,
+      "update_day": "2025-03-06T09:29:01.206Z"
+    },
+    {
+      "id": "8ea6",
+      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
+      "plant_history": [],
+      "plants_id": "b00e",
+      "etc": null,
+      "update_day": "2025-03-06T09:32:41.751Z"
+    },
+    {
+      "id": "df5c",
+      "plant_main_img": "/asset/test1-2025-03-06/test1.jpg",
+      "plant_history": [],
+      "plants_id": "2b04",
+      "etc": null,
+      "update_day": "2025-03-06T09:37:26.321Z"
+    }
+  ],
+  "water": [
+    {
+      "id": "5787",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-04",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "e784",
+      "etc": null,
+      "update_day": "2025-03-06T09:29:01.212Z"
+    },
+    {
+      "id": "8970",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-05",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "b00e",
+      "etc": null,
+      "update_day": "2025-03-06T09:32:41.758Z"
+    },
+    {
+      "id": "179a",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-03",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "2b04",
+      "etc": null,
+      "update_day": "2025-03-06T09:37:26.327Z"
+    }
+  ]
+}

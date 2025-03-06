@@ -1,66 +1,57 @@
 {
-    "members": [
-        {
-            "id": "1", 
-            "name": "testMember", 
-            "age": 30, 
-            "gender": 1, 
-            "address": "testAddress", 
-            "email": "testEmail@naver.com", 
-            "password": "1234", 
-            "update_dat": "2025-03-05",
-            "etc1": "",
-            "etc2": "",
-            "etc3": ""
-        }
-    ],
-    "plants": [
-        {
-            "id": "1", 
-            "plant_name": "testPlant", 
-            "description": "설명", 
-            "category": "꽃", 
-            "update_dat": "2025-03-05",
-            "member_id": "1",
-            "etc1": "",
-            "etc2": "",
-            "etc3": ""
-        }
-    ],
-    "images": [
-        {
-            "id": "1", 
-            "plant_main_img": "testMember_jdkd123_20250305.jpg", 
-            "plant_history": "testMember_jdkd456_20250305.jpg,testMember_jdkd789_20250305.jpg", 
-            "update_dat": "2025-03-05",
-            "plant_id": "1",
-            "etc1": "",
-            "etc2": "",
-            "etc3": ""
-        }
-    ],
-    "water": [
-        {
-            "id": "1", 
-            "water_cycle": "2025-03-05", 
-            "water_start_day": "10:00", 
-            "water_check": "1",
-            "update_dat": "2025-03-05",
-            "plant_id": "1",
-            "etc1": "",
-            "etc2": "",
-            "etc3": ""
-        }
-    ],
-    "history": [
-        {
-            "id": "1", 
-            "history_memo": "[“설명1”],[“설명2”]",
-            "update_dat": "2025-03-05",
-            "plant_id": "1", 
-            "etc1": "",
-            "etc2": "",
-            "etc3": ""
-        }
-    ]
+  "members": [
+    {
+      "id": "1",
+      "name": "testMember",
+      "age": 30,
+      "gender": 1,
+      "address": "testAddress",
+      "email": "testEmail@naver.com",
+      "password": "1234",
+      "update_dat": "2025-03-05",
+      "etc1": "",
+      "etc2": "",
+      "etc3": ""
+    }
+  ],
+  "plants": [
+    {
+      "id": "1",
+      "plant_name": "testPlant",
+      "description": "설명",
+      "category": "꽃",
+      "update_dat": "2025-03-05",
+      "member_id": "1",
+      "etc1": "",
+      "etc2": "",
+      "etc3": ""
+    }
+  ],
+  "images": [
+    {
+      "id": "1",
+      "plant_main_img": "testMember_jdkd123_20250305.jpg",
+      "plant_history": "testMember_jdkd456_20250305.jpg,testMember_jdkd789_20250305.jpg",
+      "update_dat": "2025-03-05",
+      "plant_id": "1",
+      "etc1": "",
+      "etc2": "",
+      "etc3": ""
+    }
+  ],
+  "water": [
+    {
+      "id": "1",
+      "water_cycle": "2025-03-05",
+      "water_start_day": "10:00",
+      "water_check": "1",
+      "update_dat": "2025-03-05",
+      "plant_id": "1",
+      "etc1": "",
+      "etc2": "",
+      "etc3": ""
+    }
+  ],
+  "history": [
+  ]
 }
