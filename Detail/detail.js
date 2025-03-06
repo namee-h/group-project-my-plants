@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="detail-water-text ${isToday ? "today" : ""}">
                   ${
                     showWaterIcon
-                      ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="">`
+                      ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
                       : ""
                   }
               </div>
@@ -163,6 +163,18 @@ document.addEventListener("DOMContentLoaded", () => {
       // 컨테이너에 추가
       waterScheduleContainer.appendChild(waterInfoDiv);
     }
+
+    // 물방울 이미지 클릭 이벤트 추가
+    const waterImages = document.querySelectorAll(".detail-water-img");
+    waterImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        if (img.src.includes("detail-water.png")) {
+          img.src = "/asset/detail/detail-water-done.png"; // 완료 상태로 변경
+        } else {
+          img.src = "/asset/detail/detail-water.png"; // 다시 원래 상태로 변경
+        }
+      });
+    });
   };
 
   // 초기 로드 (매일)
