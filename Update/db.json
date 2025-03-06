@@ -1,5 +1,5 @@
 {
-  "member": [
+  "members": [
     {
       "name": "홍길동",
       "age": 30,
@@ -10,6 +10,56 @@
       "etc": null,
       "update_day": "2025-03-06T00:00:00.000Z",
       "id": "456123"
+    },
+    {
+      "id": "4ca1",
+      "name": "1",
+      "age": "123",
+      "gender": "male",
+      "address": "서울 강서구 강서로52길 13",
+      "email": "123@gmail.com",
+      "password": "1235415311515",
+      "update_dat": "2025-03-06"
+    },
+    {
+      "id": "740d",
+      "name": "1",
+      "age": "1",
+      "gender": "male",
+      "address": "충남 천안시 동남구 병천면 5산단로 357-42",
+      "email": "123@gmail.com",
+      "password": "5643135465135135",
+      "update_dat": "2025-03-06"
+    },
+    {
+      "id": "3849",
+      "name": "123",
+      "age": "12",
+      "gender": "male",
+      "address": "서울 강서구 곰달래로23길 5",
+      "email": "123@gmail.com",
+      "password": "456456546845345",
+      "update_dat": "2025-03-06"
+    },
+    {
+      "id": "e12f",
+      "name": "1",
+      "age": "1",
+      "gender": "male",
+      "address": "서울 노원구 동일로231길 13-13",
+      "email": "123@gmail.com",
+      "password": "1231r25qetergtergt",
+      "update_dat": "2025-03-06"
+    },
+    {
+      "id": "41c9",
+      "name": "1",
+      "age": "12",
+      "gender": "male",
+      "address": "서울 강동구 양재대로123길 7",
+      "email": "123@gmail.com",
+      "password": "1wefaertwegtera",
+      "update_dat": "2025-03-06"
     }
   ],
   "plants": [
