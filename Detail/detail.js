@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateWaterCycle = async (newCycle) => {
     try {
       const response = await fetch(`${API_URL}/water/1`, {
-        // 1은 water 데이터의 ID입니다. 실제 ID에 맞게 조정해주세요.
+        // 1은 water 데이터ID 실제 ID에 맞게 조정해야함
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -184,21 +184,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // HTML에 내용 뿌리기
       waterInfoDiv.innerHTML = `
-              <div class="detail-water-day ${dayClass}">${String(day).padStart(
+      <div class="detail-water-day ${dayClass}">${String(day).padStart(
         2,
         "0"
       )} (${weekdayName})</div>
-              <div class="detail-water-text ${isToday ? "today" : ""}">
-                  ${
-                    showWaterIcon
-                      ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
-                      : ""
-                  }
-              </div>
-          `;
+      <div class="detail-water-text ${isToday ? "today" : ""}">
+          ${
+            showWaterIcon
+              ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
+              : ""
+          }
+      </div>
+  `;
       waterScheduleContainer.appendChild(waterInfoDiv);
     }
-
     // 물방울 이미지 클릭 이벤트
     const waterImages = document.querySelectorAll(".detail-water-img");
     waterImages.forEach((img) => {

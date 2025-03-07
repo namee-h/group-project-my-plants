@@ -73,7 +73,7 @@
             <!-- 식물 info section out-->
             
              <!-- 물주기 info section in -->
-             <div class="detail-row-box-area detail-water-box-border">
+            <div class="detail-row-box-area detail-water-box-border">
                 <div class="row mb-3">
                     <div class="col detail-water-name">물 주기</div>
                     <div class="col text-end">
@@ -88,27 +88,35 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row water-schedule">
-                    
-                </div> 
+                 
+                </div>
             </div>
             <!-- 물주기 info section out -->
 
              <!-- 식물 기록일지 section in -->
             <div class="detail-row-box-area detail-history-box-border">
-                <div class="history-title-area mb-3 ">
-                    <div class="detail-history-name ">식물 기록 일지</div>
-                    <div class="detail-add-history">
-                        <input id="upload-my-plant" type="file" onchange="readURL(this);">
+                <div class="row ">
+                    <div class="detail-history-name mb-3 col-lg-6 col-md-8 col-sm-6">식물 기록 일지</div>
+                    <!-- <div class="detail-add-history col-lg-2 col-md-4 col-sm-6 ">
+                        <input type="file" onchange="readURL(this);">
+                    </div> -->
+                    <div class="detail-add-history col-sm-6 col-lg-6 col-md-4 mb-3 text-end">
+                        <!-- <label for="formFileSm" class="form-label upload-title">사진 올리기</label> -->
+                        <input class="form-control img-upload-form" type="file" id="formFile">
+                        <button type="button" class="btn btn-success history-upload">
+                            <i class="bi bi-cloud-plus history-img-upload-btn"></i>
+                        </button>
+
                     </div>
                 </div>
                 <div id="gallery" class="row"></div>
                 <div class="row ">
                     <div class="col">
-                        <div class="detail-history-img" style="background-image:url('/asset/detail/sample1.jpg');"></div>
+                        <!-- <div class="detail-history-img" style="background-image:url('/asset/detail/sample1.jpg');"></div> -->
+                        <img id="preview" src="" alt="업로드 이미지">
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="detail-history-img" style="background-image:url('/asset/detail/sample2.jpg');"></div>
                     </div>
                     <div class="col">
@@ -116,28 +124,29 @@
                     </div>
                     <div class="col">
                         <div class="detail-history-img" style=""></div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="detail-pagination ">
                     <div class="detail-point on"></div>
                     <div class="detail-point"></div>
                 </div>
+
             </div>
             <!-- 식물 기록일지 section out -->
              
     </section>
     <!-- 푸터 -->
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
-        <div class="col-md-4 d-flex align-items-center">
+    <footer >
+        <div >
             <a href="/" class="me-2 text-body-secondary text-decoration-none">
-                <img src="../asset/logo_sara.png" alt="Logo" width="30" height="24">
+                <img src="../asset/logo_sara.png" alt="Logo" width="35">
             </a>
             <span class="text-body-secondary">© JS Study Group 1 </span>
         </div>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex ms-auto">
-            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
-            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
-            <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
+        <ul class="row">
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
         </ul>
     </footer>
 
