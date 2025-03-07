@@ -120,11 +120,29 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(`${API_URL}/water`);
       const data = await response.json();
-      console.log("waterddd", data); // 디버깅용 출력
+      console.log("waterddd", data);
       return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
     } catch (error) {
       console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
       return 1; // 기본값으로 1 (매일) 반환
+    }
+  };
+  // 물 주기 데이터를 업데이트하는 함수
+  const updateWaterCycle = async (newCycle) => {
+    try {
+      const response = await fetch(`${API_URL}/water/1`, {
+        // 1은 water 데이터의 ID입니다. 실제 ID에 맞게 조정해주세요.
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ water_cycle: newCycle }),
+      });
+      const data = await response.json();
+      console.log("Updated water cycle data:", data);
+      return data;
+    } catch (error) {
+      console.error("물 주기 데이터 업데이트에 실패했습니다:", error);
     }
   };
 
@@ -202,7 +220,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 물주기 옵션 변경 시 동작
   selectElement.addEventListener("change", (event) => {
-    const interval = parseInt(event.target.value, 10); // 선택된 간격 값 가져오기
+    event.preventDefault(); // 기본 제출 동작 방지
+    const interval = parseInt(event.target.value, 10);
     generateWaterSchedule(interval);
+
+    // fetch API를 사용한 비동기 업데이트
+    updateWaterCycle(interval)
+      .then(() => {
+        console.log("물주기 값이 성공적으로 업데이트되었습니다.");
+      })
+      .catch((error) => {
+        console.error("물주기 값 업데이트 중 오류 발생:", error);
+      });
   });
 });
