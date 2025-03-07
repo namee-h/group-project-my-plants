@@ -1,170 +1,271 @@
+body{
+  margin:0;
+  overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100dvh;
+}
+.container{
+  max-width:850px;
+}
+
 .borders {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 /* 해더 영역 */
 #index-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-    background-color: #f0f0f0;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #f0f0f0;
+}
 #index-logo {
-    width: 50px;
-    height: auto;
-  }
-  #index-login {
-    background-color: #4CAF50;
-    border: none;
-    font-size: 15px;
-    border-radius: 5px;
-    padding: 5px 10px;
-  }
-  #index-login a {
-    text-decoration: none;
-    color: white;
-  }
-  .display-none{
-    display: none;
-  }
+  width: 50px;
+  height: auto;
+}
+#index-login {
+  background-color: #4CAF50;
+  border: none;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+#index-login a {
+  text-decoration: none;
+  color: white;
+}
+.display-none{
+  display: none;
+}
 .detail-body {
-    width: 100%;
-    height: 100vh;
-    padding-top: 10px;
+  width: 100%;
+  /* height: 100vh; */
+  padding-top: 10px;
 }
 
 .detail-row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap:10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:10px;
 }
 
 .detail-row-box-area {
-    padding: 2rem;
-    width: 100%;
-    border: 1px solid #000;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 2rem;
+  padding: 2rem;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
+
+
 .detail-img {
-    max-height: 30vh;
+  width:-webkit-fill-available;
 }
 
 
 .detail-info-name {
-    padding-right: 10px;
-    text-align: right;
-    font-size: 1.2rem;
+  padding-right: 10px;
+  text-align: right;
+  /* font-size: 1.2rem; */
+  font-weight: bold;
+  color:green;
 }
 
 .detail-name {
-    padding-left: 10px;
-    text-align: left;
-    font-size: 1.2rem;
-    font-weight: bold;
+  padding-left: 10px;
+  text-align: left;
+  /* font-size: 1.2rem; */
+  /* font-weight: bold; */
+  min-width: 120px;
 }
 
+
+
 .detail-water-box-border {
-    border:2px solid rgb(37, 76, 218);
+  border:2px solid rgb(37, 76, 218);
 }
 
 .detail-water-name { 
-    text-align: left;
-    font-size: 1.2rem;
-    color: rgb(37, 76, 218);
-    font-weight: bold;
+  text-align: left;
+  font-size: 1.2rem;
+  color: rgb(37, 76, 218);
+  font-weight: bold;
 }
 
 .detail-water-list {
-    margin-top: 20px;
-}
-/* 물 주기 스타일 */
-.detail-water-info {
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .detail-water-day {
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-    text-align: left;
-    font-size: 1.2rem;
-    color: #fff;
-    font-weight: bold;
-    background-color: #000;
-  }
-  
-  .detail-water-day.sat {
-    background-color: #2229d6; /* 토요일 파란색 */
-  }
-  
-  .detail-water-day.sun {
-    background-color: #f71b1b; /* 일요일 빨간색 */
-  }
-  
-  .detail-water-text {
-    position: relative;
-    width: 100%;
-    max-height: 20vh;
-    aspect-ratio: 1/1; /* 정사각형 */
-    border: 2px solid #000;
-    border-top: none;
-    border-radius: 0 0 0.5rem 0.5rem;
-  }
-  
-  .detail-water-text.today {
-    background-color: beige; /* 오늘 날짜 강조 */
-  }
-  
-  .detail-water-img {
-    position: absolute;
-    top: calc(50% - 1.5rem); /* 이미지 세로 중앙 정렬 */
-    left: calc(50% - 1.5rem); /* 이미지 가로 중앙 정렬 */
-    width: 3rem; /* 물방울 아이콘 크기 */
-    cursor: pointer;
-  }
-  
-.detail-history-box-border {
-    border:3px solid #53b133;
+  margin-top: 20px;
 }
 
+/* 0306 이슬 추가 */
+.detail-profile {
+  display: flex;
+  align-items: center;
+  justify-content: start; 
+  gap: 15px;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 2px black solid;
+  border-radius: 10px;
+  min-height:250px;
+  max-width: 100%;
+}
+
+
+.image_area {
+  text-align: center;
+  flex : 0 0 150px;
+  min-width: 150px;
+}
+
+.image_area img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.detail-add-history{
+  display:flex;
+}
+
+/* 📝 식물 정보 영역 (가변 크기) */
+.plant_info {
+  flex: 1;  /* 남은 공간을 차지 */
+  font-size : 16px;
+}
+
+/* 📱 모바일에서 세로 정렬 */
+@media (max-width: 768px) {
+  .detail-profile {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+  
+  .image_area {
+      margin-bottom: 15px;
+  }
+}
+
+
+/* 물 주기 스타일 */
+.detail-water-info {
+  border-radius: 10px;
+  text-align: center;
+}
+
+.detail-water-day {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  text-align: left;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+  background-color: mediumseagreen;
+}
+
+.detail-water-day.sat {
+  background-color: darkorange; /* 토요일 파란색 */
+}
+
+.detail-water-day.sun {
+  background-color: darkorange; /* 일요일 빨간색 */
+}
+
+.detail-water-text {
+  position: relative;
+  width: 100%;
+  max-height: 20vh;
+  aspect-ratio: 1/1; /* 정사각형 */
+  /* border: 2px solid #000; */
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.429);
+  border-top: none;
+}
+
+.detail-water-text.today {
+  background-color: beige; /* 오늘 날짜 강조 */
+}
+
+
+.detail-water-img {
+  position: absolute;
+  top: calc(50% - 1.5rem); /* 이미지 세로 중앙 정렬 */
+  left: calc(50% - 1.5rem); /* 이미지 가로 중앙 정렬 */
+  width: 3rem; /* 물방울 아이콘 크기 */
+  cursor: pointer;
+}
+
+.detail-history-box-border {
+  border:2px solid #53b133;
+}
+.history-title-area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .detail-history-name {
-    text-align: left;
-    font-size: 1.2rem;
-    color: #53b133;
-    font-weight: bold;
+  font-size: 1.2rem;
+  color: #53b133;
+  font-weight: bold;
+}
+
+.upload-title{
+  font-size: smaller;
+  font-weight: bold;
 }
 
 .detail-history-list {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+#upload-my-plant{
+  max-width: 200px;
+}
+.detail-history-img {
+  max-height: 20vh;
+  aspect-ratio: 1/1;
+  background-position: center;
+  background-size: cover;
 }
 
-.detail-history-img {
-    max-height: 20vh;
-    aspect-ratio: 1/1;
-    background-position: center;
-    background-size: cover;
-}
 
 
 /*연필모양 아이콘*/
 .edit-btn{
-    background:transparent;
-    border:none;
-    cursor:pointer;
-    font-size: 15px;
-    display: flex;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-size: 15px;
+  display: flex;
 
 }
 .edit-btn:hover {
-    background: #4CAF50; 
-    color: white; 
+  background: #4CAF50; 
+  color: white; 
 }
 .edit-btn:active {
-    background: #388E3C;
+  background: #388E3C;
 }
-
+/* 푸터 영역 */
+footer {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+}
+footer i:hover{
+  color: #388E3C;
+}
+ul {
+  list-style: none;
+  padding: 0 1em;
+}
