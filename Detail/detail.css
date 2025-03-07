@@ -1,13 +1,13 @@
 body{
   margin:0;
   overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100dvh;
 }
 .container{
-  max-width:800px;
-}
-
-li{
-  list-style-type: none;
+  max-width:850px;
 }
 
 .borders {
@@ -82,6 +82,7 @@ li{
   text-align: left;
   /* font-size: 1.2rem; */
   /* font-weight: bold; */
+  min-width: 120px;
 }
 
 
@@ -185,11 +186,14 @@ li{
   /* border: 2px solid #000; */
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.429);
+  border-top: none;
 }
 
 .detail-water-text.today {
   background-color: beige; /* 오늘 날짜 강조 */
 }
+
 
 .detail-water-img {
   position: absolute;
@@ -202,9 +206,12 @@ li{
 .detail-history-box-border {
   border:2px solid #53b133;
 }
-
+.history-title-area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .detail-history-name {
-  text-align: left;
   font-size: 1.2rem;
   color: #53b133;
   font-weight: bold;
@@ -218,7 +225,9 @@ li{
 .detail-history-list {
   margin-top: 20px;
 }
-
+#upload-my-plant{
+  max-width: 200px;
+}
 .detail-history-img {
   max-height: 20vh;
   aspect-ratio: 1/1;
@@ -244,10 +253,19 @@ li{
 .edit-btn:active {
   background: #388E3C;
 }
-
+/* 푸터 영역 */
 footer {
   background-color: #f8f9fa;
-  padding: 20px;
+  padding: 10px 20px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
 }
-
+footer i:hover{
+  color: #388E3C;
+}
+ul {
+  list-style: none;
+  padding: 0 1em;
+}
