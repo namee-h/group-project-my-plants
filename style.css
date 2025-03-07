@@ -188,7 +188,7 @@
 /* 맨 위로 가기 버튼 추가 */
 #index-top-button {
   position: fixed;
-  bottom: 20px;
+  bottom: 70px;
   right: max(10px, calc(50% - 500px)); /* 콘텐츠의 max-width 기준 */
   width: 50px;
   height: 50px;
@@ -201,6 +201,23 @@
 
 #index-top-button:hover {
   background-color: #e0e0e0;
+}
+
+/* 푸터 영역 */
+footer {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+}
+footer i:hover{
+  color: #388E3C;
+}
+ul {
+  list-style: none;
+  padding: 0 1em;
 }
 
 
