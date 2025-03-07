@@ -25,6 +25,42 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "15f7",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Abelia × grandiflora",
+      "member_id": 1,
+      "update_day": "2025-03-07T02:47:53.674Z",
+      "etc": null
+    },
+    {
+      "id": "856e",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Rosa dumalis",
+      "member_id": 1,
+      "update_day": "2025-03-07T02:48:36.930Z",
+      "etc": null
+    },
+    {
+      "id": "b213",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Abelmoschus",
+      "member_id": 1,
+      "update_day": "2025-03-07T03:02:00.390Z",
+      "etc": null
+    },
+    {
+      "id": "ec70",
+      "plants_name": "123",
+      "description": "1231351",
+      "category": "Dieffenbachia seguine",
+      "member_id": 1,
+      "update_day": "2025-03-07T08:33:50.523Z",
+      "etc": null
     }
   ],
   "images": [
@@ -37,6 +73,38 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "12a9",
+      "plant_main_img": "/asset/1,1_15f7/1,1_15f7_main.jpg",
+      "plant_history": [],
+      "plants_id": "15f7",
+      "etc": null,
+      "update_day": "2025-03-07T02:47:53.702Z"
+    },
+    {
+      "id": "9057",
+      "plant_main_img": "/asset/1_856e/1_856e_main.jpg",
+      "plant_history": [],
+      "plants_id": "856e",
+      "etc": null,
+      "update_day": "2025-03-07T02:48:36.948Z"
+    },
+    {
+      "id": "b2d0",
+      "plant_main_img": "/asset/1_b213/1_b213_main.jpg",
+      "plant_history": [],
+      "plants_id": "b213",
+      "etc": null,
+      "update_day": "2025-03-07T03:02:00.408Z"
+    },
+    {
+      "id": "eb1f",
+      "plant_main_img": "/asset/1_ec70/1_ec70_main.jpg",
+      "plant_history": [],
+      "plants_id": "ec70",
+      "etc": null,
+      "update_day": "2025-03-07T08:33:50.565Z"
     }
   ],
   "water": [
@@ -50,8 +118,47 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "d17b",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-06",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "15f7",
+      "etc": null,
+      "update_day": "2025-03-07T02:47:53.709Z"
+    },
+    {
+      "id": "d4c1",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-05",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "856e",
+      "etc": null,
+      "update_day": "2025-03-07T02:48:36.955Z"
+    },
+    {
+      "id": "2413",
+      "water_cycle": "4",
+      "water_start_day": null,
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "b213",
+      "etc": null,
+      "update_day": "2025-03-07T03:02:00.414Z"
+    },
+    {
+      "id": "3cd2",
+      "water_cycle": "2",
+      "water_start_day": null,
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "ec70",
+      "etc": null,
+      "update_day": "2025-03-07T08:33:50.571Z"
     }
   ],
-  "history": [
-  ]
+  "history": []
 }

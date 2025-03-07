@@ -11,13 +11,19 @@
 <body>
     <!-- 식물등록페이지 종호님 작업공간 사용할 branch: project_jongho -->
     <div class="parent-container">
-
         <header id="index-header">
-            <div id="index-logo-area">
+            <div id="index-logo-area" onclick="goHome()">
                 <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
             </div>
-            
+            <div id="nav_area">
+                <nav>
+                    <button id="index-login">
+                        <a href="../index.html">Home</a>
+                    </button>
+                </nav>
+            </div>
         </header>
+
         <div class="plant-form">
             <h2>🌱 식물 등록</h2>
             <form id="plantForm" enctype="multipart/form-data">
@@ -25,21 +31,51 @@
                 <input type="text" id="plantName" placeholder="예: 다육이" required>
                 <p id="plantNameError" style="color: red;"></p>
 
-                <label for="plantImage">식물 이미지</label>
-                <input type="file" id="plantImage" accept="image/*">
+                <label>식물 종류 입력 방식</label>
+                <div class="plant-type-radio-group">
+                    <input type="radio" id="methodImage" name="plantMethod" value="image" checked>
+                    <label for="methodImage">이미지 인식</label>
 
-                <label for="plantSearch">식물 종류 검색</label>
-                <input type="text" id="plantSearch" placeholder="식물 종류 검색..." />
-                <div id="searchResults"></div>
+                    <input type="radio" id="methodSearch" name="plantMethod" value="search">
+                    <label for="methodSearch">검색</label>
 
+                    <input type="radio" id="methodManual" name="plantMethod" value="manual">
+                    <label for="methodManual">직접 입력</label>
+                </div>
+
+                <!-- 파일 업로드 -->
+                <div id="imageInput">
+                    <label for="plantImage" id="customFileLabel">
+                        <span id="fileIcon">&#128247;</span>  <!-- 파일 아이콘 -->
+                        <span>식물 이미지 업로드하기</span>  <!-- 텍스트 -->
+                    </label>
+                    <input type="file" id="plantImage" accept="image/*" style="display: none;">
+                    <p id="imageResult" class="imageResult-text"></p>
+                </div>
+
+                <!-- 검색 입력 -->
+                <div id="searchInput" >
+                    <label for="plantSearch">식물 종류 검색</label>
+                    <input type="text" id="plantSearch" placeholder="식물 종류 검색..." />
+                    <div id="searchResults"></div>
+                </div>
+
+                <!-- 직접 입력 -->
+                <div id="manualInput">
+                    <label for="manualPlant">직접 입력</label>
+                    <div class="manual-input-container">
+                        <input type="text" id="manualPlant" placeholder="예: 다육이">
+                        <button type="button" id="manualConfirm">확인</button>
+                    </div>
+                </div>
+
+                <!-- 결과 창 -->
                 <label for="selectedPlant">선택된 식물 종류</label>
                 <input type="text" id="selectedPlant" readonly />
 
-                <label for="wateringStartDate">물주기 시작 날짜</label>
-                <input type="date" id="wateringStartDate" required>
-
-                <label for="wateringInterval">물주기 간격 (최대 일수: 30일)</label>
-                <input type="number" id="wateringInterval" min="1" max="30" placeholder="예: 3" required oninput="validateNumber(this)">
+                <!-- 물주기 관련  설정-->
+                <label for="wateringInterval">물주기 간격 (최대 일수: 4일)</label>
+                <input type="number" id="wateringInterval" min="1" max="4" placeholder="예: 3" required oninput="validateNumber(this)">
 
 
                 <label for="plantDescription">식물 정보</label>
