@@ -1,6 +1,7 @@
 const API_URL = "http://localhost:3000/plants";
 let plantId = null;
 
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -130,18 +131,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const weekdayName = weekdays[weekdayIndex];
       // 날짜 요일 물방울 이미지 들어갈 보드 추가
 
-      const waterInfoDiv = document.createElement("div");
-      if (window.innerWidth < 700) {
-        if (waterInfoDiv.classList.contains("col")) {
-          waterInfoDiv.classList.remove("col");
-        }
-        waterInfoDiv.classList.add("col-10");
-      } else {
-        if (waterInfoDiv.classList.contains("col-10")) {
-          waterInfoDiv.classList.remove("col-10");
-        }
-        waterInfoDiv.classList.add("col-1");
-      }
+      const waterInfoDiv = document.createElement("li");
+      // if (window.innerWidth < 700) {
+      //   if (waterInfoDiv.classList.contains("col")) {
+      //     waterInfoDiv.classList.remove("col");
+      //   }
+      //   waterInfoDiv.classList.add("col-10");
+      // } else {
+      //   if (waterInfoDiv.classList.contains("col-10")) {
+      //     waterInfoDiv.classList.remove("col-10");
+      //   }
+      //   waterInfoDiv.classList.add("col-1");
+      // }
       // 주말 평일 구분
       let dayClass = "";
       if (weekdayIndex === 0) dayClass = "sun";
@@ -154,17 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // HTML에 내용 뿌리기
       waterInfoDiv.innerHTML = `
-              <div class="detail-water-day ${dayClass}">${String(day).padStart(
+              <li class="list-group-item detail-water-day ${dayClass}">${String(day).padStart(
         2,
         "0"
-      )} (${weekdayName})</div>
-              <div class="detail-water-text ${isToday ? "today" : ""}">
+      )} (${weekdayName})</li>
+              <li class="list-group-item detail-water-text ${isToday ? "today" : ""}">
                   ${
                     showWaterIcon
                       ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
                       : ""
                   }
-              </div>
+              </li>
           `;
       waterScheduleContainer.appendChild(waterInfoDiv);
     }
