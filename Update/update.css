@@ -112,6 +112,10 @@ input[type="date"] {
 
 }
 
+#index-logo-area {
+    cursor: pointer;
+}
+
 /* 라디오 버튼 컨테이너 스타일 */
 .plant-type-radio-group {
     display: flex;

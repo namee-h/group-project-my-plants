@@ -673,7 +673,10 @@ document.getElementById("manualConfirm").addEventListener("click", function() {
     }
 });
 
-
+// 페이지 이동 함수
+function goHome() {
+    window.location.href = "../index.html";
+}
 
 // 물주기 숫자만 입력되게 하는 function
 function validateNumber(input) {
