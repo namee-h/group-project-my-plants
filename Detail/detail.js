@@ -38,10 +38,10 @@ const loadPlantData = (plantId) => {
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
 
-      // if (!plantData) {
-      //   console.error(`no data (plantId: ${plantId})`);
-      //   return;
-      // }
+      if (!plantData) {
+        console.error(`no data (plantId: ${plantId})`);
+        return;
+      }
 
       // html에 뿌려주기
       document.getElementById("plant-name").textContent =
@@ -63,7 +63,7 @@ document.querySelectorAll(".edit-btn").forEach((button) => {
     // 눌렀을때 수정가능하게
     targetElement.contentEditable = "true";
     targetElement.focus();
-    targetElement.style.border = "2px solid #4CAF50";
+    // targetElement.style.border = "1px solid #4CAF50";
     targetElement.style.borderRadius = "10px";
 
     // 🚨 3. 수정할때 뭔가 ID랑 매핑이 안되고있는 거 같음
@@ -77,7 +77,7 @@ document.querySelectorAll(".edit-btn").forEach((button) => {
     targetElement.addEventListener("blur", () => {
       savePlantData(targetId, targetElement.textContent);
     });
-    loadPlantData();
+    loadPlantData(plantId);
   });
 });
 
@@ -101,6 +101,9 @@ function savePlantData(field, value) {
       console.log(`✅ ${fieldName} 저장 완료:`, data);
       document.getElementById(field).contentEditable = "false";
       document.getElementById(field).style.border = "none";
+
+      // 저장 후 다시 불러오기
+      loadPlantData(plantId)
     })
     .catch((error) => console.error);
 }
@@ -126,8 +129,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const weekdayIndex = currentDate.getDay();
       const weekdayName = weekdays[weekdayIndex];
       // 날짜 요일 물방울 이미지 들어갈 보드 추가
+
       const waterInfoDiv = document.createElement("div");
-      waterInfoDiv.classList.add("col", "detail-water-info");
+      if (window.innerWidth < 700) {
+        if (waterInfoDiv.classList.contains("col")) {
+          waterInfoDiv.classList.remove("col");
+        }
+        waterInfoDiv.classList.add("col-10");
+      } else {
+        if (waterInfoDiv.classList.contains("col-10")) {
+          waterInfoDiv.classList.remove("col-10");
+        }
+        waterInfoDiv.classList.add("col-1");
+      }
       // 주말 평일 구분
       let dayClass = "";
       if (weekdayIndex === 0) dayClass = "sun";
