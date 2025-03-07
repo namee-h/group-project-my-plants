@@ -1,4 +1,4 @@
-const API_URL = `http://localhost:3000`;
+const API_URL = `https://silk-scandalous-boa.glitch.me`;
 let plantId = null;
 
 function readURL(input) {

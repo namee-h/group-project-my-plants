@@ -5,7 +5,7 @@ const loginButton = document.getElementById("member-login");
 loginButton.addEventListener("click", () => memberLogin());
 
 let memberLogin = () => {
-  fetch("http://localhost:3000/members")
+  fetch("https://silk-scandalous-boa.glitch.me/members")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);

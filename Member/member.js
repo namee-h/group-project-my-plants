@@ -48,7 +48,7 @@ function postMemberData(event) {
     update_dat: formattedDate,
   };
 
-  fetch("http://localhost:3000/members", {
+  fetch("https://silk-scandalous-boa.glitch.me/members", {
     method: "POST",
     body: JSON.stringify(member),
     headers: {
