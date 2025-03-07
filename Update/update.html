@@ -35,11 +35,8 @@
                 <label for="selectedPlant">선택된 식물 종류</label>
                 <input type="text" id="selectedPlant" readonly />
 
-                <label for="wateringStartDate">물주기 시작 날짜</label>
-                <input type="date" id="wateringStartDate" required>
-
-                <label for="wateringInterval">물주기 간격 (최대 일수: 30일)</label>
-                <input type="number" id="wateringInterval" min="1" max="30" placeholder="예: 3" required oninput="validateNumber(this)">
+                <label for="wateringInterval">물주기 간격 (최대 일수: 4일)</label>
+                <input type="number" id="wateringInterval" min="1" max="4" placeholder="예: 3" required oninput="validateNumber(this)">
 
 
                 <label for="plantDescription">식물 정보</label>

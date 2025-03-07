@@ -401,7 +401,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const plantName = document.getElementById("plantName").value.trim();
         const plantDescription = document.getElementById("plantDescription").value;
         const plantCategory = document.getElementById("selectedPlant").value;
-        const wateringStartDate = document.getElementById("wateringStartDate").value;
         const wateringInterval = document.getElementById("wateringInterval").value;
         const plantImage = document.getElementById("plantImage").files[0];
         let member_id = 1;
@@ -428,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const imageUrl = await uploadImage(formData);
 
             await saveImageData(prepareImageData(imageUrl, plantId));
-            await saveWaterData(prepareWaterData(wateringInterval, wateringStartDate, plantId));
+            await saveWaterData(prepareWaterData(wateringInterval, plantId));
             handleSuccess();
         } catch (error) {
             handleError(error);
@@ -505,10 +504,10 @@ function prepareImageData(imageUrl, plantId) { //images 데이터 객체 생성 
     };
 }
 
-function prepareWaterData(wateringInterval, wateringStartDate, plantId) { //water 데이터 객체 생성 로직
+function prepareWaterData(wateringInterval, plantId) { //water 데이터 객체 생성 로직
     return {
         water_cycle: wateringInterval,
-        water_start_day: wateringStartDate,
+        water_start_day: null,
         water_check: false,
         water_memo: [],
         plants_id: plantId,
