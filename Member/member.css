@@ -75,8 +75,7 @@ body{
       gap: 10px;
     }
   
-    #index-auth-buttons {
-      flex-direction: column;  
+    #index-auth-buttons { 
       align-items: center;  
       gap: 8px;
       margin-top: 8px;
