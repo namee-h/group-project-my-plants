@@ -115,7 +115,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
+  // 물 주기 데이터를 가져오는 함수
+  const fetchWaterCycle = async () => {
+    try {
+      const response = await fetch(`${API_URL}/water`);
+      const data = await response.json();
+      console.log("waterddd", data); // 디버깅용 출력
+      return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
+    } catch (error) {
+      console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
+      return 1; // 기본값으로 1 (매일) 반환
+    }
+  };
+
   const generateWaterSchedule = (interval) => {
+    // 기존 내용 초기화
     waterScheduleContainer.innerHTML = "";
 
     const today = new Date();
@@ -128,8 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const day = currentDate.getDate();
       const weekdayIndex = currentDate.getDay();
       const weekdayName = weekdays[weekdayIndex];
-      // 날짜 요일 물방울 이미지 들어갈 보드 추가
 
+      // 날짜 요일 물방울 이미지 들어갈 보드 추가
       const waterInfoDiv = document.createElement("div");
       waterInfoDiv.classList.add(
         "col-lg-2",
@@ -139,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "mb-1",
         "detail-water-info"
       );
+
       // 주말 평일 구분
       let dayClass = "";
       if (weekdayIndex === 0) dayClass = "sun";
@@ -146,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const isToday = i === 0;
 
-      // 물방울 아이콘 표시 여부 (옵션에 따라 오늘 날짜 기준 앞뒤로 표시됨 ⚠️ 물주기 시작 날짜 유저 설정 아님 ⚠️
+      // 물방울 아이콘 표시 여부 (옵션에 따라 오늘 날짜 기준 앞뒤로 표시됨)
       const showWaterIcon = i % interval === 0;
 
       // HTML에 내용 뿌리기
@@ -179,8 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 초기 옵션 로드 (매일)
-  generateWaterSchedule(1);
+  // 초기 옵션 로드 (DB에서 가져온 water_cycle 사용)
+  fetchWaterCycle().then((waterCycle) => {
+    generateWaterSchedule(waterCycle); // DB에서 가져온 값으로 물주기 일정 생성
+    selectElement.value = waterCycle; // select 요소의 값도 설정
+  });
 
   // 물주기 옵션 변경 시 동작
   selectElement.addEventListener("change", (event) => {
