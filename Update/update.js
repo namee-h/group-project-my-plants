@@ -569,7 +569,8 @@ async function saveWaterData(waterData) {
     await callApi("https://silk-scandalous-boa.glitch.me/water", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(waterData)
+        body: JSON.stringify(waterData),
+        mode: "cors"
     }, "물주기 정보 저장 실패");
 }
 
