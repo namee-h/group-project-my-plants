@@ -41,7 +41,7 @@ if (sessionValue !== null) {
                 indexMyPlantsSection.style.display = "block"; // 내가 등록한 식물 보이기
 
                 // pagination 추가
-                for (let i = 0; i < 4; i++) {
+                for (let i = 0; i < 9; i++) {
                     const temp = document.createElement("div");
                     temp.innerHTML = `
                             <a href="/Detail/detail.html" class="index-plant">
