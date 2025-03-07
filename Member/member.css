@@ -13,21 +13,76 @@ body{
     padding: 10px 30px;
     background-color: #f0f0f0;
   }
+  #index-member-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #50C878;
+    white-space: nowrap;
+  }
 #index-logo {
     width: 50px;
     height: auto;
   }
+  #index-auth-buttons { 
+    display: flex;
+    gap: 5px;
+    justify-content: center;  
+    align-items: center;
+  }
   #index-login {
-    background-color: #4CAF50;
+    background-color: #50C878;
     border: none;
     font-size: 15px;
     border-radius: 5px;
     padding: 5px 10px;
   }
-  #index-login a {
+  #index-auth-buttons a {
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
     text-decoration: none;
     color: white;
   }
+  #index-login {
+    background-color: #50C878;
+  }
+  
+  #index-login:hover {
+    background-color: #45a049;
+  }
+  
+  #index-signup {
+    background-color: #50C878;
+    display: block;
+  }
+  
+  #index-signup:hover {
+    background-color: #45a049;
+  }
+  /* 해더 반응형 */
+  @media (max-width: 768px) {
+
+    #index-header {
+      flex-direction: column;  
+      align-items: center;  
+      padding: 15px;  
+    }
+  
+    #index-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    #index-auth-buttons { 
+      align-items: center;  
+      gap: 8px;
+      margin-top: 8px;
+    }
+  
+  }
+  
 .borders{
   border: 1px solid red;
 }
@@ -74,16 +129,16 @@ body{
 .member-form-area>input {
     margin-bottom: 10px;
     padding: 5px;
-    outline-color: #4CAF50;
+    outline-color: #50C878;
 }
 .form-check-input:checked {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #50C878;
+  border-color: #50C878;
 }
 
 .member-form-area button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #50C878;
     color: white;
     border: none;
     cursor: pointer;
