@@ -52,6 +52,15 @@
       "member_id": 1,
       "update_day": "2025-03-07T03:02:00.390Z",
       "etc": null
+    },
+    {
+      "id": "ec70",
+      "plants_name": "123",
+      "description": "1231351",
+      "category": "Dieffenbachia seguine",
+      "member_id": 1,
+      "update_day": "2025-03-07T08:33:50.523Z",
+      "etc": null
     }
   ],
   "images": [
@@ -88,6 +97,14 @@
       "plants_id": "b213",
       "etc": null,
       "update_day": "2025-03-07T03:02:00.408Z"
+    },
+    {
+      "id": "eb1f",
+      "plant_main_img": "/asset/1_ec70/1_ec70_main.jpg",
+      "plant_history": [],
+      "plants_id": "ec70",
+      "etc": null,
+      "update_day": "2025-03-07T08:33:50.565Z"
     }
   ],
   "water": [
@@ -131,6 +148,16 @@
       "plants_id": "b213",
       "etc": null,
       "update_day": "2025-03-07T03:02:00.414Z"
+    },
+    {
+      "id": "3cd2",
+      "water_cycle": "2",
+      "water_start_day": null,
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "ec70",
+      "etc": null,
+      "update_day": "2025-03-07T08:33:50.571Z"
     }
   ],
   "history": []
