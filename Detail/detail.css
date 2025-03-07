@@ -6,6 +6,10 @@ body{
   max-width:800px;
 }
 
+li{
+  list-style-type: none;
+}
+
 .borders {
   border: 1px solid red;
 }
@@ -80,6 +84,8 @@ body{
   /* font-weight: bold; */
 }
 
+
+
 .detail-water-box-border {
   border:2px solid rgb(37, 76, 218);
 }
@@ -123,6 +129,10 @@ body{
   object-fit: cover;
 }
 
+.detail-add-history{
+  display:flex;
+}
+
 /* 📝 식물 정보 영역 (가변 크기) */
 .plant_info {
   flex: 1;  /* 남은 공간을 차지 */
@@ -156,15 +166,15 @@ body{
   font-size: 1.2rem;
   color: #fff;
   font-weight: bold;
-  background-color: #000;
+  background-color: mediumseagreen;
 }
 
 .detail-water-day.sat {
-  background-color: #2229d6; /* 토요일 파란색 */
+  background-color: darkorange; /* 토요일 파란색 */
 }
 
 .detail-water-day.sun {
-  background-color: #f71b1b; /* 일요일 빨간색 */
+  background-color: darkorange; /* 일요일 빨간색 */
 }
 
 .detail-water-text {
@@ -172,7 +182,7 @@ body{
   width: 100%;
   max-height: 20vh;
   aspect-ratio: 1/1; /* 정사각형 */
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -200,6 +210,11 @@ body{
   font-weight: bold;
 }
 
+.upload-title{
+  font-size: smaller;
+  font-weight: bold;
+}
+
 .detail-history-list {
   margin-top: 20px;
 }
@@ -210,6 +225,7 @@ body{
   background-position: center;
   background-size: cover;
 }
+
 
 
 /*연필모양 아이콘*/
