@@ -12,7 +12,15 @@
   height: auto;
 }
 
-#index-auth-buttons {
+/* ${member.name}님 환영합니다. 영역 */
+#index-member-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2e6e30;
+  white-space: nowrap;
+}
+
+#index-auth-buttons { 
   display: flex;
   gap: 5px;
   justify-content: center;  
@@ -230,7 +238,9 @@ ul {
   }
 
   #index-logo-area {
-    margin-bottom: 10px;  
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   #index-auth-buttons {
