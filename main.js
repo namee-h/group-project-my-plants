@@ -23,7 +23,7 @@ if (sessionValue !== null) {
         // 3️⃣ `sessionValue`와 일치하는 멤버 찾기
         const member = fakeData.find(member => member.id === sessionValue);
         
-    // fetch('http://localhost:3000/members')
+    // fetch('https://silk-scandalous-boa.glitch.mes')
     //     .then(response => response.json())
     //     .then(data => {
     //         console.log("Fetched data:", data);  // 데이터 확인: undefined, 요청실패
@@ -64,8 +64,8 @@ if (sessionValue !== null) {
     
     // 로그아웃 기능
     loginButton.addEventListener("click", () => {
-        sessionStorage.removeItem("plantsSessionNumOne");
-        sessionStorage.setItem("forceLogout", "true");  // 새로고침 후 자동 로그인 방지 
+        sessionStorage.removeItem("plantsSessionNumOne");  // 로그인 정보 삭제
+        sessionStorage.setItem("forceLogout", "true");  // 강제 로그아웃 상태 설정 
         window.location.href = "/Login/login.html";
     });
 
