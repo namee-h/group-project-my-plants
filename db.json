@@ -25,6 +25,24 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "15f7",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Abelia × grandiflora",
+      "member_id": 1,
+      "update_day": "2025-03-07T02:47:53.674Z",
+      "etc": null
+    },
+    {
+      "id": "856e",
+      "plants_name": "123",
+      "description": "123",
+      "category": "Rosa dumalis",
+      "member_id": 1,
+      "update_day": "2025-03-07T02:48:36.930Z",
+      "etc": null
     }
   ],
   "images": [
@@ -37,6 +55,22 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "12a9",
+      "plant_main_img": "/asset/1,1_15f7/1,1_15f7_main.jpg",
+      "plant_history": [],
+      "plants_id": "15f7",
+      "etc": null,
+      "update_day": "2025-03-07T02:47:53.702Z"
+    },
+    {
+      "id": "9057",
+      "plant_main_img": "/asset/1_856e/1_856e_main.jpg",
+      "plant_history": [],
+      "plants_id": "856e",
+      "etc": null,
+      "update_day": "2025-03-07T02:48:36.948Z"
     }
   ],
   "water": [
@@ -50,8 +84,27 @@
       "etc1": "",
       "etc2": "",
       "etc3": ""
+    },
+    {
+      "id": "d17b",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-06",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "15f7",
+      "etc": null,
+      "update_day": "2025-03-07T02:47:53.709Z"
+    },
+    {
+      "id": "d4c1",
+      "water_cycle": "3",
+      "water_start_day": "2025-03-05",
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "856e",
+      "etc": null,
+      "update_day": "2025-03-07T02:48:36.955Z"
     }
   ],
-  "history": [
-  ]
+  "history": []
 }
