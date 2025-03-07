@@ -16,7 +16,7 @@
   </head>
   <body>
     <!-- 메인페이지 다예님 작업공간 사용할 branch: project_daye -->
-    <section class="index-body">
+    
       <header id="index-header">
         <div id="index-logo-area">
           <a href="/index.html">
@@ -34,59 +34,61 @@
         </div>
       </header>
 
-      <section class="index-banner-section">
-        <h2>이벤트 배너</h2>
-        <p>이벤트 배너를 클릭하면 이벤트 페이지로 이동합니다.</p>
-
-        <div class="index-banner-slider">
-          <div class="index-swiper-wrapper">
-            <div class="index-swiper-slide">
-              <a href="#">
-                <img
-                  src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MTRfMjQ0%2FMDAxNjE4MzgwNTEzMTE4.r9RnF771r2PBf0HK9L-RUm7PjYgZpfYqb6n6zzjLZQ4g.s2M9try6tyryyQFzWPF3Y6yUUMnYBdoKUTXKm66oyKog.JPEG.cona0512%2F%25BB%25E7%25BA%25BB_-172212009_214056140473042_7126680515681812536_n.jpg&type=sc960_832"
-                  alt="이벤트 배너 1"
-                />
-              </a>
+      <main class="index-body">
+        <section class="index-banner-section">
+          <h2>이벤트 배너</h2>
+          <p>이벤트 배너를 클릭하면 이벤트 페이지로 이동합니다.</p>
+  
+          <div class="index-banner-slider">
+            <div class="index-swiper-wrapper">
+              <div class="index-swiper-slide">
+                <a href="#">
+                  <img
+                    src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MTRfMjQ0%2FMDAxNjE4MzgwNTEzMTE4.r9RnF771r2PBf0HK9L-RUm7PjYgZpfYqb6n6zzjLZQ4g.s2M9try6tyryyQFzWPF3Y6yUUMnYBdoKUTXKm66oyKog.JPEG.cona0512%2F%25BB%25E7%25BA%25BB_-172212009_214056140473042_7126680515681812536_n.jpg&type=sc960_832"
+                    alt="이벤트 배너 1"
+                  />
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">
+                  <img src="banner2.jpg" alt="이벤트 배너 2" />
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">
+                  <img src="banner3.jpg" alt="이벤트 배너 3" />
+                </a>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <a href="#">
-                <img src="banner2.jpg" alt="이벤트 배너 2" />
-              </a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#">
-                <img src="banner3.jpg" alt="이벤트 배너 3" />
-              </a>
-            </div>
+  
+            <button class="index-swiper-prev"><</button>
+            <button class="index-swiper-next">></button>
+  
+            <div class="index-swiper-pagination"></div>
           </div>
-
-          <button class="index-swiper-prev"><</button>
-          <button class="index-swiper-next">></button>
-
-          <div class="index-swiper-pagination"></div>
-        </div>
-      </section>
-
-      <!-- 내가 등록한 식물 (로그인 시 노출) -->
-      <section id="index-my-plants-section" class="display-none">
-        <div id="index-my-plants-list">
-          <!-- <a href="/Detail/detail.html" class="index-plant">
-            <span class="index-water">💧</span>
-            <img
-              src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
-              alt="식물1"
-            />
-          </a> -->
-
-          <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
-        </div>
-      </section>
-
-      <main id="index-feed-section">
-        <h2>식물 피드</h2>
-        <div id="index-feed"></div>
+        </section>
+  
+        <!-- 내가 등록한 식물 (로그인 시 노출) -->
+        <section id="index-my-plants-section" class="display-none">
+          <div id="index-my-plants-list">
+            <!-- <a href="/Detail/detail.html" class="index-plant">
+              <span class="index-water">💧</span>
+              <img
+                src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
+                alt="식물1"
+              />
+            </a> -->
+  
+            <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
+          </div>
+        </section>
+  
+        <main id="index-feed-section">
+          <h2>식물 피드</h2>
+          <div id="index-feed"></div>
+        </main>
       </main>
-    </section>
+    
 
     <!-- 푸터 -->
     <footer>
