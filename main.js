@@ -1,5 +1,5 @@
-// 1️⃣ 세션 값을 강제로 설정 (임시 로그인)
-if (!sessionStorage.getItem("plantsSessionNumOne")) {
+// 1️⃣ 세션 값을 강제로 설정 (임시 로그인, 로그아웃 상태에서는 실행되지 않도록 수정)
+if (!sessionStorage.getItem("plantsSessionNumOne") && sessionStorage.getItem("forceLogout") !== "true") {
     sessionStorage.setItem("plantsSessionNumOne", "testUser123"); 
 }
 
@@ -47,7 +47,7 @@ if (sessionValue !== null) {
                             <a href="/Detail/detail.html" class="index-plant">
                             <img
                             src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
-                            alt="$(plant.plant_name)"
+                            alt="내 식물"
                             />
                         </a>`;
                     document.querySelector("#index-my-plants-list").append(temp);
@@ -65,13 +65,15 @@ if (sessionValue !== null) {
     // 로그아웃 기능
     loginButton.addEventListener("click", () => {
         sessionStorage.removeItem("plantsSessionNumOne");
+        sessionStorage.setItem("forceLogout", "true");  // 새로고침 후 자동 로그인 방지 
         window.location.href = "/Login/login.html";
     });
 
     memberName.classList.remove("display-none");
-} else {
-    console.log("로그아웃 상태");   
 }
+
+console.log("로그아웃 상태");   
+
 
 // 맨 위로 가기 버튼 추가
 document.addEventListener("DOMContentLoaded", function () {
