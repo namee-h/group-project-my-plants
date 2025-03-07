@@ -1,12 +1,14 @@
 body{
-    overflow: hidden;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
 }
 
 /*header*/
@@ -73,3 +75,19 @@ body{
 .login_buttons{
     margin-top:10px;
 }
+/* 푸터 영역 */
+footer {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+  }
+  footer i:hover{
+    color: #388E3C;
+  }
+  ul {
+    list-style: none;
+    padding: 0 1em;
+  }
