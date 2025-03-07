@@ -1,9 +1,13 @@
 body{
   margin:0;
   overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100dvh;
 }
 .container{
-  max-width:800px;
+  max-width:850px;
 }
 
 .borders {
@@ -78,7 +82,10 @@ body{
   text-align: left;
   /* font-size: 1.2rem; */
   /* font-weight: bold; */
+  min-width: 120px;
 }
+
+
 
 .detail-water-box-border {
   border:2px solid rgb(37, 76, 218);
@@ -123,6 +130,10 @@ body{
   object-fit: cover;
 }
 
+.detail-add-history{
+  display:flex;
+}
+
 /* 📝 식물 정보 영역 (가변 크기) */
 .plant_info {
   flex: 1;  /* 남은 공간을 차지 */
@@ -156,15 +167,15 @@ body{
   font-size: 1.2rem;
   color: #fff;
   font-weight: bold;
-  background-color: #000;
+  background-color: mediumseagreen;
 }
 
 .detail-water-day.sat {
-  background-color: #2229d6; /* 토요일 파란색 */
+  background-color: darkorange; /* 토요일 파란색 */
 }
 
 .detail-water-day.sun {
-  background-color: #f71b1b; /* 일요일 빨간색 */
+  background-color: darkorange; /* 일요일 빨간색 */
 }
 
 .detail-water-text {
@@ -172,14 +183,17 @@ body{
   width: 100%;
   max-height: 20vh;
   aspect-ratio: 1/1; /* 정사각형 */
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.429);
+  border-top: none;
 }
 
 .detail-water-text.today {
   background-color: beige; /* 오늘 날짜 강조 */
 }
+
 
 .detail-water-img {
   position: absolute;
@@ -192,24 +206,35 @@ body{
 .detail-history-box-border {
   border:2px solid #53b133;
 }
-
+.history-title-area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .detail-history-name {
-  text-align: left;
   font-size: 1.2rem;
   color: #53b133;
+  font-weight: bold;
+}
+
+.upload-title{
+  font-size: smaller;
   font-weight: bold;
 }
 
 .detail-history-list {
   margin-top: 20px;
 }
-
+#upload-my-plant{
+  max-width: 200px;
+}
 .detail-history-img {
   max-height: 20vh;
   aspect-ratio: 1/1;
   background-position: center;
   background-size: cover;
 }
+
 
 
 /*연필모양 아이콘*/
@@ -228,10 +253,19 @@ body{
 .edit-btn:active {
   background: #388E3C;
 }
-
+/* 푸터 영역 */
 footer {
   background-color: #f8f9fa;
-  padding: 20px;
+  padding: 10px 20px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
 }
-
+footer i:hover{
+  color: #388E3C;
+}
+ul {
+  list-style: none;
+  padding: 0 1em;
+}

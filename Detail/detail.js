@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/plants";
+const API_URL = `http://localhost:3000`;
 let plantId = null;
 
 function readURL(input) {
@@ -15,7 +15,7 @@ function readURL(input) {
 
 // 🚨 1. DB에서 식물정보 뿌려주는 로직 : 첫번째 식물 가져오기 -> 선택한 식물의 id값(주소 파라미터)에 따라서 가져오도록 변경필요
 document.addEventListener("DOMContentLoaded", () => {
-  fetch(API_URL)
+  fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((plants) => {
       if (plants.length > 0) {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //식물 정보 가져오기
 const loadPlantData = (plantId) => {
-  fetch(API_URL)
+  fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((data) => {
       console.log("ddd", data);
@@ -77,7 +77,7 @@ document.querySelectorAll(".edit-btn").forEach((button) => {
     targetElement.addEventListener("blur", () => {
       savePlantData(targetId, targetElement.textContent);
     });
-    loadPlantData(plantId);
+    // loadPlantData(plantId);
   });
 });
 
@@ -89,7 +89,7 @@ function savePlantData(field, value) {
   if (field === "plant-date") fieldName = "update_dat";
 
   // 🚨 여기 다시봐야됨 근데 수정-저장은 잘되고 있음
-  fetch(`${API_URL}/${plantId}`, {
+  fetch(`${API_URL}/plants/${plantId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -103,7 +103,7 @@ function savePlantData(field, value) {
       document.getElementById(field).style.border = "none";
 
       // 저장 후 다시 불러오기
-      loadPlantData(plantId)
+      // loadPlantData(plantId);
     })
     .catch((error) => console.error);
 }
@@ -115,33 +115,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
+  // 물 주기 데이터를 가져오는 함수
+  const fetchWaterCycle = async () => {
+    try {
+      const response = await fetch(`${API_URL}/water`);
+      const data = await response.json();
+      console.log("waterddd", data);
+      return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
+    } catch (error) {
+      console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
+      return 1; // 기본값으로 1 (매일) 반환
+    }
+  };
+  // 물 주기 데이터를 업데이트하는 함수
+  const updateWaterCycle = async (newCycle) => {
+    try {
+      const response = await fetch(`${API_URL}/water/1`, {
+        // 1은 water 데이터ID 실제 ID에 맞게 조정해야함
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ water_cycle: newCycle }),
+      });
+      const data = await response.json();
+      console.log("Updated water cycle data:", data);
+      return data;
+    } catch (error) {
+      console.error("물 주기 데이터 업데이트에 실패했습니다:", error);
+    }
+  };
+
   const generateWaterSchedule = (interval) => {
+    // 기존 내용 초기화
     waterScheduleContainer.innerHTML = "";
 
     const today = new Date();
 
     // 11일 범위 날짜 계산
-    for (let i = -5; i <= 5; i++) {
+    for (let i = -1; i <= 10; i++) {
       const currentDate = new Date(today);
       currentDate.setDate(today.getDate() + i);
 
       const day = currentDate.getDate();
       const weekdayIndex = currentDate.getDay();
       const weekdayName = weekdays[weekdayIndex];
-      // 날짜 요일 물방울 이미지 들어갈 보드 추가
 
+      // 날짜 요일 물방울 이미지 들어갈 보드 추가
       const waterInfoDiv = document.createElement("div");
-      if (window.innerWidth < 700) {
-        if (waterInfoDiv.classList.contains("col")) {
-          waterInfoDiv.classList.remove("col");
-        }
-        waterInfoDiv.classList.add("col-10");
-      } else {
-        if (waterInfoDiv.classList.contains("col-10")) {
-          waterInfoDiv.classList.remove("col-10");
-        }
-        waterInfoDiv.classList.add("col-1");
-      }
+      waterInfoDiv.classList.add(
+        "col-lg-2",
+        "col-md-2",
+        "col-sm-3",
+        "col-4",
+        "mb-1",
+        "detail-water-info"
+      );
+
       // 주말 평일 구분
       let dayClass = "";
       if (weekdayIndex === 0) dayClass = "sun";
@@ -149,26 +179,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const isToday = i === 0;
 
-      // 물방울 아이콘 표시 여부 (옵션에 따라 오늘 날짜 기준 앞뒤로 표시됨 ⚠️ 물주기 시작 날짜 유저 설정 아님 ⚠️
+      // 물방울 아이콘 표시 여부 (옵션에 따라 오늘 날짜 기준 앞뒤로 표시됨)
       const showWaterIcon = i % interval === 0;
 
       // HTML에 내용 뿌리기
       waterInfoDiv.innerHTML = `
-              <div class="detail-water-day ${dayClass}">${String(day).padStart(
+      <div class="detail-water-day ${dayClass}">${String(day).padStart(
         2,
         "0"
       )} (${weekdayName})</div>
-              <div class="detail-water-text ${isToday ? "today" : ""}">
-                  ${
-                    showWaterIcon
-                      ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
-                      : ""
-                  }
-              </div>
-          `;
+      <div class="detail-water-text ${isToday ? "today" : ""}">
+          ${
+            showWaterIcon
+              ? `<img src="/asset/detail/detail-water.png" class="detail-water-img" alt="물방울 아이콘">`
+              : ""
+          }
+      </div>
+  `;
       waterScheduleContainer.appendChild(waterInfoDiv);
     }
-
     // 물방울 이미지 클릭 이벤트
     const waterImages = document.querySelectorAll(".detail-water-img");
     waterImages.forEach((img) => {
@@ -182,12 +211,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 초기 옵션 로드 (매일)
-  generateWaterSchedule(1);
+  // 초기 옵션 로드 (DB에서 가져온 water_cycle 사용)
+  fetchWaterCycle().then((waterCycle) => {
+    generateWaterSchedule(waterCycle); // DB에서 가져온 값으로 물주기 일정 생성
+    selectElement.value = waterCycle; // select 요소의 값도 설정
+  });
 
   // 물주기 옵션 변경 시 동작
   selectElement.addEventListener("change", (event) => {
-    const interval = parseInt(event.target.value, 10); // 선택된 간격 값 가져오기
+    event.preventDefault(); // 기본 제출 동작 방지
+    const interval = parseInt(event.target.value, 10);
     generateWaterSchedule(interval);
+
+    // fetch API를 사용한 비동기 업데이트
+    updateWaterCycle(interval)
+      .then(() => {
+        console.log("물주기 값이 성공적으로 업데이트되었습니다.");
+      })
+      .catch((error) => {
+        console.error("물주기 값 업데이트 중 오류 발생:", error);
+      });
   });
 });
