@@ -528,7 +528,7 @@ async function uploadImage(formData) {
 }
 
 async function savePlantData(plantData) {
-    const response = await callApi("http://localhost:3000/plants", {
+    const response = await callApi("https://silk-scandalous-boa.glitch.me/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(plantData)
@@ -539,7 +539,7 @@ async function savePlantData(plantData) {
 }
 
 async function saveImageData(imgData) {
-    await callApi("http://localhost:3000/images", {
+    await callApi("https://silk-scandalous-boa.glitch.me/images", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(imgData)
@@ -547,7 +547,7 @@ async function saveImageData(imgData) {
 }
 
 async function saveWaterData(waterData) {
-    await callApi("http://localhost:3000/water", {
+    await callApi("https://silk-scandalous-boa.glitch.me/water", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(waterData)
