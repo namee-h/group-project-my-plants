@@ -1,3 +1,16 @@
+
+body{
+    margin:0;
+    overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100dvh;
+  }
+  .container{
+    max-width:850px;
+  }
+
 /* header 부분 */
 #index-logo {
     width: 50px;
@@ -207,3 +220,20 @@ input[type="date"] {
 #manualConfirm:hover {
     background-color: #45a049;
 }
+
+/* 푸터 영역 */
+  footer {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+  }
+  footer i:hover{
+    color: #388E3C;
+  }
+  ul {
+    list-style: none;
+    padding: 0 1em;
+  }

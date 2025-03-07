@@ -61,6 +61,15 @@
       "member_id": 1,
       "update_day": "2025-03-07T08:33:50.523Z",
       "etc": null
+    },
+    {
+      "id": "e734",
+      "plants_name": "123",
+      "description": "123",
+      "category": "장미",
+      "member_id": 1,
+      "update_day": "2025-03-07T08:49:33.742Z",
+      "etc": null
     }
   ],
   "images": [
@@ -105,6 +114,14 @@
       "plants_id": "ec70",
       "etc": null,
       "update_day": "2025-03-07T08:33:50.565Z"
+    },
+    {
+      "id": "ea11",
+      "plant_main_img": "/asset/1_e734/1_e734_main.jpg",
+      "plant_history": [],
+      "plants_id": "e734",
+      "etc": null,
+      "update_day": "2025-03-07T08:49:33.757Z"
     }
   ],
   "water": [
@@ -158,6 +175,16 @@
       "plants_id": "ec70",
       "etc": null,
       "update_day": "2025-03-07T08:33:50.571Z"
+    },
+    {
+      "id": "238a",
+      "water_cycle": "3",
+      "water_start_day": null,
+      "water_check": false,
+      "water_memo": [],
+      "plants_id": "e734",
+      "etc": null,
+      "update_day": "2025-03-07T08:49:33.763Z"
     }
   ],
   "history": []
