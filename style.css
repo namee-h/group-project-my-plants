@@ -36,6 +36,7 @@
 
 #index-signup {
   background-color: #4CAF50;
+  display: block;
 }
 
 #index-signup:hover {
@@ -100,7 +101,7 @@
   right: 10px;
 }
 
-#index-my-plants {
+#index-my-plants-section {
   width: 100%;
   max-width: 600px; 
   margin: 10px auto; 
