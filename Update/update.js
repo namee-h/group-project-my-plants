@@ -26,7 +26,8 @@ const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
         console.log("가져온 멤버 데이터:", memberData);
 
         if (memberData && memberData.name) {
-            memberNameElement.textContent = `${memberData.name}님 환영합니다.`; // name 값을 <span>에 삽입
+            memberNameElement.innerHTML = `<strong>${memberData.name}🌱</strong>님 환영합니다.`;
+            // memberNameElement.textContent = `${memberData.name}님 환영합니다.`; // name 값을 <span>에 삽입
             memberNameElement.classList.remove('display-none'); // display-none 제거하여 표시
         } else {
             console.warn("이름이 없는 멤버 데이터:", memberData);

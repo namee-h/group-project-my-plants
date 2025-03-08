@@ -11,7 +11,11 @@ body{
     font-style: normal;
   }
 
-  .parent-container {
+a{
+    text-decoration: none;
+}
+
+.parent-container {
     display: flex;
     flex-direction: column;
     justify-content: center;  /* plant-form을 세로 중앙에 배치 */
@@ -19,9 +23,9 @@ body{
     min-height: 100vh;  /* 화면을 꽉 차게 설정 */
 }
 
-  .container{
-    max-width:850px;
-  }
+.container{
+max-width:850px;
+}
 
 /* header 부분 */
 #index-logo {
@@ -54,7 +58,7 @@ body{
     padding: 10px 30px;
     background-color: #f0f0f0;
   }
-
+  
 /* body 시작 */
 .parent-container {
     width: 100vw;
@@ -144,6 +148,11 @@ input[type="date"] {
 
 #index-logo-area {
     cursor: pointer;
+}
+
+#update-member-name {
+    margin-left: 20px;
+    font-size: 15px;
 }
 
 /* 라디오 버튼 컨테이너 스타일 */
