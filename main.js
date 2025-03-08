@@ -23,7 +23,7 @@ if (sessionValue !== null) {
         ownerName.innerHTML = `<strong>🌵${member.name}</strong>님의 식물 피드🌵</i>`;
 
         // memberName.textContent = `${member.name}님 환영합니다.`;
-        signButton.href = "myInfo/myInfo.html";
+        signButton.href = `myInfo/myInfo.html?id=${sessionValue}`;
         signButton.textContent = "My Info";
         indexMyPlantsSection.style.display = "flex"; // 내가 등록한 식물 보이기
         indexMyPlantsHr.style.display = "flex"; // hr 보이기

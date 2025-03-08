@@ -16,12 +16,10 @@
     <header id="index-header">
         <div id="index-logo-area" onclick="goHome()">
             <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
-            <span id="update-member-name" class="display-none"></span>
+            <span id="myInfo-member-name" class="display-none"></span>
         </div>
         <div id="nav_area">
             <nav>
-
-
                 <button id="index-login">
                     <a href="../index.html">Home</a>
                 </button>
@@ -35,25 +33,30 @@
     <div class="container">
         <div class="form-container">
             <h2>회원 정보</h2>
-            <form id="memberForm">
-                <div class="form-group">
-                    <label for="name">이름:</label>
-                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일:</label>
-                    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">전화번호:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="전화번호를 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">주소:</label>
-                    <textarea id="address" name="address" placeholder="주소를 입력하세요" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">저장</button>
-            </form>
+            <div class="form-group">
+                <label for="myInfo-name">이름</label>
+                <span id="myInfo-name"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-age">나이</label>
+                <span id="myInfo-age"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-gender">성별</label>
+                <span id="myInfo-gender"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-email">이메일</label>
+                <span id="myInfo-email"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-update-day">가입한 날짜</label>
+                <span id="myInfo-update-day"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-address">주소</label>
+                <span id="myInfo-address"></span>
+            </div>
         </div>
     </div>
 
