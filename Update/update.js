@@ -6,18 +6,6 @@ const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
 
-console.log("sessionValue:", sessionValue);
-
-// 페이지 로드 후 sessionValue 값을 <span>에 삽입
-// document.addEventListener('DOMContentLoaded', function() {
-//     const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
-    
-//     if (sessionValue) {
-//       memberNameElement.textContent = sessionValue; // 값이 존재하면 <span>에 텍스트 넣기
-//       memberNameElement.classList.remove('display-none'); // 해당 클래스 제거하여 보이게 하기
-//     }
-//   });
-
 // member에서 name 값 가져와서 왼쪽 상단에 띄우기
   document.addEventListener('DOMContentLoaded', async function() {
     const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
@@ -340,9 +328,13 @@ async function callApi(url, options, errorMessage) {
 }
 
 // 결과 처리 함수
+// function handleSuccess() {
+//     alert("데이터가 성공적으로 저장되었습니다.");
+//     window.location.href = "../Detail/detail.html";  // 페이지 이동
+// }
+
 function handleSuccess() {
     window.location.href = "../Detail/detail.html";  // 페이지 이동
-    alert("데이터가 성공적으로 저장되었습니다.");
 }
 
 function handleError(error) {

@@ -260,3 +260,36 @@ input[type="date"] {
     list-style: none;
     padding: 0 1em;
   }
+
+  /* alert 영역 */
+  .alert {
+    position: fixed; /* 화면에 고정 */
+    bottom: 20px;    /* 화면 하단에 위치 */
+    left: 50%;       /* 중앙 정렬 */
+    transform: translateX(-50%); /* 정확히 가운데 정렬 */
+    background-color: white;  /* 빨간색 배경 */
+    color: #00A86B;  /* 빨간색 텍스트 */
+    padding: 20px;
+    border-radius: 5px;
+    display: none;  /* 기본적으로 숨김 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#alertButton {
+    background-color: #50C878;  /* 초록색 버튼 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#alertButton:hover {
+    background-color: #00A86B; /* 버튼 호버 시 색상 변화 */
+}
