@@ -1,4 +1,4 @@
-// // 1️⃣ 세션 값을 강제로 설정 (임시 로그인, 로그아웃 상태에서는 실행되지 않도록 수정)
+// 1️⃣ 세션 값을 강제로 설정 (임시 로그인, 로그아웃 상태에서는 실행되지 않도록 수정)
 // if (!sessionStorage.getItem("plantsSessionNumOne") && sessionStorage.getItem("forceLogout") !== "true") {
 //   sessionStorage.setItem("plantsSessionNumOne", "testUser123");
 // }
@@ -8,19 +8,20 @@ const loginButton = document.getElementById("index-login");
 const memberName = document.getElementById("index-member-name");
 const signButton = document.getElementById("index-signup");
 const indexMyPlantsSection = document.getElementById("index-my-plants-section");
+const indexFeed = document.querySelector("#index-feed");
 
 console.log("Session value:", sessionValue); // 세션 값 확인: null, 로그아웃 상태
 
 if (sessionValue !== null) {
   console.log("로그인 상태");
 
-  // // 2️⃣ 가짜 데이터 생성 (디비 없이 테스트용)
+  // 2️⃣ 가짜 데이터 생성 (디비 없이 테스트용)
   // const fakeData = [{ id: "testUser123", name: "김다예" }];
 
-  // // 3️⃣ `sessionValue`와 일치하는 멤버 찾기
+  // 3️⃣ `sessionValue`와 일치하는 멤버 찾기
   // const member = fakeData.find((member) => member.id === sessionValue);
 
-  fetch('https://silk-scandalous-boa.glitch.mes')
+  fetch('https://silk-scandalous-boa.glitch.me/members')
       .then(response => response.json())
       .then(data => {
           console.log("Fetched data:", data);  // 데이터 확인: undefined, 요청실패
@@ -41,12 +42,12 @@ if (sessionValue !== null) {
     for (let i = 0; i < 9; i++) {
       const temp = document.createElement("div");
       temp.innerHTML = `
-                            <a href="/Detail/detail.html" class="index-plant">
-                            <img
-                            src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
-                            alt="내 식물"
-                            />
-                        </a>`;
+          <a href="/Detail/detail.html" class="index-plant">
+            <img
+            src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
+            alt="내 식물"
+            />
+          </a>`;
       document.querySelector("#index-my-plants-list").append(temp);
       console.log("UI 변경 완료");
     }
@@ -69,6 +70,22 @@ if (sessionValue !== null) {
 
 console.log("로그아웃 상태");
 
+
+// 식물 피드
+for (let i = 0; i < 10; i++) {
+   const feedItem = document.createElement("div");
+   feedItem.classList.add("feed-item");
+
+   feedItem.innerHTML = `
+        <a href="/Detail/detail.html" class="index-feed-plant">
+          <img
+          src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
+          alt="내 식물"
+          />
+        </a>`;
+    document.querySelector("#index-feed").append(feedItem);
+  }
+  
 
 // 맨 위로 가기 버튼 추가
 document.addEventListener("DOMContentLoaded", function () {
