@@ -57,8 +57,6 @@ function displaySearchResults(results) {
         resultsContainer.appendChild(plantItem);
     });
 }
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const plantForm = document.getElementById("plantForm");
 
