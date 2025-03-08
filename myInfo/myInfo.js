@@ -16,9 +16,15 @@ if (sessionValue !== null) {
             // 이름
           document.getElementById("myInfo-name").textContent = member.name;
           // 나이
-          document.getElementById("myInfo-age").textContent = member.age;
+          document.getElementById("myInfo-age").textContent = member.age+"살";
           // 성별
-          document.getElementById("myInfo-gender").textContent = member.gender;
+          let memberGender = member.gender;
+          if(memberGender === "male"){
+            memberGender = "남자";
+          }else{
+            memberGender = "여자";
+          }
+          document.getElementById("myInfo-gender").textContent = memberGender;
           // 이메일
           document.getElementById("myInfo-email").textContent = member.email;
           // 가입한 날짜
@@ -42,3 +48,8 @@ if (sessionValue !== null) {
   
     memberName.classList.remove("display-none");
   }
+
+  // 페이지 이동 함수
+function goHome() {
+    window.location.href = "../index.html";
+}
