@@ -67,20 +67,46 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                  <label for="address">주소 <span>*</span></label>
+                  <label for="address">주소</label>
                   <input type="text" id="address" name="address" class="form-control" required readonly placeholder="클릭하여 주소를 검색하세요">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">이메일</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required>
-                </div>
+                  <label for="email" class="form-label">이메일</label>
+                  <div class="email-area">
+                      <!-- 아이디 입력 부분 -->
+                      <input type="text" class="form-control" id="emailId" name="emailId" placeholder="아이디" required>
+                      
+                      <!-- @ 기호 -->
+                      <span class="input-group-addon">@</span>
+              
+                      <!-- 도메인 선택 드롭박스 -->
+                      <select class="form-control" id="emailDomain" name="emailDomain" required>
+                          <option value="gmail.com">gmail.com</option>
+                          <option value="naver.com">naver.com</option>
+                          <option value="hanmail.net">hanmail.net</option>
+                          <option value="nate.com">nate.com</option>
+                          <option value="kakao.com">kakao.com</option>
+                          <option value="custom">직접 입력</option>
+                          <!-- 다른 도메인 옵션 추가 가능 -->
+                      </select>
+                      <!-- 이메일 도메인 직접 입력란 (기존 입력란을 활용) -->
+                      <input type="text" class="form-control" id="customDomain" name="customDomain" placeholder="직접 입력할 도메인" style="display:none;">
+                    </div>
+                  </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">비밀번호</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
                 </div>
+                <div class="mb-3">
+                  <label for="passwordCheck" class="form-label">비밀번호 확인</label>
+                  <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" placeholder="같은 비밀번호를 입력하세요" required>
+                </div>
+                <!-- 비밀번호 확인 버튼 -->
+                <button type="button" class="btn btn-primary" id="checkPasswordButton">check</button>
+                <p id="passwordCheckMessage" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</p>
 
                 <div class="d-flex justify-content-between">
-                  <button type="submit" class="btn btn-primary w-50">가입하기</button>
+                  <button type="submit" class="btn btn-primary w-50" id="submitButton" disabled>가입하기</button>
                   <a href="../Login/login.html" class="btn btn-outline-secondary w-45">취소</a>
                 </div>
 

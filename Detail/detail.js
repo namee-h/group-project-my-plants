@@ -1,8 +1,7 @@
-const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const windowUrl = new URL(window.location.href);
-const plantId = windowUrl.searchParams.get("plantsID");
-
-console.log(plantId);
+const plantId =  windowUrl.search.replace("?", "");
+const API_URL = `https://silk-scandalous-boa.glitch.me`;
+let historyImgData = [];
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((plants) => {
       if (plants.length > 0) {
-        // plants = plants.filter((plant) => plant.id == plantId);
         loadPlantData(plantId);
       } else {
         alert("식물 데이터가 없습니다.");
@@ -32,8 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //식물 정보 가져오기
-const loadPlantData = (plantId) => {
-  fetch(`${API_URL}/plants`)
+const loadPlantData = async (plantId) => {
+  await fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((data) => {
       // console.log("ddd", data);
@@ -47,12 +45,10 @@ const loadPlantData = (plantId) => {
       }
 
       // html에 뿌려주기
-      document.getElementById("plant-name").textContent =
-        plantData.plant_name || "이름 없음";
-      document.getElementById("plant-type").textContent =
-        plantData.category || "카테고리 없음";
-      document.getElementById("plant-date").textContent =
-        plantData.update_dat || "날짜 없음";
+      document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
+      document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
+      document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? plantData.plant_main_img : "/asset/detail/detail-sample-img.png";
     })
     .catch((error) => console.error("error", error));
 };
@@ -80,17 +76,17 @@ document.querySelectorAll(".edit-btn").forEach((button) => {
     targetElement.addEventListener("blur", () => {
       savePlantData(targetId, targetElement.textContent);
     });
-    // loadPlantData(plantId);
+    loadPlantData(plantId);
   });
 });
 
 // 🚨 2. DB에 저장하는 함수
 function savePlantData(field, value) {
   let fieldName = "";
-  if (field === "plant-name") fieldName = "plant_name";
-  if (field === "plant-type") fieldName = "category";
-  if (field === "plant-date") fieldName = "update_dat";
-
+  if (field === "plants-name") fieldName = "plants_name";
+  if (field === "plants-type") fieldName = "category";
+  if (field === "plants-date") fieldName = "update_day";
+  
   // 🚨 여기 다시봐야됨 근데 수정-저장은 잘되고 있음
   fetch(`${API_URL}/plants/${plantId}`, {
     method: "PATCH",
@@ -106,7 +102,7 @@ function savePlantData(field, value) {
       document.getElementById(field).style.border = "none";
 
       // 저장 후 다시 불러오기
-      // loadPlantData(plantId);
+      loadPlantData(plantId);
     })
     .catch((error) => console.error);
 }
@@ -121,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 가져오는 함수
   const fetchWaterCycle = async () => {
     try {
-      const response = await fetch(`${API_URL}/plants`);
+      const response = await fetch(`${API_URL}/plants/${plantId}`);
       const data = await response.json();
-      // console.log("waterddd", data);
-      return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
+      console.log("waterddd", data);
+      return parseInt(data.water_cycle, 10); // water_cycle 값을 숫자로 변환
     } catch (error) {
       console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
       return 1; // 기본값으로 1 (매일) 반환
@@ -133,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 업데이트하는 함수
   const updateWaterCycle = async (newCycle) => {
     try {
-      const response = await fetch(`${API_URL}/plants/1`, {
+      const response = await fetch(`${API_URL}/plants/${plantId}`, {
         // 1은 water 데이터ID 실제 ID에 맞게 조정해야함
         method: "PATCH",
         headers: {
@@ -236,3 +232,93 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const historyForm = document.getElementById("historyForm");
+
+  historyForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const plantImage = document.getElementById("formFile").files[0];
+      if (!plantImage) {
+        alert("기록을 남기실 이미지를 넣어주세요");
+        return;
+      } else {
+        historyImgData = historyImgLoad();
+      }
+      
+      console.log(historyImgData);
+
+      let formData = {
+        id: plantId,
+        history_img: historyImgLoad,
+        history_memo :[]
+      }; 
+
+      // try {
+      //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
+      //     const imageUrl = await uploadImage(formData);
+      //     console.log("imageUrl:", imageUrl);
+      //     plantData.history_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
+      //     console.log("이미지 URL:", plantData.plant_main_img);
+      //     console.log("imageUrl넣은 후 plantData:", plantData);
+
+      //     // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
+      //     const plantResult = updatePlantData(plantData);  
+      //     console.log("plantResult:", plantResult);
+
+      // } catch (error) {
+      //     console.log(error);
+      // }
+
+      // console.log("FormData 확인:");
+      // for (const pair of formData.entries()) {
+      //     console.log(pair[0], pair[1]);
+      // }
+
+  });
+});
+
+const historyImgLoad = async () => {
+  await fetch(`${API_URL}/plants`)
+    .then((response) => response.json())
+    .then((plants) => {
+      if (plants.length > 0) {
+        for (let i=0; i < plants.length; i++) {
+          if(plants[i].id === plantId) {
+            console.log(JSON.parse(["test1","test2"]));
+          }
+        }
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+}
+
+// API 호출 함수
+async function uploadImage(formData) {
+  const response = await callApi("http://localhost:3001/upload", {
+      method: "POST",
+      body: formData,
+  }, "이미지 업로드 실패");
+
+  const uploadResult = await response.json();
+  return uploadResult.imageUrl;
+}
+
+async function callApi(url, options, errorMessage) {
+  try {
+      console.log("callApi url:", url)
+      const response = await fetch(url, options);
+      console.log("API 응답:", response); // 응답 객체 출력
+      if (!response.ok) {
+          const errorText = await response.text();
+          console.log("에러 코드:", response.status);  // 응답 코드 확인
+          console.log("에러 메시지:", errorText);  // 응답 내용 확인
+          throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
+      }
+      return response;
+  } catch (error) {
+      console.error(errorMessage + " 오류:", error);
+      throw error;
+  }
+}

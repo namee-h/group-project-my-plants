@@ -160,6 +160,33 @@ body{
   width: 100%;
 }
 
+/* eamil관련 */
+.email-area {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-addon {
+  margin: 0 10px;
+  font-size: 1.2em;
+}
+
+#customDomain{
+  display:none; 
+  margin-left: 10px;
+}
+
+/* 비밀번호 관련 */
+#checkPasswordButton{
+  width: 100px;
+  margin-bottom: 20px;
+  background-color: #D1E231;
+}
+#checkPasswordButton:hover{
+  background-color: #93C572;
+}
+
+
 /* 푸터 영역 */
 footer {
   background-color: #f8f9fa;

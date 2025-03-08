@@ -18,6 +18,7 @@
         <header id="index-header">
             <div id="index-logo-area" onclick="goHome()">
                 <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
+                <span id="update-member-name" class="display-none"></span>
             </div>
             <div id="nav_area">
                 <nav>
@@ -53,9 +54,10 @@
                         <span id="fileIcon">&#128247;</span>  <!-- 파일 아이콘 -->
                         <span>식물 이미지 업로드하기</span>  <!-- 텍스트 -->
                     </label>
+                    <span id="fileNameDisplay" class="file-name-display"></span> <!-- 파일명 표시용 -->
+                </div>
                     <input type="file" id="plantImage" accept="image/*" style="display: none;">
                     <p id="imageResult" class="imageResult-text"></p>
-                </div>
 
                 <!-- 검색 입력 -->
                 <div id="searchInput" >

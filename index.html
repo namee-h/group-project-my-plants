@@ -35,15 +35,19 @@
       </header>
 
       <!-- 슬라이드 배너 (캐러셀) -->
-      <div class="index-body">
+      <div class="index-body container">
         <section class="index-banner-section">
-          <h2>내 식물, 얼마나 자주 물 줘야 할까?</h2>
-          <p>나의 식물을 추가하면 맞춤 물주기 관리를 받을 수 있어요.</p>
+          <h2>🌿 내 손안의 스마트 가드너! 🌱</h2>
+          <p>나의 반려식물을 등록하고, 물주기 일정을 자동으로 관리하세요!</p>
           <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide "></button>
+
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -54,6 +58,15 @@
               </div>
               <div class="carousel-item">
                 <img src="./asset/main_carousel_img3.webp" class="d-block" alt="이미지3">
+              </div>
+              <div class="carousel-item">
+                <img src="./asset/main_carousel_img4.avif" class="d-block" alt="이미지4">
+              </div>
+              <div class="carousel-item">
+                <img src="./asset/main_carousel_img5.jpg" class="d-block" alt="이미지5">
+              </div>
+              <div class="carousel-item">
+                <img src="./asset/main_carousel_img6.webp" class="d-block" alt="이미지6">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -69,9 +82,10 @@
   
         <!-- 내가 등록한 식물 (로그인 시 노출) -->
         <section id="index-my-plants-section" class="display-none">
-          <div id="index-my-plants-list">
+          <div class="index-my-plants-list">
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>
+          <!-- 내 식물 이미지 보이는 곳 -->
         </section>
         
         <!-- 식물 피드 -->
