@@ -1,0 +1,137 @@
+/* 기본적인 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* body를 수직 중앙 정렬 */
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+/* 컨테이너 스타일 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* header 부분 */
+#index-logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  #index-login, #index-logout {
+    background-color: #50C878;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  #index-login a, #index-logout a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  #index-login:hover, #index-logout:hover {
+    background-color: #00A86B;
+  }
+  
+  #index-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f0f0f0;
+  }
+
+/* 폼 스타일 */
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 폼 그룹 스타일 */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* 제출 버튼 스타일 */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* 푸터 영역 */
+footer {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+  }
+  footer i:hover{
+    color: #388E3C;
+  }
+  ul {
+    list-style: none;
+    padding: 0 1em;
+  }
