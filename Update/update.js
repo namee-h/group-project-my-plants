@@ -35,6 +35,13 @@ const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
     } catch (error) {
         console.error("멤버 정보를 가져오는 중 오류 발생:", error);
     }
+    const logoutBtn = document.getElementById("index-logout"); // 로그아웃 버튼 가져오기
+    //로그아웃버튼 추가
+    logoutBtn.addEventListener("click", () => {
+        sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
+        window.location.href = "/Login/login.html";
+      });
+
 });
 
 document.getElementById("plantSearch").addEventListener("input", async function () {

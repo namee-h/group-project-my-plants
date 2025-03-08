@@ -49,20 +49,20 @@ a{
 }
 
 #index-login {
-  background-color: #4CAF50;
+  background-color: #50C878;
 }
 
 #index-login:hover {
-  background-color: #45a049;
+  background-color: #00A86B;
 }
 
 #index-signup {
-  background-color: #4CAF50;
+  background-color: #50C878;
   display: block;
 }
 
 #index-signup:hover {
-  background-color: #45a049;
+  background-color: #00A86B;
 }
 
 #index-header {

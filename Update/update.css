@@ -33,7 +33,7 @@ max-width:850px;
     height: auto;
   }
   
-  #index-login {
+  #index-login, #index-logout {
     background-color: #50C878;
     border: none;
     font-size: 15px;
@@ -41,12 +41,12 @@ max-width:850px;
     padding: 5px 10px;
   }
   
-  #index-login a {
+  #index-login a, #index-logout a {
     text-decoration: none;
     color: white;
   }
   
-  #index-login:hover {
+  #index-login:hover, #index-logout:hover {
     background-color: #00A86B;
   }
   
