@@ -40,18 +40,18 @@ if (sessionValue !== null) {
 myPlantData = async (memberId) => {
   const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
   const data = await response.json();
-  let feedData = [];
   let feedHTML = `<div class="index-my-plants-list">
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>`;
   for (let i = 0; i < data.length; i++) {
-    if (data[i].member_id === memberId && data[i].plant_main_img !== null) {
+    if (data[i].member_id === memberId && data[i].plant_main_img !== null && data[i].plant_main_img !== undefined && data[i].plants_name !== undefined) {
+      console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?${data[i].id}" class="index-plant">
           <img
           src="${data[i].plant_main_img}"
-          alt="${data[i].plant_name}"
+          alt="${data[i].plants_name}"
           />
         </a>
       </div>`;
