@@ -1,8 +1,8 @@
-const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const windowUrl = new URL(window.location.href);
-const plantId = windowUrl.searchParams.get("plantsID");
+const plantId = windowUrl.searchParams.get("plantId");
+console.log(windowUrl.search);
+const API_URL = `https://silk-scandalous-boa.glitch.me`;
 
-console.log(plantId);
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -32,15 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //식물 정보 가져오기
-const loadPlantData = (plantId) => {
-  fetch(`${API_URL}/plants`)
+const loadPlantData = async (plantId) => {
+  await fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((data) => {
       // console.log("ddd", data);
 
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
-
+      console.log(data);
       if (!plantData) {
         console.error(`no data (plantId: ${plantId})`);
         return;

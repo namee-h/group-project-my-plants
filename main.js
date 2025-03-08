@@ -18,7 +18,7 @@ if (sessionValue !== null) {
             loginButton.textContent = "Logout";
             memberName.textContent = `${member.name}님 환영합니다.`;
             signButton.style.display = "none"; // 회원가입 버튼 숨기기
-            indexMyPlantsSection.style.display = "block"; // 내가 등록한 식물 보이기
+            // indexMyPlantsSection.style.display = "block"; // 내가 등록한 식물 보이기
 
             myPlantData(member.id);
 
@@ -41,23 +41,24 @@ if (sessionValue !== null) {
 myPlantData = async(memberId) => {
   const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
   const data = await response.json();
-  let feedHTML = data.map((data) => {
-    if (data.member_id !== memberId) {
-      return;
+  let feedData = [];
+  let feedHTML = `<div class="index-my-plants-list">
+            <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
+          </div>`;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].member_id === memberId && data[i].plant_main_img !== null) {
+      feedHTML += `
+      <div class="index-my-plants-list">
+        <a href="/Detail/detail.html?${data[i].id}" class="index-plant">
+          <img
+          src="${data[i].plant_main_img}"
+          alt="${data[i].plant_name}"
+          />
+        </a>
+      </div>`;
     }
-    if (data.plant_main_img === null) {
-      return;
-    }
-    return `
-      <a href="/Detail/detail.html?plantsID=${data.id}" class="index-plant">
-        <img
-        src="${data.plant_main_img}"
-        alt="${data.plants_name}"
-        />
-      </a>`;
-  }).join("");
-  console.log("등록한 식물 : ", feedHTML);
-  document.querySelector("#index-my-plants-list").append(feedHTML);
+  }
+  document.getElementById("index-my-plants-section").innerHTML = feedHTML;  
 }
 
 // 식물 피드
