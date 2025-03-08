@@ -4,6 +4,11 @@ body{
   justify-content: space-between;
   min-height: 100dvh;
 }
+
+a{
+  text-decoration: none;
+}
+
 .index-body {
   margin: 0;
   padding: 0;
@@ -23,9 +28,8 @@ body{
 
 /* ${member.name}님 환영합니다. 영역 */
 #index-member-name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2e6e30;
+  margin-left:20px;
+  font-size: 15px;
 }
 
 #index-auth-buttons { 
