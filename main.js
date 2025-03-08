@@ -6,39 +6,38 @@ const indexMyPlantsSection = document.getElementById("index-my-plants-section");
 const indexFeed = document.querySelector("#index-feed");
 
 if (sessionValue !== null) {
+  fetch("https://silk-scandalous-boa.glitch.me/members")
+    .then((response) => response.json())
+    .then((data) => {
+      const member = data.find((member) => member.id === sessionValue);
+      console.log("Member:", member); // 멤버 확인: undefined, DB 불일치
 
-  fetch('https://silk-scandalous-boa.glitch.me/members')
-      .then(response => response.json())
-      .then(data => {
-          const member = data.find(member => member.id === sessionValue);
-          console.log("Member:", member);  // 멤버 확인: undefined, DB 불일치
+      if (member) {
+        loginButton.href = "";
+        loginButton.textContent = "Logout";
+        memberName.textContent = `${member.name}님 환영합니다.`;
+        signButton.style.display = "none"; // 회원가입 버튼 숨기기
+        indexMyPlantsSection.style.display = "block"; // 내가 등록한 식물 보이기
 
-          if (member) {
-            loginButton.href = "";
-            loginButton.textContent = "Logout";
-            memberName.textContent = `${member.name}님 환영합니다.`;
-            signButton.style.display = "none"; // 회원가입 버튼 숨기기
-            // indexMyPlantsSection.style.display = "block"; // 내가 등록한 식물 보이기
-
-            myPlantData(member.id);
-
-          } else {
-            console.log("⚠️ 로그인된 사용자 정보가 없습니다.");
-          }
-        }).catch(error => {
-            console.error('Error:', error);
-        });
+        myPlantData(member.id);
+      } else {
+        console.log("⚠️ 로그인된 사용자 정보가 없습니다.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 
   // 로그아웃 기능
   loginButton.addEventListener("click", () => {
     sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
     window.location.href = "/Login/login.html";
   });
-  
+
   memberName.classList.remove("display-none");
 }
 
-myPlantData = async(memberId) => {
+myPlantData = async (memberId) => {
   const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
   const data = await response.json();
   let feedData = [];
@@ -58,23 +57,23 @@ myPlantData = async(memberId) => {
       </div>`;
     }
   }
-  document.getElementById("index-my-plants-section").innerHTML = feedHTML;  
-}
+  document.getElementById("index-my-plants-section").innerHTML = feedHTML;
+};
 
 // 식물 피드
 for (let i = 0; i < 10; i++) {
-   const feedItem = document.createElement("div");
-   feedItem.classList.add("feed-item");
+  const feedItem = document.createElement("div");
+  feedItem.classList.add("feed-item");
 
-   feedItem.innerHTML = `
+  feedItem.innerHTML = `
         <a class="index-feed-plant">
           <img
           src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
           alt="식물 피드"
           />
         </a>`;
-    document.querySelector("#index-feed").append(feedItem);
-  }
+  document.querySelector("#index-feed").append(feedItem);
+}
 
 // 맨 위로 가기 버튼 추가
 document.addEventListener("DOMContentLoaded", function () {
