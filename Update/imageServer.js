@@ -292,6 +292,9 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
         }
 
         const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
+
+        
+
         res.json({ imageUrl: imageUrl });
     });
 });
