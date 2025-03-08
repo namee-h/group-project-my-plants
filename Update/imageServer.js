@@ -271,6 +271,9 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
 
     const memberId = req.body.memberId;
     const plantId = req.body.plantId;
+    const page = req.body.page;
+    const oldImgPath = req.body.oldImgPath;
+    const dateFormat = req.body.dateFormat;
 
     if (!memberId) {
         return res.status(400).json({ error: "memberId가 없습니다." });
@@ -289,6 +292,7 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
     // 🔹 원본 파일 확장자 유지
     const ext = path.extname(req.file.originalname);
     const newPath = `${folder}${memberId}_${plantId}_main${ext}`;
+    const oldPath = `${folder}${memberId}_${plantId}_main${ext}`;
 
     // 🔹 파일 이동 (임시 저장된 파일 → 지정 폴더)
     fs.rename(req.file.path, newPath, (err) => {

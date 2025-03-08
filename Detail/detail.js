@@ -1,7 +1,6 @@
 const windowUrl = new URL(window.location.href);
-const plantId =  windowUrl.search.replace("?", "");
+const plantId =  windowUrl.searchParams.get('plants_id');
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-let historyImgData = [];
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -242,56 +241,81 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!plantImage) {
         alert("기록을 남기실 이미지를 넣어주세요");
         return;
-      } else {
-        historyImgData = historyImgLoad();
       }
       
-      console.log(historyImgData);
+      const historyImgData = await historyImgLoad();
+      let historyMember = "";;
+      let historyData = [];
+      console.log("history data : ", historyImgData);
 
-      let formData = {
-        id: plantId,
-        history_img: historyImgLoad,
-        history_memo :[]
-      }; 
+      historyImgData.forEach(e => {
+        if (e.id === parseInt(plantId)) {
+          historyMember = e.member_id;
+          historyData = e.history_img;
+          mainImg = e.plant_main_img;
+        }
+      });
 
-      // try {
-      //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
-      //     const imageUrl = await uploadImage(formData);
-      //     console.log("imageUrl:", imageUrl);
-      //     plantData.history_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
-      //     console.log("이미지 URL:", plantData.plant_main_img);
-      //     console.log("imageUrl넣은 후 plantData:", plantData);
+      //  update_data format yyyy-mm--dd
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
+      const day = String(today.getDate()).padStart(2, "0");
+      let hours = today.getHours(); // 시
+      let minutes = today.getMinutes();  // 분
+      let seconds = today.getSeconds();  // 초
+      const formattedDate = `${year}-${month}-${day}-${hours}:${minutes}:${seconds}`;
 
-      //     // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
-      //     const plantResult = updatePlantData(plantData);  
-      //     console.log("plantResult:", plantResult);
+      const oldPath = "/" + mainImg.split("/")[1] + "/" + mainImg.split("/")[2] + "/";
 
-      // } catch (error) {
-      //     console.log(error);
-      // }
+      let formData = prepareFormData({
+          memberId: historyMember,
+          plantId: plantId,
+          page: "detail",
+          oldImgPath: oldPath,
+          dateFormat: formattedDate
+      }, plantImage);
+
+      try {
+          // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
+          const imageUrl = await uploadImage(formData);
+          console.log("imageUrl:", imageUrl);
+          console.log("이미지 URL:", plantData.plant_main_img);
+          console.log("imageUrl넣은 후 plantData:", plantData);
+
+          // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
+          // const plantResult = updatePlantData(plantData);  
+          console.log("plantResult:", plantResult);
+
+      } catch (error) {
+          console.log(error);
+      }
 
       // console.log("FormData 확인:");
       // for (const pair of formData.entries()) {
       //     console.log(pair[0], pair[1]);
       // }
-
   });
 });
 
-const historyImgLoad = async () => {
-  await fetch(`${API_URL}/plants`)
-    .then((response) => response.json())
-    .then((plants) => {
-      if (plants.length > 0) {
-        for (let i=0; i < plants.length; i++) {
-          if(plants[i].id === plantId) {
-            console.log(JSON.parse(["test1","test2"]));
-          }
-        }
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+
+// 데이터 준비 함수
+function prepareFormData(plantData, plantImage) {
+  const formData = new FormData();
+  if (plantImage) {
+      formData.append("plantImage", plantImage);
+  }
+  for (const key in plantData) {
+      formData.append(key, plantData[key]);
+  }
+  console.log("초기 설정 form : ", formData);
+  return formData;
+}
+
+const historyImgLoad = async() => {
+  const response = await fetch(`${API_URL}/plants`);
+  let historyData = await response.json();
+  return historyData;
 }
 
 // API 호출 함수
@@ -314,6 +338,8 @@ async function callApi(url, options, errorMessage) {
           const errorText = await response.text();
           console.log("에러 코드:", response.status);  // 응답 코드 확인
           console.log("에러 메시지:", errorText);  // 응답 내용 확인
+          alert("에러 코드:", response.status);
+          alert(errorText);
           throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
       }
       return response;
