@@ -1,6 +1,5 @@
 const windowUrl = new URL(window.location.href);
-const plantId = windowUrl.searchParams.get("plantId");
-console.log(windowUrl.search);
+const plantId =  windowUrl.search.replace("?", "");
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
 
 
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((plants) => {
       if (plants.length > 0) {
-        // plants = plants.filter((plant) => plant.id == plantId);
         loadPlantData(plantId);
       } else {
         alert("식물 데이터가 없습니다.");
@@ -40,19 +38,17 @@ const loadPlantData = async (plantId) => {
 
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
-      console.log(data);
+
       if (!plantData) {
         console.error(`no data (plantId: ${plantId})`);
         return;
       }
 
       // html에 뿌려주기
-      document.getElementById("plant-name").textContent =
-        plantData.plant_name || "이름 없음";
-      document.getElementById("plant-type").textContent =
-        plantData.category || "카테고리 없음";
-      document.getElementById("plant-date").textContent =
-        plantData.update_dat || "날짜 없음";
+      document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
+      document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
+      document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? plantData.plant_main_img : "/asset/detail/detail-sample-img.png";
     })
     .catch((error) => console.error("error", error));
 };
@@ -80,17 +76,17 @@ document.querySelectorAll(".edit-btn").forEach((button) => {
     targetElement.addEventListener("blur", () => {
       savePlantData(targetId, targetElement.textContent);
     });
-    // loadPlantData(plantId);
+    loadPlantData(plantId);
   });
 });
 
 // 🚨 2. DB에 저장하는 함수
 function savePlantData(field, value) {
   let fieldName = "";
-  if (field === "plant-name") fieldName = "plant_name";
-  if (field === "plant-type") fieldName = "category";
-  if (field === "plant-date") fieldName = "update_dat";
-
+  if (field === "plants-name") fieldName = "plants_name";
+  if (field === "plants-type") fieldName = "category";
+  if (field === "plants-date") fieldName = "update_day";
+  
   // 🚨 여기 다시봐야됨 근데 수정-저장은 잘되고 있음
   fetch(`${API_URL}/plants/${plantId}`, {
     method: "PATCH",
@@ -106,7 +102,7 @@ function savePlantData(field, value) {
       document.getElementById(field).style.border = "none";
 
       // 저장 후 다시 불러오기
-      // loadPlantData(plantId);
+      loadPlantData(plantId);
     })
     .catch((error) => console.error);
 }
@@ -121,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 가져오는 함수
   const fetchWaterCycle = async () => {
     try {
-      const response = await fetch(`${API_URL}/plants`);
+      const response = await fetch(`${API_URL}/plants/${plantId}`);
       const data = await response.json();
-      // console.log("waterddd", data);
-      return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
+      console.log("waterddd", data);
+      return parseInt(data.water_cycle, 10); // water_cycle 값을 숫자로 변환
     } catch (error) {
       console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
       return 1; // 기본값으로 1 (매일) 반환
@@ -133,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 업데이트하는 함수
   const updateWaterCycle = async (newCycle) => {
     try {
-      const response = await fetch(`${API_URL}/plants/1`, {
+      const response = await fetch(`${API_URL}/plants/${plantId}`, {
         // 1은 water 데이터ID 실제 ID에 맞게 조정해야함
         method: "PATCH",
         headers: {
