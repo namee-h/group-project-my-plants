@@ -292,6 +292,39 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
         }
 
         const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
+
+
+        // 여기서 plant_main_img에 이미지 URL을 추가한 객체를 반환
+        const plantData = {
+            plant_name: req.body.plant_name,
+            description: req.body.description,
+            category: req.body.category,
+            member_id: req.body.member_id,
+            update_day: req.body.update_day,
+            etc: req.body.etc,
+            plant_main_img: imageUrl, // plant_main_img 필드에 이미지 URL 추가
+            water_cycle: req.body.water_cycle,
+            id: req.body.id
+        };
+
+        // plantData를 업데이트 서버로 넘겨줌
+        // 여기서 클라이언트 측에 데이터를 전달하는 부분 추가
+        fetch('https://silk-scandalous-boa.glitch.me//plants', {
+            method: 'PUT',  // PUT 요청으로 기존 데이터 업데이트
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(plantData)  // plantData를 JSON 형태로 전송
+        })
+        .then(response => response.json())
+        .then(data => {
+            res.json({ message: '업데이트 완료', data: data });
+        })
+        .catch(error => {
+            console.error('업데이트 오류:', error);
+            res.status(500).json({ error: '업데이트 중 오류 발생' });
+        });
+
         res.json({ imageUrl: imageUrl });
     });
 });

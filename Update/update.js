@@ -150,7 +150,7 @@
 // }
 
 // plant.id API 이용하여 fetch
-const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
+const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 
 document.getElementById("plantSearch").addEventListener("input", async function () {
@@ -538,39 +538,19 @@ async function savePlantData(plantData) {
     return plantResult.id;
 }
 
-// async function saveImageData(imgData) {
-//     await callApi("https://silk-scandalous-boa.glitch.me/images", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(imgData)
-//     }, "이미지 정보 저장 실패");
-// }
-
 async function saveImageData(imgData) {
-    console.log("보내는 데이터:", imgData);
-
-    try {
-        const response = await callApi("https://silk-scandalous-boa.glitch.me/images", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(imgData),
-            mode: "cors"
-        }, "이미지 정보 저장 실패");
-
-        console.log("서버 응답 상태 코드:", response.status); // 상태 코드 확인
-        const responseText = await response.text();
-        console.log("서버 응답 본문:", responseText); // 응답 내용 확인
-    } catch (error) {
-        console.error("saveImageData 오류:", error);
-    }
+    await callApi("https://silk-scandalous-boa.glitch.me/images", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(imgData)
+    }, "이미지 정보 저장 실패");
 }
 
 async function saveWaterData(waterData) {
-    await callApi("https://silk-scandalous-boa.glitch.me/water", {
+    await callApi("https://silk-scandalous-boa.glitch.meZ/water", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(waterData),
-        mode: "cors"
+        body: JSON.stringify(waterData)
     }, "물주기 정보 저장 실패");
 }
 
