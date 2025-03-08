@@ -23,6 +23,9 @@ body{
     width: 50px;
     height: auto;
   }
+  .display-none{
+    display: none;
+  }
   #index-auth-buttons { 
     display: flex;
     gap: 5px;
