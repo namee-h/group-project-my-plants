@@ -1,5 +1,8 @@
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-let plantId = null;
+const windowUrl = new URL(window.location.href);
+const plantId = windowUrl.searchParams.get("plantsID");
+
+console.log(plantId);
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -19,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((plants) => {
       if (plants.length > 0) {
-        plantId = plants[0].id;
+        // plants = plants.filter((plant) => plant.id == plantId);
         loadPlantData(plantId);
       } else {
         alert("식물 데이터가 없습니다.");
@@ -33,7 +36,7 @@ const loadPlantData = (plantId) => {
   fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((data) => {
-      console.log("ddd", data);
+      // console.log("ddd", data);
 
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
@@ -118,9 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 가져오는 함수
   const fetchWaterCycle = async () => {
     try {
-      const response = await fetch(`${API_URL}/water`);
+      const response = await fetch(`${API_URL}/plants`);
       const data = await response.json();
-      console.log("waterddd", data);
+      // console.log("waterddd", data);
       return parseInt(data[0].water_cycle, 10); // water_cycle 값을 숫자로 변환
     } catch (error) {
       console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
@@ -130,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 물 주기 데이터를 업데이트하는 함수
   const updateWaterCycle = async (newCycle) => {
     try {
-      const response = await fetch(`${API_URL}/water/1`, {
+      const response = await fetch(`${API_URL}/plants/1`, {
         // 1은 water 데이터ID 실제 ID에 맞게 조정해야함
         method: "PATCH",
         headers: {
