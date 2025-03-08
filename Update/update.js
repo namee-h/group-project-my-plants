@@ -396,6 +396,15 @@ document.getElementById("plantImage").addEventListener("change", async function(
     }
 });
 
+// 파일 이름 출력해주는 함수
+document.getElementById("plantImage").addEventListener("change", function(event) {
+    const fileInput = event.target;
+    const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "파일을 선택해주세요.";
+
+    // 파일명을 표시
+    document.getElementById("fileNameDisplay").textContent = fileName;
+});
+
 // 파일을 Base64로 변환하는 함수
 function toBase64(file) {
     return new Promise((resolve, reject) => {
