@@ -318,3 +318,18 @@ hr.rounded {
   font-size: 24px;
   margin: 50px 0;
 }
+
+/* 업버튼 */
+
+/* 업버튼 */
+#detailFood_top{
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  /* z-index: 6; */
+  display: none; /* 기본적으로 숨김 */
+}
+
+#detailFood_top:hover{
+  cursor: pointer;
+}

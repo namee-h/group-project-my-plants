@@ -132,9 +132,34 @@
     ></script>
     <script src="main.js"></script>
 
-    <!-- 맨 위로 가기 버튼 추가 -->
-    <button id="index-top-button">▲</button>
+    <!-- 맨 위로 가기 버튼 추가
+    <button id="index-top-button">▲</button> -->
 
-    <!-- <script src="public.js"></script> -->
+    <!-- 업버튼 -->
+    <div id="detailFood_top" onclick="scrollToTop()">
+      <img src="https://www.okitchen.co.kr/images/common/btn_top.png" alt="위로" width="50">
+   </div>
+
+   <script>
+      // 업 버튼을 페이지 하단에 스크롤 시 나타나게 하는 코드
+      window.onscroll = function() {
+          let detailFood_top = document.getElementById("detailFood_top");
+          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+              detailFood_top.style.display = "block";  // 스크롤이 일정 부분 내려가면 보이게 설정
+          } else {
+              detailFood_top.style.display = "none";  // 스크롤이 맨 위로 가면 숨김
+          }
+      };
+
+      // 클릭 시 부드럽게 페이지 상단으로 스크롤하는 함수
+      function scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+      }
+  </script>
+
+    <script src="public.js"></script>
   </body>
 </html>
