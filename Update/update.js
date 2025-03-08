@@ -8,6 +8,46 @@ const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
 
 console.log("sessionValue:", sessionValue);
 
+// 페이지 로드 후 sessionValue 값을 <span>에 삽입
+// document.addEventListener('DOMContentLoaded', function() {
+//     const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
+    
+//     if (sessionValue) {
+//       memberNameElement.textContent = sessionValue; // 값이 존재하면 <span>에 텍스트 넣기
+//       memberNameElement.classList.remove('display-none'); // 해당 클래스 제거하여 보이게 하기
+//     }
+//   });
+
+// member에서 name 값 가져와서 왼쪽 상단에 띄우기
+  document.addEventListener('DOMContentLoaded', async function() {
+    const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
+
+    if (!sessionValue) {
+        console.error("세션 값 없음");
+        return;
+    }
+
+    try {
+        // API 호출하여 member 정보 가져오기
+        const response = await callApi(`https://silk-scandalous-boa.glitch.me/members/${sessionValue}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }, "멤버 정보 조회 실패");
+
+        const memberData = await response.json(); // 응답 데이터를 JSON으로 변환
+        console.log("가져온 멤버 데이터:", memberData);
+
+        if (memberData && memberData.name) {
+            memberNameElement.textContent = `${memberData.name}님 환영합니다.`; // name 값을 <span>에 삽입
+            memberNameElement.classList.remove('display-none'); // display-none 제거하여 표시
+        } else {
+            console.warn("이름이 없는 멤버 데이터:", memberData);
+        }
+    } catch (error) {
+        console.error("멤버 정보를 가져오는 중 오류 발생:", error);
+    }
+});
+
 document.getElementById("plantSearch").addEventListener("input", async function () {
     const query = this.value.trim();
     if (query.length < 2) return;
@@ -38,6 +78,7 @@ document.getElementById("plantSearch").addEventListener("input", async function 
     }
 });
 
+// 검색 기능
 function displaySearchResults(results) {
     const resultsContainer = document.getElementById("searchResults");
     resultsContainer.innerHTML = "";
@@ -94,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             // 먼저 preparePlantData로 plantData 생성
             const plantData = preparePlantData(plantName, plantDescription, plantCategory, wateringInterval);
-            console.log("plantData id생성 전:",plantData);  
+            console.log("plantData id생성 전:",plantData);
             
             // savePlantData로 plantId 생성
             const plantId = await savePlantData(plantData);
