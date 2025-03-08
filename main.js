@@ -91,9 +91,40 @@ const mainfeedList = async () => {
               src="${data[i].plant_main_img}"
               alt="${data[i].plants_name}"
               />
-            </a>`;
+            </a>
+            <div class="comment-section">
+            <input type="text" id="commentInput" class="comment-input" placeholder="소중한 한마디를 남겨주세요 💬">
+            <button class="comment-button" onclick="addComment(event)">등록</button>
+            <ul id="commentList" class="comment-list"></ul>
+        </div>
+            `;
+  
       document.querySelector("#index-feed").append(feedItem);
     }
+  }
+}
+function addComment(event) {
+  if (event.type === "click" || (event.type === "keydown" && event.key === "Enter")) {
+      const button = event.target.closest(".comment-section"); // 클릭한 버튼이 속한 댓글 섹션 찾기
+      const commentInput = button.querySelector(".comment-input"); // 입력창 찾기
+      const commentList = button.querySelector(".comment-list"); // 해당 피드의 댓글 목록 찾기
+      const comment = commentInput.value.trim(); // 입력한 댓글 내용 가져오기
+
+      if (sessionValue === null) {
+          alert("로그인 후 이용해주세요.");
+          commentInput.value = "";
+          return;
+      }
+
+      if (comment === "") {
+          alert("소중한 한마디를 남겨주세요 💬");
+          return;
+      }
+
+      const commentItem = document.createElement("li");
+      commentItem.textContent = comment;
+      commentList.appendChild(commentItem);
+      commentInput.value = ""; // 댓글 입력창 초기화
   }
 }
 

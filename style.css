@@ -205,7 +205,7 @@ a{
 
 /* 각 피드 아이템 */
 .feed-item {  
-  display: flex;
+  /* display: flex; */
   background-color: #f8f8f8;
   width: 100%; 
   padding: 10px
@@ -356,11 +356,41 @@ hr.rounded {
   color: gray;
 }
 
-/* 클릭 시 빨간색 하트 */
-/* .heart-badge.liked {
-  background-color: red;
-} */
+/* 댓글 입력창 */
+.comment-section {
+  width: 100%;
+  margin-top: 10px;
+}
 
-/* .heart-badge.liked i {
+.comment-input {
+  /* width: 100%; */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left:15px;
+  width: 265px;
+}
+
+.comment-button {
+  width: 50px;
+  padding: 5px;
+  background-color: #50C878;
   color: white;
-} */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-button:hover {
+  background-color: #45a049;
+}
+
+/* 댓글 목록 */
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  margin-left:15px;
+}
