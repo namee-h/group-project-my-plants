@@ -138,3 +138,46 @@ ul {
 #index-logo-area img{
     cursor: pointer;
 }
+
+/* 날씨 관련 스타일 */
+ /* 드롭다운 스타일 */
+ #countrySelect {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#countrySelect:hover {
+    border-color: #007bff;
+}
+
+/* 버튼 스타일 */
+.weater-button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.weater-button:hover {
+    background: #0056b3;
+}
+
+/* 추천 메시지 스타일 */
+#recommendation {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+    text-align: center;
+}
