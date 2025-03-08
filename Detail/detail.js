@@ -244,52 +244,75 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       const historyImgData = await historyImgLoad();
+      let historyMember = "";;
+      let historyData = [];
       console.log("history data : ", historyImgData);
 
-      let formData = {
-        id: plantId,
-        history_img: historyImgData,
-        history_memo :[]
-      };
+      historyImgData.forEach(e => {
+        if (e.id === parseInt(plantId)) {
+          historyMember = e.member_id;
+          historyData = e.history_img;
+        }
+      });
 
-      // try {
-      //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
-      //     const imageUrl = await uploadImage(formData);
-      //     console.log("imageUrl:", imageUrl);
-      //     plantData.history_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
-      //     console.log("이미지 URL:", plantData.plant_main_img);
-      //     console.log("imageUrl넣은 후 plantData:", plantData);
+      // let formData = new FormData();
+      // formData = {
+      //   id: plantId,
+      //   history_img: historyData,
+      //   history_memo :[],
+      //   memberId: historyMember,
+      //   plantImage: plantImage
+      // };
 
-      //     // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
-      //     const plantResult = updatePlantData(plantData);  
-      //     console.log("plantResult:", plantResult);
+      let formData = prepareFormData({
+          memberId: historyMember,
+          history_img:historyData,
+          history_memo :[],
+          plantId: plantId,
+      }, plantImage);
 
-      // } catch (error) {
-      //     console.log(error);
-      // }
+      console.log(formData);
+
+      try {
+          // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
+          // const imageUrl = await uploadImage(formData);
+          console.log("imageUrl:", imageUrl);
+          console.log("이미지 URL:", plantData.plant_main_img);
+          console.log("imageUrl넣은 후 plantData:", plantData);
+
+          // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
+          // const plantResult = updatePlantData(plantData);  
+          console.log("plantResult:", plantResult);
+
+      } catch (error) {
+          console.log(error);
+      }
 
       // console.log("FormData 확인:");
       // for (const pair of formData.entries()) {
       //     console.log(pair[0], pair[1]);
       // }
-
   });
 });
 
-const historyImgLoad = async () => {
-  await fetch(`${API_URL}/plants`)
-    .then((response) => response.json())
-    .then((plants) => {
-      if (plants.length > 0) {
-        for (let i=0; i < plants.length; i++) {
-          if(plants[i].id === parseInt(plantId)) {
-            return 12;
-          }
-        }
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+
+// 데이터 준비 함수
+function prepareFormData(plantData, plantImage) {
+  const formData = new FormData();
+  if (plantImage) {
+      formData.append("plantImage", plantImage);
+  }
+  for (const key in plantData) {
+      formData.append(key, plantData[key]);
+  }
+  console.log("초기 설정 form : ", formData);
+  return formData;
+}
+
+const historyImgLoad = async() => {
+  const response = await fetch(`${API_URL}/plants`);
+  let historyData = await response.json();
+  return historyData;
 }
 
 // API 호출 함수
