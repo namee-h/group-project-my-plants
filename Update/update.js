@@ -3,7 +3,7 @@
 
 //     // API 키 (data.go.kr에서 발급받은 키 입력)
 //     const API_KEY = "2cL4%2Fj22bZFylrcWybU6Wt4BZ8ROoGlC4zCK9S%2F15maNTZNSkviTz7V56wkkqJSejMjr8hfhWhHRyeVlj7wXFg%3D%3D";
-//     const API_URL = `http://openapi.nature.go.kr/openapi/service/rest/PlantService/plntIlstrSearch?serviceKey=${API_KEY}&numOfRows=10&pageNo=1`;
+//     const API_URL = http://openapi.nature.go.kr/openapi/service/rest/PlantService/plntIlstrSearch?serviceKey=${API_KEY}&numOfRows=10&pageNo=1;
 //     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
 //     //  XML을 가져와서 select 옵션으로 추가하는 함수
@@ -74,18 +74,18 @@
 //       const imageInfo = metadata[imageId];
 //       const speciesId = imageInfo.species_id;
 //       const speciesName = species[speciesId];
-//       const imageFilename = `${imageId}.jpg`;
+//       const imageFilename = ${imageId}.jpg;
 //       const imagePath = imageRoot + imageFilename;
 
 //       // 이미지 로드 및 활용
 //       const img = new Image();
 //       img.onload = () => {
-//         console.log(`Image ID: ${imageId}, Species: ${speciesName}`);
+//         console.log(Image ID: ${imageId}, Species: ${speciesName});
 //         // 이미지 활용 (예: 표시)
 //         document.body.appendChild(img);
 //       };
 //       img.onerror = () => {
-//         console.log(`Image not found: ${imagePath}`);
+//         console.log(Image not found: ${imagePath});
 //       };
 //       img.src = imagePath;
 //     }
@@ -94,7 +94,7 @@
 
 // Trefle API 이용하여 fetch
 // // const apiKey = "g5riRcq5JDjWlHCMEXffSADFbTjZixLYxf38oWbtYw8"; // 🔹 Trefle API 키
-// const apiUrl = `https://trefle.io/api/v1/species?token=${apiKey}`;
+// const apiUrl = https://trefle.io/api/v1/species?token=${apiKey};
 // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 // // const proxyUrl = 'https://api.allorigins.win/raw?url='; // 다른 프록시 서버
 
@@ -113,12 +113,12 @@
 //         let combinedData = []; // 두 페이지 데이터를 합칠 배열
         
 //         for (let page = 1; page <= 2; page++) {
-//             const response = await fetch(proxyUrl + apiUrl + `&page=${page}`);
+//             const response = await fetch(proxyUrl + apiUrl + &page=${page});
 //             const data = await response.json();
 //             if (data && data.data) {
 //                 combinedData = combinedData.concat(data.data); // 각 페이지의 데이터를 결합
 //             } else {
-//                 console.error(`${page} 페이지의 데이터를 불러오는 데 실패했습니다.`);
+//                 console.error(${page} 페이지의 데이터를 불러오는 데 실패했습니다.);
 //             }
 //         }
 
@@ -139,7 +139,7 @@
 //     const plantCategorySelect = document.getElementById("plantCategory");
 
 //     // 기존 옵션 내용 초기화
-//     plantCategorySelect.innerHTML = `<option value="">식물 종류를 선택하세요</option>`;
+//     plantCategorySelect.innerHTML = <option value="">식물 종류를 선택하세요</option>;
 
 //     plants.forEach(plant => {
 //         const option = document.createElement("option");
@@ -150,6 +150,7 @@
 // }
 
 // plant.id API 이용하여 fetch
+// const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
 const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 
@@ -194,7 +195,7 @@ function displaySearchResults(results) {
 
     results.forEach((plant) => {
         const plantItem = document.createElement("div");
-        plantItem.textContent = plant.matched_in || "이름 없음"; // ✅ `matched_in` 값 표시
+        plantItem.textContent = plant.matched_in || "이름 없음"; // ✅ matched_in 값 표시
 
         plantItem.classList.add("search-item");
 
@@ -387,7 +388,7 @@ function displaySearchResults(results) {
 
 //         } catch (error) {
 //             console.error("오류 발생:", error);
-//             alert(`오류가 발생했습니다: ${error.message}`);
+//             alert(오류가 발생했습니다: ${error.message});
 //         }
 //     });
 // });
@@ -538,19 +539,39 @@ async function savePlantData(plantData) {
     return plantResult.id;
 }
 
+// async function saveImageData(imgData) {
+//     await callApi("https://silk-scandalous-boa.glitch.me/images", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(imgData)
+//     }, "이미지 정보 저장 실패");
+// }
+
 async function saveImageData(imgData) {
-    await callApi("https://silk-scandalous-boa.glitch.me/images", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(imgData)
-    }, "이미지 정보 저장 실패");
+    console.log("보내는 데이터:", imgData);
+
+    try {
+        const response = await callApi("https://silk-scandalous-boa.glitch.me/images", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(imgData),
+            mode: "cors"
+        }, "이미지 정보 저장 실패");
+
+        console.log("서버 응답 상태 코드:", response.status); // 상태 코드 확인
+        const responseText = await response.text();
+        console.log("서버 응답 본문:", responseText); // 응답 내용 확인
+    } catch (error) {
+        console.error("saveImageData 오류:", error);
+    }
 }
 
 async function saveWaterData(waterData) {
-    await callApi("https://silk-scandalous-boa.glitch.meZ/water", {
+    await callApi("https://silk-scandalous-boa.glitch.me/water", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(waterData)
+        body: JSON.stringify(waterData),
+        mode: "cors"
     }, "물주기 정보 저장 실패");
 }
 
