@@ -16,7 +16,6 @@ if (sessionValue !== null) {
     .then((data) => {
       const member = data.find((member) => member.id === sessionValue);
       console.log("Member:", member); // 멤버 확인: undefined, DB 불일치
-
       if (member) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
@@ -24,7 +23,8 @@ if (sessionValue !== null) {
         ownerName.innerHTML = `<strong>🌵${member.name}</strong>님의 식물 피드🌵</i>`;
 
         // memberName.textContent = `${member.name}님 환영합니다.`;
-        signButton.style.display = "none"; // 회원가입 버튼 숨기기
+        signButton.href = "myInfo/myInfo.html";
+        signButton.textContent = "My Info";
         indexMyPlantsSection.style.display = "flex"; // 내가 등록한 식물 보이기
         indexMyPlantsHr.style.display = "flex"; // hr 보이기
         indexMyPlantsH5.style.display = "flex"; // h5 보이기
