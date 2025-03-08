@@ -78,7 +78,7 @@ for (let i = 0; i < 10; i++) {
    feedItem.classList.add("feed-item");
 
    feedItem.innerHTML = `
-        <a href="/Detail/detail.html" class="index-feed-plant">
+        <a class="index-feed-plant">
           <img
           src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
           alt="내 식물"
