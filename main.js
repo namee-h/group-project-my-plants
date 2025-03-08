@@ -3,7 +3,12 @@ const loginButton = document.getElementById("index-login");
 const memberName = document.getElementById("index-member-name");
 const signButton = document.getElementById("index-signup");
 const indexMyPlantsSection = document.getElementById("index-my-plants-section");
+const indexMyPlantsHr = document.getElementById("index-my-plants-hr");
+const indexMyPlantsH5 = document.getElementById("index-my-plants-h5");
+const indexMyPlantsBox = document.getElementById("index-my-plants-box");
+const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
+const ownerName = document.querySelector(".owner-name");
 
 if (sessionValue !== null) {
   fetch("https://silk-scandalous-boa.glitch.me/members")
@@ -16,11 +21,15 @@ if (sessionValue !== null) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
         memberName.innerHTML = `<strong>${member.name}🌱</strong>님 환영합니다.`;
+        ownerName.innerHTML = `<strong>🪴${member.name}</strong>님의 식물 피드🪴`;
 
         // memberName.textContent = `${member.name}님 환영합니다.`;
         signButton.style.display = "none"; // 회원가입 버튼 숨기기
         indexMyPlantsSection.style.display = "flex"; // 내가 등록한 식물 보이기
-
+        indexMyPlantsHr.style.display = "flex"; // hr 보이기
+        indexMyPlantsH5.style.display = "flex"; // h5 보이기
+        indexMyPlantsBox.style.display = "flex"; // 식물 박스 보이기
+        indexMyPlantsH6.style.display = "flex"; // h6 보이기
         myPlantData(member.id);
       } else {
         console.log("⚠️ 로그인된 사용자 정보가 없습니다.");
