@@ -83,16 +83,29 @@ document.addEventListener("DOMContentLoaded", () => {
             memberId: member_id,
             update_day: new Date().toISOString(),
             etc: null,
+            plant_main_img:null,
+            water_cycle:wateringInterval,
+            history_img:[],
+            history_memo :[],
         }, plantImage);
 
-
         try {
-            const plantId = await savePlantData(preparePlantData(plantName, plantDescription, plantCategory));
+            // 먼저 preparePlantData로 plantData 생성
+            const plantData = preparePlantData(plantName, plantDescription, plantCategory, wateringInterval);
+            
+            // savePlantData로 plantId 생성
+            const plantId = await savePlantData(plantData);
             
             // plantId 생성 후 formData에 추가
             formData.append("plantId", plantId);
+        
+            // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
             const imageUrl = await uploadImage(formData);
-
+            plantData.plant_main_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
+        
+            // 이제, plantData를 다시 savePlantData로 업데이트 (혹은 다른 필요한 작업)
+            await savePlantData(plantData);  // 필요한 경우 업데이트된 plantData로 다시 저장
+        
             handleSuccess();
         } catch (error) {
             handleError(error);
@@ -148,36 +161,18 @@ function prepareFormData(plantData, plantImage) {
     return formData;
 }
 
-function preparePlantData(plantName, plantDescription, plantCategory) { //plants 데이터 객체 생성 로직
+function preparePlantData(plantName, plantDescription, plantCategory,wateringInterval) { //plants 데이터 객체 생성 로직
     return {
         plants_name: plantName,
         description: plantDescription,
         category: plantCategory,
         member_id: 1, // 예시: 실제로는 동적으로 가져와야 함
         update_day: new Date().toISOString(),
-        etc: null
-    };
-}
-
-function prepareImageData(imageUrl, plantId) { //images 데이터 객체 생성 로직
-    return {
-        plant_main_img: imageUrl,
-        plant_history: [],
-        plants_id: plantId,
         etc: null,
-        update_day: new Date().toISOString()
-    };
-}
-
-function prepareWaterData(wateringInterval, plantId) { //water 데이터 객체 생성 로직
-    return {
-        water_cycle: wateringInterval,
-        water_start_day: null,
-        water_check: false,
-        water_memo: [],
-        plants_id: plantId,
-        etc: null,
-        update_day: new Date().toISOString()
+        plant_main_img:null,
+        water_cycle:wateringInterval,
+        history_img:[],
+        history_memo :[],
     };
 }
 
