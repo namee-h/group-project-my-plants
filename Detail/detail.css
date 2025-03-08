@@ -5,6 +5,10 @@ body{
   flex-direction: column;
   justify-content: space-between;
   min-height: 100dvh;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 .container{
   max-width:850px;

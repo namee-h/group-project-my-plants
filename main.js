@@ -27,9 +27,9 @@ if (sessionValue !== null) {
           console.log("Fetched data:", data);  // 데이터 확인: undefined, 요청실패
 
           const member = data.find(member => member.id === sessionValue);
-          const plant = data.find(plant => plant.member.id === sessionValue);
+          // const plant = data.find(plant => plant.member.id === sessionValue);
           console.log("Member:", member);  // 멤버 확인: undefined, DB 불일치
-          console.log("Plant:", plant);  // 식물 확인: undefined, DB 불일치
+          // console.log("Plant:", plant);  // 식물 확인: undefined, DB 불일치
 
   if (member) {
     loginButton.href = "";
