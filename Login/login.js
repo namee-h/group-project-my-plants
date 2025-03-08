@@ -2,10 +2,25 @@ let inputEmail = document.getElementById("floatingInput");
 let inputPassword = document.getElementById("floatingPassword");
 const loginButton = document.getElementById("member-login");
 
-loginButton.addEventListener("click", () => memberLogin());
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // 기본 폼 제출 방지
+      memberLogin(); // 로그인 함수 실행
+    });
+  }
+
+  loginButton.addEventListener("click", () => memberLogin());
+
+});
+
 
 let memberLogin = () => {
-  fetch("https://silk-scandalous-boa.glitch.me/members")
+  // fetch("https://silk-scandalous-boa.glitch.me/members")
+  fetch("http://localhost:3000/members")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);

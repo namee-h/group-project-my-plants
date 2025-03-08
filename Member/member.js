@@ -2,15 +2,30 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const addressInput = document.getElementById("address");
+  let isPopupOpen = false;
 
-  addressInput.addEventListener("click", function () {
+  function openPostcodePopup(e) {
+    // 이미 팝업이 열려 있으면 동작하지 않음
+    if (isPopupOpen) return;
+    // 포커스 이벤트인 경우, 이미 값이 있으면 팝업을 열지 않음
+    if (e.type === "focus" && addressInput.value.trim() !== "") return;
+
+    isPopupOpen = true;
+
     new daum.Postcode({
       oncomplete: function (data) {
         addressInput.value = data.address;
       },
+      onclose: function () {
+        isPopupOpen = false;
+      },
     }).open();
+    // 팝업을 열기 전에 입력값을 초기화
     addressInput.value = "";
-  });
+  }
+
+  addressInput.addEventListener("click", openPostcodePopup);
+  addressInput.addEventListener("focus", openPostcodePopup);
 });
 
 function postMemberData(event) {
