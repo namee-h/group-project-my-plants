@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Plants</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="asset/yiseul_logo.webp" />
+  </head>
+  <body>
+    <!-- 메인페이지 다예님 작업공간 사용할 branch: project_daye -->
+    
+      <header id="index-header">
+        <div id="index-logo-area">
+          <a href="/index.html">
+            <img src="asset/logo_sara.png" alt="logo" id="index-logo" />
+          </a>
+          <span id="index-member-name" class="display-none"></span>
+        </div>
+        <div id="nav_area">
+          <nav>
+            <div id="index-auth-buttons">
+              <a href="./Login/login.html" id="index-login">Login</a>
+              <a href="./Member/member.html" id="index-signup">Signup</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- 슬라이드 배너 (캐러셀) -->
+      <div class="index-body">
+        <section class="index-banner-section">
+          <h2>내 식물, 얼마나 자주 물 줘야 할까?</h2>
+          <p>나의 식물을 추가하면 맞춤 물주기 관리를 받을 수 있어요.</p>
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="./asset/main_carousel_img1.webp" class="d-block" alt="이미지1">
+              </div>
+              <div class="carousel-item">
+                <img src="./asset/main_carousel_img2.webp" class="d-block" alt="이미지2">
+              </div>
+              <div class="carousel-item">
+                <img src="./asset/main_carousel_img3.webp" class="d-block" alt="이미지3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </section>
+  
+        <!-- 내가 등록한 식물 (로그인 시 노출) -->
+        <section id="index-my-plants-section" class="display-none">
+          <div id="index-my-plants-list">
+            <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
+          </div>
+        </section>
+        
+        <!-- 식물 피드 -->
+        <div id="index-feed-section">
+          <div id="index-feed"></div>
+        </div>
+      </div>
+    
+
+    <!-- 푸터 -->
+    <footer>
+      <div>
+        <a href="/" class="me-2 text-body-secondary text-decoration-none">
+          <img src="asset/logo_sara.png" alt="Logo" width="35" />
+        </a>
+        <span class="text-body-secondary">© JS Study Group 1 </span>
+      </div>
+      <ul class="row">
+        <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
+        <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
+        <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
+      </ul>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+
+    <!-- 맨 위로 가기 버튼 추가 -->
+    <button id="index-top-button">▲</button>
+
+    <!-- <script src="public.js"></script> -->
+  </body>
+</html>

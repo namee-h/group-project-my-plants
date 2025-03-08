@@ -1,0 +1,97 @@
+body{
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*header*/
+#index-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f0f0f0;
+  }
+#index-logo {
+    width: 50px;
+    height: auto;
+}
+#index-login {
+    background-color: #4CAF50;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+#index-login a {
+    text-decoration: none;
+    color: white;
+  }
+  
+#index-login:hover {
+    background-color: #45a049;
+}
+
+#logo_area{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/*로그인 폼*/
+.logo {
+    display: block;
+    margin: 0 auto 10px;
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4CAF50;
+}
+
+
+#login_area {
+    width: 350px; 
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;}
+
+.form-floating input {
+    font-size: 14px;
+    padding: 10px;
+}
+
+.login_buttons{
+    margin-top:10px;
+}
+/* 푸터 영역 */
+footer {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+  }
+  footer i:hover{
+    color: #388E3C;
+  }
+  ul {
+    list-style: none;
+    padding: 0 1em;
+  }

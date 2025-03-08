@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Plants detail</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Permanent+Marker&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="detail.css" />
+    <link rel="icon" type="image/x-icon" href="../asset/yiseul_logo.webp">
+  </head>
+  <body>
+    <!-- 상세페이지 도윤님 작업공간 사용할 branch: project_doyoon -->
+    <header id="index-header">
+        <div id="index-logo-area">
+          <a href="../index.html">
+            <img src="../asset/logo_sara.png" alt="logo" id="index-logo" />
+          </a>
+          <span id="index-member-name" class="display-none">이도윤님 환영합니다.</span>
+        </div>
+        <div id="nav_area">
+          <nav>
+            <div id="index-auth-buttons">
+                <a href="../index.html" id="index-signup">Home</a>
+              <!-- <a href="../Login/login.html" id="index-login">Login</a> -->
+            </div>
+          </nav>
+        </div>
+      </header>
+
+    <section class="detail-body mt-3">
+        <div class="container text-center">
+            <!-- 식물 info section in-->
+            <div class="detail-row-box-area detail-profile">
+                <div class="image_area col-md-4">
+                    <img src="../asset/detail/detail-sample-img.png" class="detail-img" alt="plant images" srcset="">
+
+                </div>
+                <div class="plant_info">
+                    <div class="row mb-2">
+                        <div class="col detail-info-name">식물 이름</div>
+                        <div class="col detail-name" id="plant-name"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-name">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col detail-info-name">식물 종류</div>
+                        <div class="col detail-name" id="plant-type"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-type">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col detail-info-name">처음 작성일</div>
+                        <div class="col detail-name" id="plant-date"></div>
+                        <div class="col-auto">
+                            <button class="edit-btn" data-target="plant-date">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 식물 info section out-->
+            
+             <!-- 물주기 info section in -->
+            <div class="detail-row-box-area ">
+                <div class="row mb-3">
+                    <div class="col detail-water-name">물 주기</div>
+                    <div class="col text-end">
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                              <option value="1" selected>매일</option>
+                              <option value="2">이틀에 한번</option>
+                              <option value="3">사흘에 한번</option>
+                              <option value="4">나흘에 한번</option>
+                            </select>
+                            <label for="floatingSelect">물주기 간격 바꾸기</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row water-schedule">
+                 
+                </div>
+            </div>
+            <!-- 물주기 info section out -->
+
+             <!-- 식물 기록일지 section in -->
+            <div class="detail-row-box-area">
+                <div class="row ">
+                    <div class="detail-history-name mb-3 col-lg-6 col-md-8 col-sm-6">식물 기록 일지</div>
+                    <!-- <div class="detail-add-history col-lg-2 col-md-4 col-sm-6 ">
+                        <input type="file" onchange="readURL(this);">
+                    </div> -->
+                    <div class="detail-add-history col-sm-6 col-lg-6 col-md-4 mb-3 text-end">
+                        <!-- <label for="formFileSm" class="form-label upload-title">사진 올리기</label> -->
+                        <input class="form-control img-upload-form" type="file" id="formFile">
+                        <button type="button" class="btn btn-success history-upload">
+                            <i class="bi bi-cloud-plus history-img-upload-btn"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <div id="gallery" class="row"></div>
+                <div class="row ">
+                    <div class="col">
+                        <!-- <div class="detail-history-img" style="background-image:url('/asset/detail/sample1.jpg');"></div> -->
+                        <img id="preview" src="" alt="업로드 이미지">
+                    </div>
+                    <!-- <div class="col">
+                        <div class="detail-history-img" style="background-image:url('/asset/detail/sample2.jpg');"></div>
+                    </div>
+                    <div class="col">
+                        <div class="detail-history-img" style="background-image:url('/asset/detail/sample3.jpg');"></div>
+                    </div>
+                    <div class="col">
+                        <div class="detail-history-img" style=""></div>
+                    </div> -->
+                </div>
+                <div class="detail-pagination ">
+                    <div class="detail-point on"></div>
+                    <div class="detail-point"></div>
+                </div>
+
+            </div>
+            <!-- 식물 기록일지 section out -->
+             
+    </section>
+    <!-- 푸터 -->
+    <footer >
+        <div >
+            <a href="/" class="me-2 text-body-secondary text-decoration-none">
+                <img src="../asset/logo_sara.png" alt="Logo" width="35">
+            </a>
+            <span class="text-body-secondary">© JS Study Group 1 </span>
+        </div>
+        <ul class="row">
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
+        </ul>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/Detail/detail.js"></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plants Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Permanent+Marker&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="update.css">
+    <link rel="icon" type="image/x-icon" href="../asset/yiseul_logo.webp">
+</head>
+<body>
+    <!-- 식물등록페이지 종호님 작업공간 사용할 branch: project_jongho -->
+    <div class="parent-container">
+        <header id="index-header">
+            <div id="index-logo-area" onclick="goHome()">
+                <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
+            </div>
+            <div id="nav_area">
+                <nav>
+                    <button id="index-login">
+                        <a href="../index.html">Home</a>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <div class="plant-form">
+            <h2>🌱 식물 등록</h2>
+            <form id="plantForm" enctype="multipart/form-data">
+                <label for="plantName">식물 이름</label>
+                <input type="text" id="plantName" placeholder="예: 다육이" required>
+                <p id="plantNameError" style="color: red;"></p>
+
+                <label>식물 종류 입력 방식</label>
+                <div class="plant-type-radio-group">
+                    <input type="radio" id="methodImage" name="plantMethod" value="image" checked>
+                    <label for="methodImage">이미지 인식</label>
+
+                    <input type="radio" id="methodSearch" name="plantMethod" value="search">
+                    <label for="methodSearch">검색</label>
+
+                    <input type="radio" id="methodManual" name="plantMethod" value="manual">
+                    <label for="methodManual">직접 입력</label>
+                </div>
+
+                <!-- 파일 업로드 -->
+                <div id="imageInput">
+                    <label for="plantImage" id="customFileLabel">
+                        <span id="fileIcon">&#128247;</span>  <!-- 파일 아이콘 -->
+                        <span>식물 이미지 업로드하기</span>  <!-- 텍스트 -->
+                    </label>
+                    <input type="file" id="plantImage" accept="image/*" style="display: none;">
+                    <p id="imageResult" class="imageResult-text"></p>
+                </div>
+
+                <!-- 검색 입력 -->
+                <div id="searchInput" >
+                    <label for="plantSearch">식물 종류 검색</label>
+                    <input type="text" id="plantSearch" placeholder="식물 종류 검색..." />
+                    <div id="searchResults"></div>
+                </div>
+
+                <!-- 직접 입력 -->
+                <div id="manualInput">
+                    <label for="manualPlant">직접 입력</label>
+                    <div class="manual-input-container">
+                        <input type="text" id="manualPlant" placeholder="예: 다육이">
+                        <button type="button" id="manualConfirm">확인</button>
+                    </div>
+                </div>
+
+                <!-- 결과 창 -->
+                <label for="selectedPlant">선택된 식물 종류</label>
+                <input type="text" id="selectedPlant" readonly />
+
+                <!-- 물주기 관련  설정-->
+                <label for="wateringInterval">물주기 간격 (최대 일수: 4일)</label>
+                <input type="number" id="wateringInterval" min="1" max="4" placeholder="예: 3" required oninput="validateNumber(this)">
+
+
+                <label for="plantDescription">식물 정보</label>
+                <textarea id="plantDescription" rows="4" placeholder="식물에 대한 간단한 정보를 입력하세요.(100자 이내)"></textarea>
+                <div id="plantDescriptionError" style="color: red;"></div>
+
+                <button type="submit" class="submit-button">등록하기</button>
+                <button type="reset" class="reset-button">취소하기</button>
+            </form>
+        </div>
+        <!-- 푸터 -->
+        <footer >
+            <div >
+                <a href="/" class="me-2 text-body-secondary text-decoration-none">
+                    <img src="../asset/logo_sara.png" alt="Logo" width="35">
+                </a>
+                <span class="text-body-secondary">© JS Study Group 1 </span>
+            </div>
+            <ul class="row">
+                <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
+                <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
+                <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="update.js"></script>
+</body>
+</html>

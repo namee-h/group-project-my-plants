@@ -1,0 +1,257 @@
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* body를 수직 중앙 정렬 */
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .parent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* plant-form을 세로 중앙에 배치 */
+    align-items: center;  /* plant-form을 가로 중앙에 배치 */
+    min-height: 100vh;  /* 화면을 꽉 차게 설정 */
+}
+
+  .container{
+    max-width:850px;
+  }
+
+/* header 부분 */
+#index-logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  #index-login {
+    background-color: #50C878;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  #index-login a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  #index-login:hover {
+    background-color: #00A86B;
+  }
+  
+  #index-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f0f0f0;
+  }
+
+/* body 시작 */
+.parent-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.plant-form {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    margin: auto auto; /* 추가 */
+}
+
+h2 {
+    text-align: center;
+    color: #50C878;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #50C878;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.reset-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #db2b2b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #00A86B;
+}
+
+.reset-button:hover {
+    background-color: #cc2a2a;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* logo 관련 스타일 */
+.logo-container { /* 이미지를 감싸는 부모 요소 */
+    display: flex;
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    margin-top: 10px;
+}
+
+.logo-img {
+    width:200px;
+
+}
+
+#index-logo-area {
+    cursor: pointer;
+}
+
+/* 라디오 버튼 컨테이너 스타일 */
+.plant-type-radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* 기본 라디오 버튼 숨기기 */
+.plant-type-radio-group input[type="radio"] {
+    display: none;
+}
+
+/* 라벨을 버튼처럼 만들기 */
+.plant-type-radio-group label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+/* 선택된 버튼 스타일 */
+.plant-type-radio-group input[type="radio"]:checked + label {
+    background-color: #50C878;
+    color: white;
+    border-color: #50C878;
+}
+
+/* 호버 효과 */
+.plant-type-radio-group label:hover {
+    background-color: #e0e0e0;
+}
+
+/* 이미지 업로드 관련 스타일 */
+.imageResult-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* 커스텀 파일 선택 버튼 스타일링 */
+#customFileLabel {
+    display: inline-flex;
+    align-items: center;
+    background-color: #50C878;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#customFileLabel:hover {
+    background-color: #00A86B;
+}
+
+#fileIcon {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+/* 파일 input 숨기기 */
+#plantImage {
+    display: none;
+}
+
+/* 직접 입력 확인 버튼 */
+.manual-input-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#manualConfirm {
+    background-color: #50C878;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap; /*  글자가 줄 바꿈되지 않도록 설정 */
+    min-width: 50px; /*  버튼 최소 너비 설정 (조절 가능) */
+    text-align: center; /*  글자 가운데 정렬 */
+}
+
+#manualConfirm:hover {
+    background-color: #00A86B;
+}
+
+/* 푸터 영역 */
+  footer {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+  }
+  footer i:hover{
+    color: #388E3C;
+  }
+  ul {
+    list-style: none;
+    padding: 0 1em;
+  }
