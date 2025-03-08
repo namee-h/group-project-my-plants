@@ -11,8 +11,11 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-self: center;
 }
-
+.borders{
+  border: 1px solid red;
+}
 #index-logo {
   width: 50px;
   height: auto;
@@ -112,7 +115,6 @@ body{
 }
 
 #index-my-plants-section {
-  display: flex;
   gap: 10px;
   width: 100%;
   max-width: 800px; 
@@ -127,28 +129,32 @@ body{
   display: flex;
   gap: 10px;
   justify-content: space-between;
-  overflow-x: auto; /* 가로 스크롤 활성화 */
   white-space: nowrap; /* 한 줄 정렬 */
-  padding-bottom: 10px;
+  aspect-ratio: 1/1;
+  max-height: 150px;
+  max-width: 150px
 }
 
 .index-plant {
   position: relative;
-  width: 150px;
-  height: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 10px;
   background-color: #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  aspect-ratio: 1/1;
 }
 
 .index-plant img {
-  width: 90%; 
-  height: 90%;
+  max-width: 149px; 
+  max-height: 149px;
   object-fit: cover;
   border-radius: 8px;
+  aspect-ratio: 1/1;
 }
 
 #index-add-plant {
