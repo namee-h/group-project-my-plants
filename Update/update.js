@@ -6,18 +6,6 @@ const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
 
-console.log("sessionValue:", sessionValue);
-
-// 페이지 로드 후 sessionValue 값을 <span>에 삽입
-// document.addEventListener('DOMContentLoaded', function() {
-//     const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
-    
-//     if (sessionValue) {
-//       memberNameElement.textContent = sessionValue; // 값이 존재하면 <span>에 텍스트 넣기
-//       memberNameElement.classList.remove('display-none'); // 해당 클래스 제거하여 보이게 하기
-//     }
-//   });
-
 // member에서 name 값 가져와서 왼쪽 상단에 띄우기
   document.addEventListener('DOMContentLoaded', async function() {
     const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
@@ -116,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const plantImage = document.getElementById("plantImage").files[0];
         let member_id = sessionValue;
 
-        if (!validatePlantName(plantName) || !validatePlantDescription(plantDescription)) {
+        if (!validatePlantName(plantName) || !validatePlantDescription(plantDescription) || !validateImageUpload()) {
             return;
         }
 
@@ -202,6 +190,25 @@ function validatePlantDescription(plantDescription) { //식물 정보 유효성 
     }
 
     return true; // 모든 유효성 검사를 통과한 경우 true 반환
+}
+
+function validateImageUpload() { //파일 업로드 유효성 검사
+    const fileInput = document.getElementById('plantImage');  // 파일 입력 요소
+    const fileNameDisplay = document.getElementById('fileNameDisplay');  // 파일명 표시 요소
+    const imageResult = document.getElementById('imageResult');  // 결과 메시지
+
+    // 파일이 선택되었는지 확인
+    if (fileInput.files.length === 0) {
+        // 파일이 선택되지 않았으면 메시지 출력하고 false 반환
+        imageResult.textContent = '파일을 업로드해 주세요.';
+        alert("파일을 업로드하고 등록해주세요.");
+        return false;  // 유효성 검사 실패
+    }
+
+    // 파일이 선택되었으면 파일명 표시
+    fileNameDisplay.textContent = fileInput.files[0].name;
+    imageResult.textContent = '';  // 파일이 정상적으로 선택되었으므로 메시지 지움
+    return true;  // 유효성 검사 통과
 }
 
 // 데이터 준비 함수
@@ -341,8 +348,13 @@ async function callApi(url, options, errorMessage) {
 }
 
 // 결과 처리 함수
+// function handleSuccess() {
+//     alert("데이터가 성공적으로 저장되었습니다.");
+//     window.location.href = "../Detail/detail.html";  // 페이지 이동
+// }
+
 function handleSuccess() {
-    alert("데이터가 성공적으로 저장되었습니다.");
+    window.location.href = "../Detail/detail.html";  // 페이지 이동
 }
 
 function handleError(error) {
