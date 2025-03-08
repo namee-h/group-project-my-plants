@@ -26,7 +26,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addressInput.addEventListener("click", openPostcodePopup);
   addressInput.addEventListener("focus", openPostcodePopup);
+
+   // 이메일 도메인 선택 변경 이벤트 처리
+  const emailDomainSelect = document.getElementById("emailDomain");
+  const customDomainInput = document.getElementById("customDomain");
+  const emailIdInput = document.querySelector('input[name="emailId"]'); // 이메일 아이디 입력 필드
+
+  emailDomainSelect.addEventListener("change", function () {
+    if (emailDomainSelect.value === "custom") {
+      customDomainInput.style.display = "block"; // '직접 입력' 입력란 표시
+      customDomainInput.value = ""; // 기존의 도메인 값 초기화
+      emailIdInput.placeholder = "이메일 아이디"; // 아이디 입력 필드의 플레이스홀더 변경
+    } else {
+      customDomainInput.style.display = "none"; // '직접 입력' 입력란 숨김
+      emailIdInput.placeholder = "이메일 아이디"; // 기본 플레이스홀더 유지
+    }
+  });
 });
+
+
 
 // member fetch
 function postMemberData(event) {
@@ -46,8 +64,12 @@ function postMemberData(event) {
   const emailId = document.querySelector('input[name="emailId"]').value.trim();  // 이메일 아이디
   const emailDomain = document.querySelector('select[name="emailDomain"]').value.trim();  // 이메일 도메인
 
-  // 이메일 합치기
-  const email = `${emailId}@${emailDomain}`;
+  // 만약 "직접 입력" 옵션을 선택했다면, 사용자가 입력한 도메인 값을 사용
+  const emailDomainInput = document.getElementById("customDomain");
+  const email = emailDomain === "custom" ? `${emailId}@${emailDomainInput.value.trim()}` : `${emailId}@${emailDomain}`;//custom일때만 앞에 아니면 원래대로
+
+  // // 이메일 합치기
+  // const email = `${emailId}@${emailDomain}`;
 
   // 이메일 형식이 올바른지 체크 (정규식 사용)
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
