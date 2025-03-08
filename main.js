@@ -61,19 +61,29 @@ myPlantData = async (memberId) => {
 };
 
 // 식물 피드
-for (let i = 0; i < 10; i++) {
-  const feedItem = document.createElement("div");
-  feedItem.classList.add("feed-item");
-
-  feedItem.innerHTML = `
-        <a class="index-feed-plant">
-          <img
-          src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F6098%2F6098665.png&type=a340"
-          alt="식물 피드"
-          />
-        </a>`;
-  document.querySelector("#index-feed").append(feedItem);
+const mainfeedList = async () => {
+  const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
+  const data = await response.json();
+  
+  console.log(data);
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].plant_main_img !== null && data[i].plant_main_img !== undefined) {
+      const feedItem = document.createElement("div");
+      feedItem.classList.add("feed-item");
+    
+      feedItem.innerHTML = `
+            <a class="index-feed-plant">
+              <img
+              src="${data[i].plant_main_img}"
+              alt="${data[i].plants_name}"
+              />
+            </a>`;
+      document.querySelector("#index-feed").append(feedItem);
+    }
+  }
 }
+
+mainfeedList();
 
 // 맨 위로 가기 버튼 추가
 document.addEventListener("DOMContentLoaded", function () {
