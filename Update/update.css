@@ -215,6 +215,11 @@ input[type="date"] {
     display: none;
 }
 
+/* 파일 이름 스타일 */
+.file-name-display{
+    margin-left: 10px;
+  }
+
 /* 직접 입력 확인 버튼 */
 .manual-input-container {
     display: flex;
