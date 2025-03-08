@@ -341,6 +341,7 @@ async function callApi(url, options, errorMessage) {
 
 // 결과 처리 함수
 function handleSuccess() {
+    window.location.href = "../Detail/detail.html";  // 페이지 이동
     alert("데이터가 성공적으로 저장되었습니다.");
 }
 
