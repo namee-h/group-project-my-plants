@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             plants_name: plantName,
             description: plantDescription,
             category: plantCategory,
-            memberId: member_id,
+            member_id: member_id,
             update_day: new Date().toISOString(),
             etc: null,
             plant_main_img:null,
@@ -90,19 +90,24 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             // 먼저 preparePlantData로 plantData 생성
             const plantData = preparePlantData(plantName, plantDescription, plantCategory, wateringInterval);
+            console.log("plantData id생성 전:",plantData);  
             
             // savePlantData로 plantId 생성
             const plantId = await savePlantData(plantData);
+            console.log("plantId:",plantId);  // plantData의 값을 로그로 출력해 보세요.
             
             // plantId 생성 후 formData에 추가
             formData.append("plantId", plantId);
+            console.log("plantData id생성 후:",plantData);  
         
             // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
             const imageUrl = await uploadImage(formData);
+            console.log("imageUrl:", imageUrl);
             plantData.plant_main_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
+            console.log("imgeUrl넣은 후 plantData:", plantData);
         
             // 이제, plantData를 다시 savePlantData로 업데이트 (혹은 다른 필요한 작업)
-            await savePlantData(plantData);  // 필요한 경우 업데이트된 plantData로 다시 저장
+            await updatePlantData(plantData);  // 필요한 경우 업데이트된 plantData로 다시 저장
         
             handleSuccess();
         } catch (error) {
@@ -178,7 +183,9 @@ function preparePlantData(plantName, plantDescription, plantCategory,wateringInt
 async function uploadImage(formData) {
     const response = await callApi("http://localhost:3001/upload", {
         method: "POST",
-        body: formData
+        body: formData,
+        body: JSON.stringify(data),
+        mode: 'no-cors'  // CORS 오류를 피하기 위한 설정
     }, "이미지 업로드 실패");
 
     const uploadResult = await response.json();
@@ -189,11 +196,27 @@ async function savePlantData(plantData) {
     const response = await callApi("https://silk-scandalous-boa.glitch.me/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(plantData)
+        body: JSON.stringify(plantData), 
+        mode: 'no-cors'  // CORS 오류를 피하기 위한 설정
     }, "식물 정보 저장 실패");
 
     const plantResult = await response.json();
+    console.log("API 응답(plantResult):", plantResult);  // API 응답 로그 추가
     return plantResult.id;
+}
+
+async function updatePlantData(plantData) {
+    const response = await callApi(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
+        method: "PUT",  // 기존 식물 정보 업데이트
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(plantData),
+        mode: 'no-cors'  // CORS 문제를 피하기 위한 설정
+    }, "식물 정보 업데이트 실패");
+
+    const plantResult = await response.json();
+    return plantResult;
 }
 
 async function callApi(url, options, errorMessage) {
@@ -202,6 +225,8 @@ async function callApi(url, options, errorMessage) {
         console.log("API 응답:", response); // 응답 객체 출력
         if (!response.ok) {
             const errorText = await response.text();
+            console.log("에러 코드:", response.status);  // 응답 코드 확인
+            console.log("에러 메시지:", errorText);  // 응답 내용 확인
             throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
         }
         return response;
@@ -218,7 +243,11 @@ function handleSuccess() {
 
 function handleError(error) {
     console.error("오류 발생:", error);
-    alert(`오류가 발생했습니다: ${error.message}`);
+
+    // error.message와 error.stack을 함께 출력
+    const errorDetails = error.stack ? `${error.message}\n\n${error.stack}` : error.message;
+
+    alert(`오류가 발생했습니다: ${errorDetails}`);
 }
 
 // 이미지 식별하는 함수
