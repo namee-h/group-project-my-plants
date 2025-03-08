@@ -4,6 +4,9 @@
 // const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
 const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
+const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
+
+console.log("sessionValue:", sessionValue);
 
 document.getElementById("plantSearch").addEventListener("input", async function () {
     const query = this.value.trim();
@@ -69,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const plantCategory = document.getElementById("selectedPlant").value;
         const wateringInterval = document.getElementById("wateringInterval").value;
         const plantImage = document.getElementById("plantImage").files[0];
-        let member_id = 1;
+        let member_id = sessionValue;
 
         if (!validatePlantName(plantName) || !validatePlantDescription(plantDescription)) {
             return;
@@ -81,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             category: plantCategory,
             memberId: member_id,
             update_day: new Date().toISOString(),
+            plant_main_img: "",
             etc: null,
             water_cycle:wateringInterval,
             history_img:[],
@@ -111,13 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
             plantData.plant_main_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
             console.log("이미지 URL:", plantData.plant_main_img);
             console.log("imageUrl넣은 후 plantData:", plantData);
-            
+
             // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
-            console.log("plantData.plantId(updatePlantData()전):", plantData.plantId)
-            console.log("plantData의 키들(updatePlantData()전):", Object.keys(plantData));
-            await updatePlantData(plantData);  
-            // await deletePlantData(plantData);  
-        
+            const plantResult = updatePlantData(plantData);  
+            console.log("plantResult:", plantResult);
             handleSuccess();
         } catch (error) {
             handleError(error);
@@ -178,12 +179,13 @@ function preparePlantData(plantName, plantDescription, plantCategory,wateringInt
         plants_name: plantName,
         description: plantDescription,
         category: plantCategory,
-        member_id: 1, // 예시: 실제로는 동적으로 가져와야 함
+        member_id: sessionValue, // 예시: 실제로는 동적으로 가져와야 함
         update_day: new Date().toISOString(),
-        etc: null,
+        plant_main_img: "",
+        etc: "",
         water_cycle:wateringInterval,
         history_img:[],
-        history_memo :[],
+        history_memo :[]
     };
 }
 
@@ -253,6 +255,7 @@ async function updatePlantData(plantData) {
     const updateData = {
         plant_main_img: plantData.plant_main_img,
     };
+    
     // PUT 요청을 사용하여 전체 업데이트
     const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
         method: "PATCH",  // 전체 식물 정보 업데이트
@@ -269,45 +272,12 @@ async function updatePlantData(plantData) {
         console.log("에러 메시지:", errorText);  // 응답 내용 확인
         throw new Error(`식물 정보 업데이트 실패: ${response.status}, ${errorText}`);
     }
+
     // 응답을 JSON으로 파싱
     const plantResult = await response.json();
     console.log("업데이트된 plantData:", plantResult);
+
     return plantResult;
-}
-
-
-
-
-
-async function deletePlantData(plantData) {
-    console.log("삭제할 plantId가 속한 plantData:", plantData);
-    console.log("삭제할 plantId:", plantData.id);
-
-    try {
-        // DELETE 요청을 사용하여 데이터 삭제
-        const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-
-        console.log("deletePlantData response:", response);
-
-        // 응답 처리
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.log("에러 코드:", response.status);
-            console.log("에러 메시지:", errorText);
-            throw new Error(`식물 데이터 삭제 실패: ${response.status}, ${errorText}`);
-        }
-
-        console.log(`식물 데이터(id: ${plantData.id}) 삭제 성공`);
-        return { success: true, id: plantData.id };
-    } catch (error) {
-        console.error("삭제 실패:", error);
-        throw error;
-    }
 }
 
 async function callApi(url, options, errorMessage) {
