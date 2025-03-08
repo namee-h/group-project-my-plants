@@ -21,7 +21,7 @@ if (sessionValue !== null) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
         memberName.innerHTML = `<strong>${member.name}🌱</strong>님 환영합니다.`;
-        ownerName.innerHTML = `<strong>🪴${member.name}</strong>님의 식물 피드🪴`;
+        ownerName.innerHTML = `<strong>🌵${member.name}</strong>님의 식물 피드🌵</i>`;
 
         // memberName.textContent = `${member.name}님 환영합니다.`;
         signButton.style.display = "none"; // 회원가입 버튼 숨기기
