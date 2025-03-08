@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   addressInput.addEventListener("focus", openPostcodePopup);
 });
 
+// member fetch
 function postMemberData(event) {
   event.preventDefault();
 
@@ -40,6 +41,20 @@ function postMemberData(event) {
 
   const form = document.querySelector(".member-form-area");
   const formData = new FormData(form);
+
+  // 이메일 아이디와 도메인 부분을 별도로 가져오기
+  const emailId = document.querySelector('input[name="emailId"]').value.trim();  // 이메일 아이디
+  const emailDomain = document.querySelector('select[name="emailDomain"]').value.trim();  // 이메일 도메인
+
+  // 이메일 합치기
+  const email = `${emailId}@${emailDomain}`;
+
+  // 이메일 형식이 올바른지 체크 (정규식 사용)
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(email)) {
+    alert("이메일 형식이 올바르지 않습니다.");
+    return; // 이메일 형식이 맞지 않으면 함수 종료
+  }
 
   const selectedGender = document.querySelector('input[name="gender"]:checked');
   if (!selectedGender) {
@@ -58,7 +73,7 @@ function postMemberData(event) {
     age: formData.get("age"),
     gender: selectedGender.value, // 체크된 성별 값 추가
     address: formData.get("address"),
-    email: formData.get("email"),
+    email: email,
     password: formData.get("password"),
     update_dat: formattedDate,
   };

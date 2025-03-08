@@ -71,9 +71,25 @@
                   <input type="text" id="address" name="address" class="form-control" required readonly placeholder="클릭하여 주소를 검색하세요">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">이메일</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required>
-                </div>
+                  <label for="email" class="form-label">이메일</label>
+                  <div class="email-area">
+                      <!-- 아이디 입력 부분 -->
+                      <input type="text" class="member-form-control" id="emailId" name="emailId" placeholder="아이디" required>
+                      
+                      <!-- @ 기호 -->
+                      <span class="input-group-addon">@</span>
+              
+                      <!-- 도메인 선택 드롭박스 -->
+                      <select class="form-control" id="emailDomain" name="emailDomain" required>
+                          <option value="gmail.com">gmail.com</option>
+                          <option value="naver.com">naver.com</option>
+                          <option value="hanmail.net">hanmail.net</option>
+                          <option value="nate.com">nate.com</option>
+                          <option value="kakao.com">kakao.com</option>
+                          <!-- 다른 도메인 옵션 추가 가능 -->
+                      </select>
+                  </div>
+              </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">비밀번호</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
