@@ -2,7 +2,6 @@ let inputEmail = document.getElementById("floatingInput");
 let inputPassword = document.getElementById("floatingPassword");
 const loginButton = document.getElementById("member-login");
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
 
@@ -14,13 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   loginButton.addEventListener("click", () => memberLogin());
-
 });
 
-
 let memberLogin = () => {
-  // fetch("https://silk-scandalous-boa.glitch.me/members")
-  fetch("http://localhost:3000/members")
+  fetch("https://silk-scandalous-boa.glitch.me/members")
+    // fetch("http://localhost:3000/members")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
