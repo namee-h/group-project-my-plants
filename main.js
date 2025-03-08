@@ -83,7 +83,10 @@ const mainfeedList = async () => {
       feedItem.classList.add("feed-item");
     
       feedItem.innerHTML = `
-            <a class="index-feed-plant">
+            <a class="index-feed-plant position-relative">
+            <div class="heart-badge" onclick="toggleHeart(this)">
+              <i class="bi bi-heart"></i>
+            </div>
               <img
               src="${data[i].plant_main_img}"
               alt="${data[i].plants_name}"
@@ -91,6 +94,26 @@ const mainfeedList = async () => {
             </a>`;
       document.querySelector("#index-feed").append(feedItem);
     }
+  }
+}
+
+function toggleHeart(element) {
+  if (sessionValue === null) {
+    alert("로그인 후 이용해주세요.");
+    return;
+  }
+
+  element.classList.toggle("liked"); 
+  const icon = element.querySelector("i");
+
+  if (element.classList.contains("liked")) {
+      icon.classList.remove("bi-heart");
+      icon.classList.add("bi-heart-fill");
+      icon.style.color = "red";
+  } else {
+      icon.classList.remove("bi-heart-fill");
+      icon.classList.add("bi-heart");
+      icon.style.color = "gray";
   }
 }
 
