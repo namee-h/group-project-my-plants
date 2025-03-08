@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const plantImage = document.getElementById("plantImage").files[0];
         let member_id = sessionValue;
 
-        if (!validatePlantName(plantName) || !validatePlantDescription(plantDescription)) {
+        if (!validatePlantName(plantName) || !validatePlantDescription(plantDescription) || !validateImageUpload()) {
             return;
         }
 
@@ -190,6 +190,25 @@ function validatePlantDescription(plantDescription) { //식물 정보 유효성 
     }
 
     return true; // 모든 유효성 검사를 통과한 경우 true 반환
+}
+
+function validateImageUpload() { //파일 업로드 유효성 검사
+    const fileInput = document.getElementById('plantImage');  // 파일 입력 요소
+    const fileNameDisplay = document.getElementById('fileNameDisplay');  // 파일명 표시 요소
+    const imageResult = document.getElementById('imageResult');  // 결과 메시지
+
+    // 파일이 선택되었는지 확인
+    if (fileInput.files.length === 0) {
+        // 파일이 선택되지 않았으면 메시지 출력하고 false 반환
+        imageResult.textContent = '파일을 업로드해 주세요.';
+        alert("파일을 업로드하고 등록해주세요.");
+        return false;  // 유효성 검사 실패
+    }
+
+    // 파일이 선택되었으면 파일명 표시
+    fileNameDisplay.textContent = fileInput.files[0].name;
+    imageResult.textContent = '';  // 파일이 정상적으로 선택되었으므로 메시지 지움
+    return true;  // 유효성 검사 통과
 }
 
 // 데이터 준비 함수
