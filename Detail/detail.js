@@ -242,11 +242,12 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("기록을 남기실 이미지를 넣어주세요");
         return;
       }
-      
-      const historyImgData = await historyImgLoad();
+      const imgExt = document.getElementById("formFile").value.split('.');
+      const ext = imgExt[imgExt.length - 1]
+     
       let historyMember = "";;
       let historyData = [];
-      console.log("history data : ", historyImgData);
+      const historyImgData = await historyImgLoad();
 
       historyImgData.forEach(e => {
         if (e.id === parseInt(plantId)) {
@@ -264,15 +265,16 @@ document.addEventListener("DOMContentLoaded", () => {
       let hours = today.getHours(); // 시
       let minutes = today.getMinutes();  // 분
       let seconds = today.getSeconds();  // 초
-      const formattedDate = `${year}-${month}-${day}-${hours}:${minutes}:${seconds}`;
+      const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}_${seconds}`;
 
-      const oldPath = "/" + mainImg.split("/")[1] + "/" + mainImg.split("/")[2] + "/";
-
+      // const oldPath = "/" + mainImg.split("/")[1] + "/" + mainImg.split("/")[2] + "/";
+      const oldPath = `./asset/${historyMember}_${plantId}/${historyMember}_${plantId}_${formattedDate}_img.${ext}`;
+    
       let formData = prepareFormData({
           memberId: historyMember,
           plantId: plantId,
           page: "detail",
-          oldImgPath: oldPath,
+          imgPath: oldPath,
           dateFormat: formattedDate
       }, plantImage);
 
@@ -338,8 +340,6 @@ async function callApi(url, options, errorMessage) {
           const errorText = await response.text();
           console.log("에러 코드:", response.status);  // 응답 코드 확인
           console.log("에러 메시지:", errorText);  // 응답 내용 확인
-          alert("에러 코드:", response.status);
-          alert(errorText);
           throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
       }
       return response;
