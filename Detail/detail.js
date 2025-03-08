@@ -1,7 +1,6 @@
 const windowUrl = new URL(window.location.href);
-const plantId =  windowUrl.search.replace("?", "");
+const plantId =  windowUrl.searchParams.get('plants_id');
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-let historyImgData = [];
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -242,17 +241,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!plantImage) {
         alert("기록을 남기실 이미지를 넣어주세요");
         return;
-      } else {
-        historyImgData = historyImgLoad();
       }
       
-      console.log(historyImgData);
+      const historyImgData = await historyImgLoad();
+      console.log("history data : ", historyImgData);
 
       let formData = {
         id: plantId,
-        history_img: historyImgLoad,
+        history_img: historyImgData,
         history_memo :[]
-      }; 
+      };
 
       // try {
       //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
@@ -284,8 +282,8 @@ const historyImgLoad = async () => {
     .then((plants) => {
       if (plants.length > 0) {
         for (let i=0; i < plants.length; i++) {
-          if(plants[i].id === plantId) {
-            console.log(JSON.parse(["test1","test2"]));
+          if(plants[i].id === parseInt(plantId)) {
+            return 12;
           }
         }
       }
