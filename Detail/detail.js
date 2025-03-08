@@ -252,30 +252,33 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.id === parseInt(plantId)) {
           historyMember = e.member_id;
           historyData = e.history_img;
+          mainImg = e.plant_main_img;
         }
       });
 
-      // let formData = new FormData();
-      // formData = {
-      //   id: plantId,
-      //   history_img: historyData,
-      //   history_memo :[],
-      //   memberId: historyMember,
-      //   plantImage: plantImage
-      // };
+      //  update_data format yyyy-mm--dd
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
+      const day = String(today.getDate()).padStart(2, "0");
+      let hours = today.getHours(); // 시
+      let minutes = today.getMinutes();  // 분
+      let seconds = today.getSeconds();  // 초
+      const formattedDate = `${year}-${month}-${day}-${hours}:${minutes}:${seconds}`;
+
+      const oldPath = "/" + mainImg.split("/")[1] + "/" + mainImg.split("/")[2] + "/";
 
       let formData = prepareFormData({
           memberId: historyMember,
-          history_img:historyData,
-          history_memo :[],
           plantId: plantId,
+          page: "detail",
+          oldImgPath: oldPath,
+          dateFormat: formattedDate
       }, plantImage);
-
-      console.log(formData);
 
       try {
           // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
-          // const imageUrl = await uploadImage(formData);
+          const imageUrl = await uploadImage(formData);
           console.log("imageUrl:", imageUrl);
           console.log("이미지 URL:", plantData.plant_main_img);
           console.log("imageUrl넣은 후 plantData:", plantData);
@@ -335,6 +338,8 @@ async function callApi(url, options, errorMessage) {
           const errorText = await response.text();
           console.log("에러 코드:", response.status);  // 응답 코드 확인
           console.log("에러 메시지:", errorText);  // 응답 내용 확인
+          alert("에러 코드:", response.status);
+          alert(errorText);
           throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
       }
       return response;
