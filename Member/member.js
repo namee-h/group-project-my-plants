@@ -27,21 +27,38 @@ document.addEventListener("DOMContentLoaded", function () {
   addressInput.addEventListener("click", openPostcodePopup);
   addressInput.addEventListener("focus", openPostcodePopup);
 
-   // 이메일 도메인 선택 변경 이벤트 처리
-  const emailDomainSelect = document.getElementById("emailDomain");
-  const customDomainInput = document.getElementById("customDomain");
-  const emailIdInput = document.querySelector('input[name="emailId"]'); // 이메일 아이디 입력 필드
+  
+});
 
-  emailDomainSelect.addEventListener("change", function () {
-    if (emailDomainSelect.value === "custom") {
-      customDomainInput.style.display = "block"; // '직접 입력' 입력란 표시
-      customDomainInput.value = ""; // 기존의 도메인 값 초기화
-      emailIdInput.placeholder = "이메일 아이디"; // 아이디 입력 필드의 플레이스홀더 변경
-    } else {
-      customDomainInput.style.display = "none"; // '직접 입력' 입력란 숨김
-      emailIdInput.placeholder = "이메일 아이디"; // 기본 플레이스홀더 유지
-    }
-  });
+ // 이메일 도메인 선택 변경 이벤트 처리
+ const emailDomainSelect = document.getElementById("emailDomain");
+ const customDomainInput = document.getElementById("customDomain");
+ const emailIdInput = document.querySelector('input[name="emailId"]'); // 이메일 아이디 입력 필드
+
+ emailDomainSelect.addEventListener("change", function () {
+   if (emailDomainSelect.value === "custom") {
+     customDomainInput.style.display = "block"; // '직접 입력' 입력란 표시
+     customDomainInput.value = ""; // 기존의 도메인 값 초기화
+     emailIdInput.placeholder = "이메일 아이디"; // 아이디 입력 필드의 플레이스홀더 변경
+   } else {
+     customDomainInput.style.display = "none"; // '직접 입력' 입력란 숨김
+     emailIdInput.placeholder = "이메일 아이디"; // 기본 플레이스홀더 유지
+   }
+ });
+
+ // 비밀번호 같은지 체크
+ document.getElementById("submitButton").addEventListener("click", function(event) {
+   const password = document.getElementById("password").value;
+   const passwordCheck = document.getElementById("passwordCheck").value;
+
+   if (password !== passwordCheck) {
+       event.preventDefault(); // 폼 제출 방지
+       alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+       return;
+   } else {
+       // 비밀번호가 일치하면 폼을 제출
+       alert("회원가입이 완료되었습니다.");
+   }
 });
 
 
