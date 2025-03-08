@@ -159,7 +159,7 @@ Request Body:
   "description": "Prefers bright light, water every 3-4 days.",
   "category": "Monstera",
   "member_id": "user-id",
-  "plant_mainimg": "/asset/member_id_plant_id/member_id_main.jpg",
+  "plant_mainimg": "/asset/member_id_plant_id/member_id_plant_id_main.jpg",
   "water_cycle": 3
 }
 ```
@@ -173,7 +173,7 @@ Response:
   "description": "Prefers bright light, water every 3-4 days.",
   "category": "Monstera",
   "member_id": "user-id",
-  "plant_main_img": "/asset/member_id_plant_id/member_id_main.jpg",
+  "plant_main_img": "/asset/member_id_plant_id/member_id_plant_id_main.jpg",
   "water_cycle": 3,
   "history_img": [],
   "history_memo": []
@@ -377,7 +377,7 @@ Request Body:
   "description": "강한 빛을 좋아하고 물은 3~4일마다 줘야 함.",
   "category": "Monstera",
   "member_id": "user-id",
-  "plant_mainimg": "/asset/member_id_plant_id/member_id_main.jpg",
+  "plant_mainimg": "/asset/member_id_plant_id/member_id_plant_id_main.jpg",
   "water_cycle": 3
 }
 ```
@@ -391,7 +391,7 @@ Response:
   "description": "강한 빛을 좋아하고 물은 3~4일마다 줘야 함.",
   "category": "Monstera",
   "member_id": "user-id",
-  "plant_main_img": "/asset/member_id_plant_id/member_id_main.jpg",
+  "plant_main_img": "/asset/member_id_plant_id/member_id_plant_id_main.jpg",
   "water_cycle": 3,
   "history_img": [],
   "history_memo": []
