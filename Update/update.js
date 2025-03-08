@@ -213,6 +213,42 @@ async function savePlantData(plantData) {
     return plantResult.id;
 }
 
+// async function updatePlantData(plantData) {
+//     console.log("plantData.id(in updatePlantData):", plantData.id);
+//     console.log("plantData.plant_main_img(in updatePlantData):", plantData.plant_main_img);
+
+    
+//          // 'id' 제외한 데이터만 보내기
+//          const { id, ...updateData } = plantData; // 'id'는 제외하고 나머지 데이터만 보냄
+//          console.log("updateData:", updateData)
+//          console.log("updateData의 키들:", Object.keys(updateData));
+//          console.log("JSON.stringify(updateData):",(JSON.stringify(updateData)));
+//          console.log("fetch에 들어갈 URL:",`https://silk-scandalous-boa.glitch.me/plants/${id}`)
+//         // PUT 요청을 사용하여 전체 업데이트
+//         const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/${id}`, {
+//             method: "PUT",  // 전체 식물 정보 업데이트
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(updateData),
+//             mode: "cors"  // CORS 문제 방지
+//         });
+//         console.log("updatePlantData response:",response)
+//         // 응답 처리
+//         if (!response.ok) {
+//             const errorText = await response.text();
+//             console.log("에러 코드:", response.status);  // 응답 코드 확인
+//             console.log("에러 메시지:", errorText);  // 응답 내용 확인
+//             throw new Error(`식물 정보 업데이트 실패: ${response.status}, ${errorText}`);
+//         }
+
+//         // 응답을 JSON으로 파싱
+//         const plantResult = await response.json();
+//         console.log("업데이트된 plantData:", plantResult);
+
+//         return plantResult;
+// }
+
 async function updatePlantData(plantData) {
     console.log("plant data : ", plantData.id);
     // 업데이트할 데이터
