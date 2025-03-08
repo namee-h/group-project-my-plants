@@ -324,8 +324,8 @@ hr.rounded {
 /* 업버튼 */
 #detailFood_top{
   position: fixed;
-  right: 10px;
-  bottom: 20px;
+  right: 22px;
+  bottom: 70px;
   /* z-index: 6; */
   display: none; /* 기본적으로 숨김 */
 }
