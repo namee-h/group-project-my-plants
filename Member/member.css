@@ -176,6 +176,12 @@ body{
   margin-left: 10px;
 }
 
+/* 비밀번호 관련 */
+#checkPasswordButton{
+  width: 100px;
+  margin-bottom: 20px;
+}
+
 /* 푸터 영역 */
 footer {
   background-color: #f8f9fa;

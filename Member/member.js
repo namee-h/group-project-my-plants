@@ -46,22 +46,47 @@ document.addEventListener("DOMContentLoaded", function () {
    }
  });
 
- // 비밀번호 같은지 체크
- document.getElementById("submitButton").addEventListener("click", function(event) {
-   const password = document.getElementById("password").value;
-   const passwordCheck = document.getElementById("passwordCheck").value;
 
-   if (password !== passwordCheck) {
-       event.preventDefault(); // 폼 제출 방지
-       alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
-       return;
-   } else {
-       // 비밀번호가 일치하면 폼을 제출
-       alert("회원가입이 완료되었습니다.");
-   }
+
+// 비밀번호 확인 버튼 기능
+document.getElementById("checkPasswordButton").addEventListener("click", function() {
+  const password = document.getElementById("password").value;
+  const passwordCheck = document.getElementById("passwordCheck").value;
+  const message = document.getElementById("passwordCheckMessage");
+
+  if (password !== passwordCheck) {
+      message.style.display = "block"; // 비밀번호가 다르면 경고 메시지 표시
+      submitButton.disabled = true; // 비밀번호가 다르면 버튼 비활성화
+  } else {
+      message.style.display = "none"; // 비밀번호가 일치하면 경고 메시지 숨김
+      submitButton.disabled = false; // 비밀번호가 다르면 버튼 비활성화
+      alert("비밀번호가 일치합니다.");
+  }
 });
 
+//비밀번호 바뀌면 가입하기 버튼 disable
+document.addEventListener("DOMContentLoaded", function() {
+  const passwordInput = document.getElementById("password");
+  const passwordCheckInput = document.getElementById("passwordCheck");
+  const submitButton = document.getElementById("submitButton");
 
+  // 비밀번호 확인 함수
+  function checkPasswords() {
+    const password = passwordInput.value.trim();
+    const passwordCheck = passwordCheckInput.value.trim();
+
+    // 두 비밀번호가 일치하면 버튼 활성화, 아니면 비활성화
+    if (password !== "" && passwordCheck !== "" && password === passwordCheck) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
+    }
+  }
+
+  // 비밀번호 입력이나 확인란의 값이 변경될 때마다 checkPasswords 실행
+  passwordInput.addEventListener("input", checkPasswords);
+  passwordCheckInput.addEventListener("input", checkPasswords);
+});
 
 // member fetch
 function postMemberData(event) {
@@ -106,6 +131,22 @@ function postMemberData(event) {
   const month = String(today.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
   const day = String(today.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`;
+
+   // 비밀번호 같은지 체크
+ document.getElementById("submitButton").addEventListener("click", function(event) {
+  const password = document.getElementById("password").value;
+  const passwordCheck = document.getElementById("passwordCheck").value;
+  
+
+  if (password !== passwordCheck) {
+      event.preventDefault(); // 폼 제출 방지
+      alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+      return;
+  } else {
+      // 비밀번호가 일치하면 폼을 제출
+      alert("회원가입이 완료되었습니다.");
+  }
+});
 
   const member = {
     name: formData.get("name"),
