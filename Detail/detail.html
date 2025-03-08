@@ -108,13 +108,15 @@
                         <input type="file" onchange="readURL(this);">
                     </div> -->
                     <div class="detail-add-history col-sm-6 col-lg-6 col-md-4 mb-3 text-end">
+                        <form id="historyForm" enctype="multipart/form-data">
+                            <input class="form-control img-upload-form" type="file" id="formFile" accept="image/*">
+                            <button type="submit" class="btn btn-success history-upload">
+                                <i class="bi bi-cloud-plus history-img-upload-btn"></i>
+                            </button>
+                        </form>
                         <!-- <label for="formFileSm" class="form-label upload-title">사진 올리기</label> -->
-                        <input class="form-control img-upload-form" type="file" id="formFile">
-                        <button type="button" class="btn btn-success history-upload">
-                            <i class="bi bi-cloud-plus history-img-upload-btn"></i>
-                        </button>
-
                     </div>
+                    
                 </div>
 
                 <div class="row" id="detail-history-gallery-board">
