@@ -62,10 +62,10 @@ if (sessionValue !== null) {
   // 로그아웃 기능
   loginButton.addEventListener("click", () => {
     sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
-    sessionStorage.setItem("forceLogout", "true"); // 강제 로그아웃 상태 설정
+    // sessionStorage.setItem("forceLogout", "true"); // 강제 로그아웃 상태 설정
     window.location.href = "/Login/login.html";
   });
-
+  
   memberName.classList.remove("display-none");
 }
 
