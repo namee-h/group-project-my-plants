@@ -15,7 +15,9 @@ if (sessionValue !== null) {
       if (member) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
-        memberName.textContent = `${member.name}님 환영합니다.`;
+        memberName.innerHTML = `<strong>${member.name}🌱</strong>님 환영합니다.`;
+
+        // memberName.textContent = `${member.name}님 환영합니다.`;
         signButton.style.display = "none"; // 회원가입 버튼 숨기기
         indexMyPlantsSection.style.display = "flex"; // 내가 등록한 식물 보이기
 
