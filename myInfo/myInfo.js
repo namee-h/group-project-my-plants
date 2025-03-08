@@ -1,44 +1,44 @@
-// plant.id API 이용하여 fetch
-// const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
-// const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
-const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
-const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
+// URL에서 'id' 파라미터 값 가져오기
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
+const logoutButton = document.getElementById("index-logout");
+const memberName = document.getElementById("myInfo-member-name");
 
-// member에서 name 값 가져와서 왼쪽 상단에 띄우기
-  document.addEventListener('DOMContentLoaded', async function() {
-    const memberNameElement = document.getElementById('update-member-name'); // <span> 요소 가져오기
+// 가져온 ID 값 확인
+console.log(sessionValue); // 예: 123
 
-    if (!sessionValue) {
-        console.error("세션 값 없음");
-        return;
-    }
-
-    try {
-        // API 호출하여 member 정보 가져오기
-        const response = await callApi(`https://silk-scandalous-boa.glitch.me/members/${sessionValue}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        }, "멤버 정보 조회 실패");
-
-        const memberData = await response.json(); // 응답 데이터를 JSON으로 변환
-        console.log("가져온 멤버 데이터:", memberData);
-
-        if (memberData && memberData.name) {
-            memberNameElement.innerHTML = `<strong>${memberData.name}🌱</strong>님 환영합니다.`;
-            // memberNameElement.textContent = `${memberData.name}님 환영합니다.`; // name 값을 <span>에 삽입
-            memberNameElement.classList.remove('display-none'); // display-none 제거하여 표시
+if (sessionValue !== null) {
+    fetch("https://silk-scandalous-boa.glitch.me/members")
+      .then((response) => response.json())
+      .then((data) => {
+        const member = data.find((member) => member.id === sessionValue);
+        console.log("Member:", member); // 멤버 확인: undefined, DB 불일치
+        if (member) {
+            // 이름
+          document.getElementById("myInfo-name").textContent = member.name;
+          // 나이
+          document.getElementById("myInfo-age").textContent = member.age;
+          // 성별
+          document.getElementById("myInfo-gender").textContent = member.gender;
+          // 이메일
+          document.getElementById("myInfo-email").textContent = member.email;
+          // 가입한 날짜
+          document.getElementById("myInfo-update-day").textContent = member.update_day;
+          console.log(member.update_day)
+          // 주소
+          document.getElementById("myInfo-address").textContent = member.address;
+          memberName.innerHTML = `<strong>${member.name}🌱</strong>님 환영합니다.`;
         } else {
-            console.warn("이름이 없는 멤버 데이터:", memberData);
+          console.log("⚠️ 로그인된 사용자 정보가 없습니다.");
         }
-    } catch (error) {
-        console.error("멤버 정보를 가져오는 중 오류 발생:", error);
-    }
-    const logoutBtn = document.getElementById("index-logout"); // 로그아웃 버튼 가져오기
-    //로그아웃버튼 추가
-    logoutBtn.addEventListener("click", () => {
-        sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
-        window.location.href = "/Login/login.html";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
-
-});
+    // 로그아웃 기능
+    logoutButton.addEventListener("click", () => {
+      sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
+      window.location.href = "/Login/login.html";
+    });
+  
+    memberName.classList.remove("display-none");
+  }
