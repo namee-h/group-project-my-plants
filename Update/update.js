@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
             memberId: member_id,
             update_day: new Date().toISOString(),
             etc: null,
-            plant_main_img:null,
             water_cycle:wateringInterval,
             history_img:[],
             history_memo :[],
@@ -181,7 +180,6 @@ function preparePlantData(plantName, plantDescription, plantCategory,wateringInt
         member_id: 1, // 예시: 실제로는 동적으로 가져와야 함
         update_day: new Date().toISOString(),
         etc: null,
-        plant_main_img:null,
         water_cycle:wateringInterval,
         history_img:[],
         history_memo :[],
@@ -217,13 +215,17 @@ async function updatePlantData(plantData) {
     console.log("plantData.plant_main_img(in updatePlantData):", plantData.plant_main_img);
 
     try {
+         // 'id' 제외한 데이터만 보내기
+         const { id, ...updateData } = plantData; // 'id'는 제외하고 나머지 데이터만 보냄
+         console.log("updateData:", updateData)
+         console.log("updateData의 키들:", Object.keys(updateData));
         // PUT 요청을 사용하여 전체 업데이트
         const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
             method: "PUT",  // 전체 식물 정보 업데이트
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(plantData)
+            body: JSON.stringify(updateData)
         });
         console.log("updatePlantData response:",response)
         // 응답 처리
