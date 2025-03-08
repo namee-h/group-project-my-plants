@@ -251,7 +251,7 @@ const app = express();
 const port = 3001;
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5501'
+    origin: '*'
 }));
 
 // app.use(cors());  // 모든 출처에서의 요청을 허용
