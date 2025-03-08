@@ -180,7 +180,12 @@ body{
 #checkPasswordButton{
   width: 100px;
   margin-bottom: 20px;
+  background-color: #D1E231;
 }
+#checkPasswordButton:hover{
+  background-color: #93C572;
+}
+
 
 /* 푸터 영역 */
 footer {
