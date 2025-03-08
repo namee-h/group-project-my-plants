@@ -48,7 +48,7 @@ myPlantData = async (memberId) => {
       console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
-        <a href="/Detail/detail.html?${data[i].id}" class="index-plant">
+        <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
           <img
           src="${data[i].plant_main_img}"
           alt="${data[i].plants_name}"

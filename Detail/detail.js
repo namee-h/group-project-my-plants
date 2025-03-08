@@ -1,7 +1,7 @@
 const windowUrl = new URL(window.location.href);
 const plantId =  windowUrl.search.replace("?", "");
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-
+let historyImgData = [];
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -232,3 +232,93 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const historyForm = document.getElementById("historyForm");
+
+  historyForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const plantImage = document.getElementById("formFile").files[0];
+      if (!plantImage) {
+        alert("기록을 남기실 이미지를 넣어주세요");
+        return;
+      } else {
+        historyImgData = historyImgLoad();
+      }
+      
+      console.log(historyImgData);
+
+      let formData = {
+        id: plantId,
+        history_img: historyImgLoad,
+        history_memo :[]
+      }; 
+
+      // try {
+      //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
+      //     const imageUrl = await uploadImage(formData);
+      //     console.log("imageUrl:", imageUrl);
+      //     plantData.history_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
+      //     console.log("이미지 URL:", plantData.plant_main_img);
+      //     console.log("imageUrl넣은 후 plantData:", plantData);
+
+      //     // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
+      //     const plantResult = updatePlantData(plantData);  
+      //     console.log("plantResult:", plantResult);
+
+      // } catch (error) {
+      //     console.log(error);
+      // }
+
+      // console.log("FormData 확인:");
+      // for (const pair of formData.entries()) {
+      //     console.log(pair[0], pair[1]);
+      // }
+
+  });
+});
+
+const historyImgLoad = async () => {
+  await fetch(`${API_URL}/plants`)
+    .then((response) => response.json())
+    .then((plants) => {
+      if (plants.length > 0) {
+        for (let i=0; i < plants.length; i++) {
+          if(plants[i].id === plantId) {
+            console.log(JSON.parse(["test1","test2"]));
+          }
+        }
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+}
+
+// API 호출 함수
+async function uploadImage(formData) {
+  const response = await callApi("http://localhost:3001/upload", {
+      method: "POST",
+      body: formData,
+  }, "이미지 업로드 실패");
+
+  const uploadResult = await response.json();
+  return uploadResult.imageUrl;
+}
+
+async function callApi(url, options, errorMessage) {
+  try {
+      console.log("callApi url:", url)
+      const response = await fetch(url, options);
+      console.log("API 응답:", response); // 응답 객체 출력
+      if (!response.ok) {
+          const errorText = await response.text();
+          console.log("에러 코드:", response.status);  // 응답 코드 확인
+          console.log("에러 메시지:", errorText);  // 응답 내용 확인
+          throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
+      }
+      return response;
+  } catch (error) {
+      console.error(errorMessage + " 오류:", error);
+      throw error;
+  }
+}

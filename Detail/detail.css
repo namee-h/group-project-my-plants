@@ -386,3 +386,5 @@ ul {
   list-style: none;
   padding: 0 1em;
 }
+
+#historyForm{ display: flex; }
