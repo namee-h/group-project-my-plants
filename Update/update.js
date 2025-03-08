@@ -1,7 +1,8 @@
 
 // plant.id API 이용하여 fetch
 // const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
-const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
+// const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
+const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 
 document.getElementById("plantSearch").addEventListener("input", async function () {
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             plants_name: plantName,
             description: plantDescription,
             category: plantCategory,
-            member_id: member_id,
+            memberId: member_id,
             update_day: new Date().toISOString(),
             etc: null,
             plant_main_img:null,
@@ -98,16 +99,24 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // plantId 생성 후 formData에 추가
             formData.append("plantId", plantId);
-            console.log("plantData id생성 후:",plantData);  
+            console.log("plantData id생성 후:",plantData);
+            console.log("plantData의 키들(id생성 후):", Object.keys(plantData));
+
+            // plantData에 id 추가
+            plantData.id = plantId;
+            console.log("id 추가 후 plantData:", plantData);
         
             // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
             const imageUrl = await uploadImage(formData);
             console.log("imageUrl:", imageUrl);
             plantData.plant_main_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
-            console.log("imgeUrl넣은 후 plantData:", plantData);
-        
-            // 이제, plantData를 다시 savePlantData로 업데이트 (혹은 다른 필요한 작업)
-            await updatePlantData(plantData);  // 필요한 경우 업데이트된 plantData로 다시 저장
+            console.log("이미지 URL:", plantData.plant_main_img);
+            console.log("imageUrl넣은 후 plantData:", plantData);
+            
+            // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
+            console.log("plantData.plantId(updatePlantData()전):", plantData.plantId)
+            console.log("plantData의 키들(updatePlantData()전):", Object.keys(plantData));
+            await updatePlantData(plantData);  
         
             handleSuccess();
         } catch (error) {
@@ -184,8 +193,6 @@ async function uploadImage(formData) {
     const response = await callApi("http://localhost:3001/upload", {
         method: "POST",
         body: formData,
-        body: JSON.stringify(data),
-        mode: 'no-cors'  // CORS 오류를 피하기 위한 설정
     }, "이미지 업로드 실패");
 
     const uploadResult = await response.json();
@@ -196,8 +203,8 @@ async function savePlantData(plantData) {
     const response = await callApi("https://silk-scandalous-boa.glitch.me/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(plantData), 
-        mode: 'no-cors'  // CORS 오류를 피하기 위한 설정
+        body: JSON.stringify(plantData)
+        // mode: 'no-cors'  // CORS 오류를 피하기 위한 설정
     }, "식물 정보 저장 실패");
 
     const plantResult = await response.json();
@@ -206,21 +213,41 @@ async function savePlantData(plantData) {
 }
 
 async function updatePlantData(plantData) {
-    const response = await callApi(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
-        method: "PUT",  // 기존 식물 정보 업데이트
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(plantData),
-        mode: 'no-cors'  // CORS 문제를 피하기 위한 설정
-    }, "식물 정보 업데이트 실패");
+    console.log("plantData.id(in updatePlantData):", plantData.id);
+    console.log("plantData.plant_main_img(in updatePlantData):", plantData.plant_main_img);
 
-    const plantResult = await response.json();
-    return plantResult;
+    try {
+        // PUT 요청을 사용하여 전체 업데이트
+        const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/${plantData.id}`, {
+            method: "PUT",  // 전체 식물 정보 업데이트
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(plantData)
+        });
+        console.log("updatePlantData response:",response)
+        // 응답 처리
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.log("에러 코드:", response.status);  // 응답 코드 확인
+            console.log("에러 메시지:", errorText);  // 응답 내용 확인
+            throw new Error(`식물 정보 업데이트 실패: ${response.status}, ${errorText}`);
+        }
+
+        // 응답을 JSON으로 파싱
+        const plantResult = await response.json();
+        console.log("업데이트된 plantData:", plantResult);
+
+        return plantResult;
+    } catch (error) {
+        console.error("업데이트 실패:", error);
+        throw error;  // 오류가 발생하면 에러를 던져서 호출한 곳에서 처리할 수 있도록 함
+    }
 }
 
 async function callApi(url, options, errorMessage) {
     try {
+        console.log("callApi url:", url)
         const response = await fetch(url, options);
         console.log("API 응답:", response); // 응답 객체 출력
         if (!response.ok) {
