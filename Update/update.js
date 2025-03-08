@@ -145,6 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // plantData에 id 추가
             plantData.id = plantId;
             console.log("id 추가 후 plantData:", plantData);
+            const imgExt = document.getElementById("plantImage").value.split('.');
+            const ext = imgExt[imgExt.length - 1];
+            const newPath = `./asset/${member_id}_${plantId}/${member_id}_${plantId}_main.${ext}`;
+            formData.append("imgPath", newPath);
+            formData.append("page", "update");
         
             // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
             const imageUrl = await uploadImage(formData);
@@ -345,6 +350,8 @@ async function callApi(url, options, errorMessage) {
             const errorText = await response.text();
             console.log("에러 코드:", response.status);  // 응답 코드 확인
             console.log("에러 메시지:", errorText);  // 응답 내용 확인
+            alert(response.status);
+            alert(errorText);
             throw new Error(`${errorMessage}: ${response.status}, ${errorText}`);
         }
         return response;
