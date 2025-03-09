@@ -1,3 +1,4 @@
+const API_URL = "https://silk-scandalous-boa.glitch.me";
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
 const loginButton = document.getElementById("index-login");
 const memberName = document.getElementById("index-member-name");
@@ -9,9 +10,10 @@ const indexMyPlantsBox = document.getElementById("index-my-plants-box");
 const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
 const ownerName = document.querySelector(".owner-name");
+const hostUrl = "https://localhost";
 
 if (sessionValue !== null) {
-  fetch("https://silk-scandalous-boa.glitch.me/members")
+  fetch(`${API_URL}/members`)
     .then((response) => response.json())
     .then((data) => {
       const member = data.find((member) => member.id === sessionValue);
@@ -49,7 +51,7 @@ if (sessionValue !== null) {
 }
 
 myPlantData = async (memberId) => {
-  const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
+  const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
   let feedHTML = `<div class="index-my-plants-list">
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
@@ -61,7 +63,7 @@ myPlantData = async (memberId) => {
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
           <img
-          src="${data[i].plant_main_img}"
+          src="${hostUrl}${data[i].plant_main_img}"
           alt="${data[i].plants_name}"
           />
         </a>
@@ -73,7 +75,7 @@ myPlantData = async (memberId) => {
 
 // 식물 피드
 const mainfeedList = async () => {
-  const response = await fetch(`https://silk-scandalous-boa.glitch.me/plants/`);
+  const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
   
   console.log(data);
@@ -88,7 +90,7 @@ const mainfeedList = async () => {
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${data[i].plant_main_img}"
+              src="${hostUrl}${data[i].plant_main_img}"
               alt="${data[i].plants_name}"
               />
             </a>
