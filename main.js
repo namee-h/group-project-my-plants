@@ -164,23 +164,83 @@ function toggleHeart(element) {
 mainfeedList();
 
 // 맨 위로 가기 버튼 추가
-document.addEventListener("DOMContentLoaded", function () {
-  const backToTopButton = document.querySelector("#index-top-button");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const backToTopButton = document.querySelector("#index-top-button");
 
-  window.addEventListener("scroll", () => {
-    // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
+//   window.addEventListener("scroll", () => {
+//     // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
 
-    if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
-      backToTopButton.style.display = "block";
+//     if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
+//       backToTopButton.style.display = "block";
+//     } else {
+//       backToTopButton.style.display = "none";
+//     }
+//   });
+
+//   backToTopButton.addEventListener("click", () => {
+//     window.scrollTo({
+//       top: 0,
+//       behavior: "smooth",
+//     });
+//   });
+// });
+
+// 날씨 가져오기
+const weatherApiKey = "adf1e5487a63448d8cc201205250803"; // ⬅️ 여기에 API 키 입력!
+
+function getWeather(latitude, longitude) {
+    const query = `${latitude},${longitude}`;
+    // const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${weatherCountry}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${query}&aqi=no`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log("날씨 데이터:", data);
+            // document.getElementById("location").textContent = `📍 위치: ${data.location.name}, ${data.location.country}`;
+            // document.getElementById("temperature").textContent = `🌡 온도: ${data.current.temp_c}℃`;
+            // document.getElementById("weather").textContent = `☁️ 날씨: ${data.current.condition.text}`;
+            // document.getElementById("weatherIcon").src = `https:${data.current.condition.icon}`;
+            let message = `현재 <strong>${data.location.name}</strong>의 날씨: 
+            <strong>${data.current.temp_c}°C</strong>, 
+            습도: <strong>${data.current.humidity}%</strong>, 
+            강수량: <strong>${data.current.precip_mm}mm</strong>.`;
+           if (data.current.humidity < 40 || data.current.temp_c > 30) {
+              message += "식물이 건조할 수 있어요! 물을 주세요. 💧";
+            } else if (data.current.precip_mm > 5) {
+              message += "오늘은 비가 많이 와요! 물을 적게 주세요. ☔";
+            } else {
+              message += "현재 날씨가 적당해요! 일반적인 물 주기를 유지하세요. 🌿";
+            }
+            console.log(message)
+            document.getElementById("recommendation").innerHTML = message;
+        })
+        .catch(error => {
+            console.error("❌ 날씨 데이터를 가져오는 중 오류 발생:", error);
+            document.getElementById("recommendation").textContent = "날씨 정보를 가져올 수 없습니다.";
+        });
+
+        
+        
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`📍 위도: ${latitude}, 경도: ${longitude}`);
+                getWeather(latitude, longitude);
+            },
+            (error) => {
+                console.error("❌ GPS 위치 정보를 가져오는 중 오류 발생:", error);
+                document.getElementById("location").textContent = "위치 정보를 가져올 수 없습니다.";
+            }
+        );
     } else {
-      backToTopButton.style.display = "none";
+        document.getElementById("location").textContent = "이 브라우저는 위치 정보를 지원하지 않습니다.";
     }
-  });
+}
 
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-});
+window.onload = getLocation;
