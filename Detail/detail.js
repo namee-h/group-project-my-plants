@@ -77,7 +77,7 @@ const loadPlantData = async (plantId) => {
         historyHTML += `<div class="col-auto history-img-list mb-2">
                               <!-- 도윤님이 요청한 삭제버튼 -->
                               <i class="bi bi-trash" id="history-trash" onclick="deleteHistory(${index})"></i>
-                              <img class="detail-history-img" src="${IMAGE_URL}${memId}/${element}" alt="">
+                              <img class="detail-history-img" src="${IMAGE_URL}${memId}/${element}" onerror="this.onerror=null; this.src='/asset/loading_circle.gif';" alt="">
                               <!-- 식물 히스토리 업데이트날짜 -->
                           </div>`;
       });
