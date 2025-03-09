@@ -2,7 +2,8 @@
 // const apiKey = "LwhsR0lRF7zLcrajlJp4UIGKcmx76jt1YXC3iUTwKCUkJiyshZ";
 // const apiKey = "Ca3PIS48HHlrC8cdCaXxv9UhITquuINY6HpgREw6gsWyRpFM2L";
 const API_URL = "https://silk-scandalous-boa.glitch.me";
-const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
+// const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
+const apiKey = "Pdb03UWpn0sy1SFagl5OcdB2smrwsmj87h55UMTfuqHGYQC7q1";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
 const envToken1 = "ghp_RutC0zghfCpx64TIng";
