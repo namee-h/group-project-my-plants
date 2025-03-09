@@ -10,14 +10,16 @@ const indexMyPlantsBox = document.getElementById("index-my-plants-box");
 const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
 const ownerName = document.querySelector(".owner-name");
-const hostUrl = "";
+const imgRepoName = "namee-h";
+const imgRepo = "my-plants-img-server";
+const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
 
 if (sessionValue !== null) {
   fetch(`${API_URL}/members`)
     .then((response) => response.json())
     .then((data) => {
       const member = data.find((member) => member.id === sessionValue);
-      console.log("Member:", member); // 멤버 확인: undefined, DB 불일치
+
       if (member) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
@@ -56,6 +58,7 @@ myPlantData = async (memberId) => {
   let feedHTML = `<div class="index-my-plants-list">
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>`;
+
   for (let i = 0; i < data.length; i++) {
     if (
       data[i].member_id === memberId &&
@@ -63,14 +66,10 @@ myPlantData = async (memberId) => {
       data[i].plant_main_img !== undefined &&
       data[i].plants_name !== undefined
     ) {
-      console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
-          <img
-          src="${hostUrl}${data[i].plant_main_img}"
-          alt="${data[i].plants_name}"
-          />
+          <img src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
         </a>
       </div>`;
     }
@@ -82,8 +81,6 @@ myPlantData = async (memberId) => {
 const mainfeedList = async () => {
   const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
-
-  console.log(data);
   for (let i = 0; i < data.length; i++) {
     if (
       data[i].plant_main_img !== null &&
@@ -98,7 +95,7 @@ const mainfeedList = async () => {
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${hostUrl}${data[i].plant_main_img}"
+              src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
               alt="${data[i].plants_name}"
               />
             </a>
@@ -113,6 +110,7 @@ const mainfeedList = async () => {
     }
   }
 };
+
 function addComment(event) {
   if (
     event.type === "click" ||
@@ -164,23 +162,83 @@ function toggleHeart(element) {
 mainfeedList();
 
 // 맨 위로 가기 버튼 추가
-document.addEventListener("DOMContentLoaded", function () {
-  const backToTopButton = document.querySelector("#index-top-button");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const backToTopButton = document.querySelector("#index-top-button");
 
-  window.addEventListener("scroll", () => {
-    // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
+//   window.addEventListener("scroll", () => {
+//     // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
 
-    if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
-      backToTopButton.style.display = "block";
-    } else {
-      backToTopButton.style.display = "none";
-    }
-  });
+//     if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
+//       backToTopButton.style.display = "block";
+//     } else {
+//       backToTopButton.style.display = "none";
+//     }
+//   });
 
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+//   backToTopButton.addEventListener("click", () => {
+//     window.scrollTo({
+//       top: 0,
+//       behavior: "smooth",
+//     });
+//   });
+// });
+
+// 날씨 가져오기
+const weatherApiKey = "adf1e5487a63448d8cc201205250803"; // ⬅️ 여기에 API 키 입력!
+
+function getWeather(latitude, longitude) {
+  const query = `${latitude},${longitude}`;
+  // const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${weatherCountry}&aqi=no`;
+  const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${query}&aqi=no`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("날씨 데이터:", data);
+      // document.getElementById("location").textContent = `📍 위치: ${data.location.name}, ${data.location.country}`;
+      // document.getElementById("temperature").textContent = `🌡 온도: ${data.current.temp_c}℃`;
+      // document.getElementById("weather").textContent = `☁️ 날씨: ${data.current.condition.text}`;
+      // document.getElementById("weatherIcon").src = `https:${data.current.condition.icon}`;
+      let message = `현재 <strong>${data.location.name}</strong>의 날씨: 
+            <strong>${data.current.temp_c}°C</strong>, 
+            습도: <strong>${data.current.humidity}%</strong>, 
+            강수량: <strong>${data.current.precip_mm}mm</strong>.`;
+      if (data.current.humidity < 40 || data.current.temp_c > 30) {
+        message += "식물이 건조할 수 있어요! 물을 주세요. 💧";
+      } else if (data.current.precip_mm > 5) {
+        message += "오늘은 비가 많이 와요! 물을 적게 주세요. ☔";
+      } else {
+        message += "현재 날씨가 적당해요! 일반적인 물 주기를 유지하세요. 🌿";
+      }
+      console.log(message);
+      document.getElementById("recommendation").innerHTML = message;
+    })
+    .catch((error) => {
+      console.error("❌ 날씨 데이터를 가져오는 중 오류 발생:", error);
+      document.getElementById("recommendation").textContent =
+        "날씨 정보를 가져올 수 없습니다.";
     });
-  });
-});
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log(`📍 위도: ${latitude}, 경도: ${longitude}`);
+        getWeather(latitude, longitude);
+      },
+      (error) => {
+        console.error("❌ GPS 위치 정보를 가져오는 중 오류 발생:", error);
+        document.getElementById("location").textContent =
+          "위치 정보를 가져올 수 없습니다.";
+      }
+    );
+  } else {
+    document.getElementById("location").textContent =
+      "이 브라우저는 위치 정보를 지원하지 않습니다.";
+  }
+}
+
+window.onload = getLocation;
