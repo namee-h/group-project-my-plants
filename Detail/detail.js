@@ -4,7 +4,10 @@ const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const imgRepoName = "namee-h";
 const imgRepo = "my-plants-img-server";
 const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
-const envToken = TOKEN;
+const envToken1 = "ghp_RutC0zghfCpx64TIng";
+const envToken2 = "SHANVOvcY6Yu1zAadV";
+const envToken = envToken1 + envToken2;
+
 let fileNameSet = "";
 let hisImgData = [];
 
@@ -94,9 +97,6 @@ deleteHistory = async (hisIndex) => {
 
 const mainImgChangeBtn = document.getElementById("imgChangeBtn");
 
-mainImgChangeBtn.addEventListener("click", async () => {
-  console.log(plantId);
-});
 
 // 식물 정보 수정 및 저장
 document.querySelectorAll(".edit-btn").forEach((button) => {

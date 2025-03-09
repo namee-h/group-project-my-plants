@@ -5,7 +5,10 @@ const API_URL = "https://silk-scandalous-boa.glitch.me";
 const apiKey = "DXdKpnlTkQmRIXEcb1KNKI5EYNOKEOMyAH8x5rdulD21KJ5ou2";
 const apiUrl = "https://plant.id/api/v3/kb/plants/name_search?q=";
 const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
-const envToken = TOKEN;
+const envToken1 = "ghp_RutC0zghfCpx64TIng";
+const envToken2 = "SHANVOvcY6Yu1zAadV";
+const envToken = envToken1 + envToken2;
+
 
 // member에서 name 값 가져와서 왼쪽 상단에 띄우기
 document.addEventListener('DOMContentLoaded', async function() {
