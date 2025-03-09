@@ -6,6 +6,7 @@ const imgRepo = "my-plants-img-server";
 const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
 const envToken1 = "ghp_RutC0zghfCpx64TIng";
 const envToken2 = "SHANVOvcY6Yu1zAadV";
+const envToken = envToken1 + envToken2;
 
 let fileNameSet = "";
 let hisImgData = [];
