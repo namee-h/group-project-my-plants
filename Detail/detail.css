@@ -17,6 +17,11 @@ body{
 .borders {
   border: 1px solid red;
 }
+
+
+a{
+  text-decoration: none;
+}
 /* -----------------------------------해더 영역 */
 #index-header {
   width: 100%;
@@ -27,10 +32,12 @@ body{
   background-color: #f0f0f0;
 }
 #index-member-name {
-  font-size: 20px;
+  /* font-size: 20px;
   font-weight: bold;
   color: #50C878;
-  white-space: nowrap;
+  white-space: nowrap; */
+  margin-left:20px;
+  font-size:15px;
 }
 #index-logo {
   width: 50px;

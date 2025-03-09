@@ -9,6 +9,54 @@ const envToken1 = "ghp_RutC0zghfCpx64TIng";
 const envToken2 = "SHANVOvcY6Yu1zAadV";
 const envToken = envToken1 + envToken2;
 
+
+
+const sessionValue = sessionStorage.getItem("plantsSessionNumOne");
+const loginButton = document.getElementById("index-login");
+const memberName = document.getElementById("index-member-name");
+const ownerName = document.querySelector(".owner-name");
+
+
+if (sessionValue !== null) {
+  fetch(`${API_URL}/members`)
+    .then((response) => response.json())
+    .then((data) => {
+      const member = data.find((member) => member.id === sessionValue);
+
+      if (member) {
+        loginButton.href = "";
+        loginButton.textContent = "Logout";
+        memberName.innerHTML = `<strong>${member.name}🌱</strong>님 환영합니다.`;
+        ownerName.innerHTML = `<strong>🌵${member.name}</strong>님의 식물 피드🌵</i>`;
+
+        // memberName.textContent = `${member.name}님 환영합니다.`;
+        signButton.href = `myInfo/myInfo.html?id=${sessionValue}`;
+        signButton.textContent = "My Info";
+        indexMyPlantsSection.style.display = "flex"; // 내가 등록한 식물 보이기
+        indexMyPlantsHr.style.display = "flex"; // hr 보이기
+        indexMyPlantsH5.style.display = "flex"; // h5 보이기
+        indexMyPlantsBox.style.display = "flex"; // 식물 박스 보이기
+        indexMyPlantsH6.style.display = "flex"; // h6 보이기
+        myPlantData(member.id);
+      } else {
+        console.log("⚠️ 로그인된 사용자 정보가 없습니다.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  // 로그아웃 기능
+    loginButton.addEventListener("click", () => {
+    sessionStorage.removeItem("plantsSessionNumOne"); // 로그인 정보 삭제
+    window.location.href = "/";
+    console.log(window.location.href);
+  });
+
+  memberName.classList.remove("display-none");
+}
+
+
 let fileNameSet = "";
 let hisImgData = [];
 
