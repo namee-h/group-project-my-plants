@@ -67,10 +67,9 @@ myPlantData = async (memberId) => {
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
-          <img
-          src="${hostUrl}${data[i].plant_main_img}"
-          alt="${data[i].plants_name}"
-          />
+
+          <img src="${hostUrl}${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
+
         </a>
       </div>`;
     }
@@ -98,7 +97,7 @@ const mainfeedList = async () => {
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${hostUrl}${data[i].plant_main_img}"
+              src="${hostUrl}${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
               alt="${data[i].plants_name}"
               />
             </a>
