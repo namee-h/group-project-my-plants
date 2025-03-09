@@ -3,8 +3,11 @@ name: Upload Image to GitHub
 on:
   push:
     branches:
-      - dev/project_yiseul 
-  
+      - dev/project_yiseul
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
 jobs:
   upload-image:
     runs-on: ubuntu-latest
