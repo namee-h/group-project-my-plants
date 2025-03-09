@@ -3,7 +3,7 @@ const plantId = windowUrl.searchParams.get("plants_id");
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const imgRepoName = "namee-h";
 const imgRepo = "my-plants-img-server";
-const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
+const IMAGE_URL = `https://raw.githubusercontent.com/${imgRepoName}/${imgRepo}/main/images/`;
 const envToken1 = "ghp_RutC0zghfCpx64TIng";
 const envToken2 = "SHANVOvcY6Yu1zAadV";
 const envToken = envToken1 + envToken2;
@@ -321,6 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
       fileNameSet,
       historyMember
     );
+
+    loadPlantData(plantId);
   });
 });
 
