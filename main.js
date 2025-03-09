@@ -69,7 +69,7 @@ myPlantData = async (memberId) => {
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
-          <img src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
+          <img src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160408_40%2Fchinaoni_1460125321404Noshz_JPEG%2FScreenshot_2016-04-08-22-02-24.jpg&type=sc960_832';" />
         </a>
       </div>`;
     }
@@ -95,7 +95,7 @@ const mainfeedList = async () => {
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
+              src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" onerror="this.onerror=null; this.src='https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160408_40%2Fchinaoni_1460125321404Noshz_JPEG%2FScreenshot_2016-04-08-22-02-24.jpg&type=sc960_832';"
               alt="${data[i].plants_name}"
               />
             </a>
