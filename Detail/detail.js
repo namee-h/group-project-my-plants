@@ -1,12 +1,10 @@
-require('dotenv').config();
-
 const windowUrl = new URL(window.location.href);
 const plantId =  windowUrl.searchParams.get('plants_id');
 const imgRepoName = "namee-h";
 const imgRepo = "my-plants-img-server";
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
-const envToken = process.env.GITHUB_TOKEN;
+const envToken = TOKEN;
 let fileNameSet = "";
 let hisImgData = [];
 
@@ -55,7 +53,7 @@ const loadPlantData = async (plantId) => {
       document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
       document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
       document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
-      document.getElementById("detail-img-main").src = plantData.plant_main_img ? IMAGE_URL + plantData.member_id + plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? IMAGE_URL + plantData.member_id + "/" + plantData.plant_main_img : "/asset/detail/detail-sample-img.png";
 
       let historyHTML = "";
       plantData.history_img.forEach((element, index) => {
@@ -84,6 +82,12 @@ deleteHistory = async (hisIndex) => {
     loadPlantData(plantId);
   }
 }
+
+const mainImgChangeBtn = document.getElementById("imgChangeBtn");
+
+mainImgChangeBtn.addEventListener("click", async () => {
+    console.log(plantId);
+});
 
 // 식물 정보 수정 및 저장
 document.querySelectorAll(".edit-btn").forEach((button) => {

@@ -222,6 +222,10 @@ input[type="date"] {
 /* 파일 input 숨기기 */
 #plantImage {
     display: none;
+    /* opacity: -1;
+    position: absolute;
+    top: 0;
+    left: 0; */
 }
 
 /* 파일 이름 스타일 */
