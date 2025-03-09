@@ -1,4 +1,5 @@
-const GITHUB_ACCESS_TOKEN = "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"; // 🔹 본인의 GitHub Personal Access Token 입력
+// const GITHUB_ACCESS_TOKEN = "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"; // 🔹 본인의 GitHub Personal Access Token 입력
+const GITHUB = process.env.GITHUB_ACCESS_TOKEN;
 const GITHUB_API_URL = "https://api.github.com/gists";
 
 // 📌 이미지 파일을 Base64로 변환하는 함수
