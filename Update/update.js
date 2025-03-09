@@ -1,4 +1,4 @@
-const GITHUB = process.env.GITHUB_ACCESS_TOKEN;
+const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
 const GITHUB_API_URL = "https://api.github.com/gists";
 
 // 📌 이미지 파일을 Base64로 변환하는 함수
