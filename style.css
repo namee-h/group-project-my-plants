@@ -220,6 +220,9 @@ a{
   width: 350px; 
   height: 350px;
   border-radius: 10px;
+  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160408_40%2Fchinaoni_1460125321404Noshz_JPEG%2FScreenshot_2016-04-08-22-02-24.jpg&type=sc960_832');  /* 엑박 대체 이미지 */
+  background-size: cover;
+  background-position: center;
 }
 
 .index-feed-plant img {
@@ -227,6 +230,16 @@ a{
   height: 90%;
   object-fit: cover;
   border-radius: 8px; 
+}
+
+.index-feed-plant img:before {
+  content: "이미지를 불러올 수 없습니다.";
+  position: absolute;
+  color: rgb(48, 19, 152);
+  font-weight: bold;
+  background-color: #388E3C;
+  margin-top: -5px;
+  margin-left: -20px;
 }
 
 .display-none{
