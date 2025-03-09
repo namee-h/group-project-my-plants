@@ -3,7 +3,7 @@ name: Upload Image to GitHub
 on:
   push:
     branches:
-      - main
+      - dev/project_yiseul
 
 jobs:
   upload-image:
