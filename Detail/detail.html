@@ -107,12 +107,9 @@
             <div class="detail-row-box-area history-area">
                 <div class="row ">
                     <div class="detail-history-name mb-3 col-lg-6 col-md-8 col-sm-6">식물 기록 일지</div>
-                    <!-- <div class="detail-add-history col-lg-2 col-md-4 col-sm-6 ">
-                        <input type="file" onchange="readURL(this);">
-                    </div> -->
                     <div class="detail-add-history col-sm-6 col-lg-6 col-md-4 mb-3 text-end">
                         <form id="historyForm" enctype="multipart/form-data">
-                            <input class="form-control img-upload-form" type="file" id="formFile" accept="image/*">
+                            <input class="form-control img-upload-form" type="file" id="formFile" accept="image/*" onchange="readURL(this);">
                             <button type="submit" class="btn btn-success history-upload">
                                 <i class="bi bi-cloud-plus history-img-upload-btn"></i>
                             </button>
@@ -123,7 +120,12 @@
                 </div>
 
                 <div class="row" id="detail-history-gallery-board">
-                    
+                    <div class="col-auto history-img-list mb-2">
+                        <!-- 유저 업로드 이미지가 미리 보여지는 곳 -->
+                        <img class="detail-history-img" id="preview" src="../asset/로고이미지.jpg" alt="업로드 이미지">
+                        <div class="overlay-text">업로드 이미지가 보입니다</div>
+                    </div>
+                    <!-- html 고정값 out-->
                 </div>
                 <div class="detail-pagination ">
                     <div class="detail-point on"></div>
