@@ -1,7 +1,13 @@
+require('dotenv').config();
+
 const windowUrl = new URL(window.location.href);
 const plantId =  windowUrl.searchParams.get('plants_id');
+const imgRepoName = "namee-h";
+const imgRepo = "my-plants-img-server";
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-const hostUrl = "https://localhost";
+const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
+const envToken = process.env.GITHUB_TOKEN;
+let fileNameSet = "";
 let hisImgData = [];
 
 function readURL(input) {
@@ -39,26 +45,24 @@ const loadPlantData = async (plantId) => {
 
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
-
+      const memId = plantData.member_id;
       if (!plantData) {
         console.error(`no data (plantId: ${plantId})`);
         return;
       }
-
+            
       // html에 뿌려주기
       document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
       document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
       document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
-      document.getElementById("detail-img-main").src = plantData.plant_main_img ? hostUrl + plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
-      console.log(plantData);
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? IMAGE_URL + plantData.member_id + plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
+
       let historyHTML = "";
       plantData.history_img.forEach((element, index) => {
-        let src = element.substr(1);
-        console.log(index);
         historyHTML += `<div class="col-auto history-img-list mb-2">
                             <!-- 도윤님이 요청한 삭제버튼 -->
                             <i class="bi bi-trash" id="history-trash" onclick="deleteHistory(${index})"></i>
-                            <img class="detail-history-img" src="${hostUrl}${src}" alt="">
+                            <img class="detail-history-img" src="${IMAGE_URL}${memId}/${element}" alt="">
                             <!-- 식물 히스토리 업데이트날짜 -->
                         </div>`;
       });
@@ -296,32 +300,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let seconds = today.getSeconds();  // 초
       const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}_${seconds}`;
 
-      const oldPath = `./asset/${historyMember}_${plantId}/${historyMember}_${plantId}_${formattedDate}_img.${ext}`;
+      fileNameSet = `${historyMember}_${plantId}_${formattedDate}_img.${ext}`;
       
-      hisImgData.push(oldPath);
+      hisImgData.push(fileNameSet);
       await updatePlantData(hisImgData);
-      
-      let formData = prepareFormData({
-          memberId: historyMember,
-          plantId: plantId,
-          page: "detail",
-          imgPath: oldPath
-      }, plantImage);
-
-      try {
-          // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
-          await uploadImage(formData);          
-      } catch (error) {
-          console.log(error);
-      }
-
-      console.log("FormData 확인:");
-      for (const pair of formData.entries()) {
-          console.log(pair[0], pair[1]);
-      }
+      await uploadImageGithub(document.getElementById("formFile"), fileNameSet, historyMember);
   });
 });
-
 
 // 데이터 준비 함수
 function prepareFormData(plantData, plantImage) {
@@ -394,4 +379,54 @@ async function callApi(url, options, errorMessage) {
       console.error(errorMessage + " 오류:", error);
       throw error;
   }
+}
+
+async function uploadImageGithub(img_file, file_name, plants_id) {
+  console.log(img_file, file_name, plants_id);
+  const fileInput = img_file;
+
+  if (fileInput.files.length === 0) {
+      alert("이미지를 선택하세요.");
+      return;
+  }
+
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+
+  reader.onloadend = async function () {
+      const base64Image = reader.result.split(",")[1]; // Base64 인코딩
+      const filename = file_name;
+    
+      const GITHUB_TOKEN = envToken;                                     // 🔴 여기에 GitHub 토큰 입력
+      const REPO_OWNER = "namee-h";                                     // 🔴 GitHub 사용자명
+      const REPO_NAME = "my-plants-img-server";                         // 🔴 업로드할 리포지토리 이름
+      const BRANCH = "main";                                            // 🔴 업로드할 브랜치
+      const UPLOAD_PATH = `images/${plants_id}/${filename}`;            // 🔴 리포지토리 내 저장 경로
+
+      const GITHUB_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${UPLOAD_PATH}`;
+
+      const response = await fetch(GITHUB_API_URL, {
+          method: "PUT",
+          headers: {
+              "Authorization": `token ${GITHUB_TOKEN}`,
+              "Accept": "application/vnd.github.v3+json",
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              message: `Upload ${filename} via API`,
+              content: base64Image,
+              branch: BRANCH
+          })
+      });
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+          console.log( `✅ 업로드 성공! ${data.content.download_url}`);
+      } else {
+          console.log( `❌ 업로드 실패: ${data}`);
+      }
+  };
+
+  reader.readAsDataURL(file);
 }
