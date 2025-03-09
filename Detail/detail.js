@@ -321,6 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
       fileNameSet,
       historyMember
     );
+
+    loadPlantData(plantId);
   });
 });
 
