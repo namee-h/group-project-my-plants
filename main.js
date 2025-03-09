@@ -10,7 +10,7 @@ const indexMyPlantsBox = document.getElementById("index-my-plants-box");
 const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
 const ownerName = document.querySelector(".owner-name");
-const hostUrl = "https://localhost";
+const hostUrl = "";
 
 if (sessionValue !== null) {
   fetch(`${API_URL}/members`)
@@ -57,15 +57,19 @@ myPlantData = async (memberId) => {
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>`;
   for (let i = 0; i < data.length; i++) {
-    if (data[i].member_id === memberId && data[i].plant_main_img !== null && data[i].plant_main_img !== undefined && data[i].plants_name !== undefined) {
+    if (
+      data[i].member_id === memberId &&
+      data[i].plant_main_img !== null &&
+      data[i].plant_main_img !== undefined &&
+      data[i].plants_name !== undefined
+    ) {
       console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
-          <img
-          src="${hostUrl}${data[i].plant_main_img}"
-          alt="${data[i].plants_name}"
-          />
+
+          <img src="${hostUrl}${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
+
         </a>
       </div>`;
     }
@@ -77,20 +81,23 @@ myPlantData = async (memberId) => {
 const mainfeedList = async () => {
   const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
-  
+
   console.log(data);
   for (let i = 0; i < data.length; i++) {
-    if (data[i].plant_main_img !== null && data[i].plant_main_img !== undefined) {
+    if (
+      data[i].plant_main_img !== null &&
+      data[i].plant_main_img !== undefined
+    ) {
       const feedItem = document.createElement("div");
       feedItem.classList.add("feed-item");
-    
+
       feedItem.innerHTML = `
             <a class="index-feed-plant position-relative">
             <div class="heart-badge" onclick="toggleHeart(this)">
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${hostUrl}${data[i].plant_main_img}"
+              src="${hostUrl}${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
               alt="${data[i].plants_name}"
               />
             </a>
@@ -100,33 +107,36 @@ const mainfeedList = async () => {
             <ul id="commentList" class="comment-list"></ul>
         </div>
             `;
-  
+
       document.querySelector("#index-feed").append(feedItem);
     }
   }
-}
+};
 function addComment(event) {
-  if (event.type === "click" || (event.type === "keydown" && event.key === "Enter")) {
-      const button = event.target.closest(".comment-section"); // 클릭한 버튼이 속한 댓글 섹션 찾기
-      const commentInput = button.querySelector(".comment-input"); // 입력창 찾기
-      const commentList = button.querySelector(".comment-list"); // 해당 피드의 댓글 목록 찾기
-      const comment = commentInput.value.trim(); // 입력한 댓글 내용 가져오기
+  if (
+    event.type === "click" ||
+    (event.type === "keydown" && event.key === "Enter")
+  ) {
+    const button = event.target.closest(".comment-section"); // 클릭한 버튼이 속한 댓글 섹션 찾기
+    const commentInput = button.querySelector(".comment-input"); // 입력창 찾기
+    const commentList = button.querySelector(".comment-list"); // 해당 피드의 댓글 목록 찾기
+    const comment = commentInput.value.trim(); // 입력한 댓글 내용 가져오기
 
-      if (sessionValue === null) {
-          alert("로그인 후 이용해주세요.");
-          commentInput.value = "";
-          return;
-      }
+    if (sessionValue === null) {
+      alert("로그인 후 이용해주세요.");
+      commentInput.value = "";
+      return;
+    }
 
-      if (comment === "") {
-          alert("소중한 한마디를 남겨주세요 💬");
-          return;
-      }
+    if (comment === "") {
+      alert("소중한 한마디를 남겨주세요 💬");
+      return;
+    }
 
-      const commentItem = document.createElement("li");
-      commentItem.textContent = comment;
-      commentList.appendChild(commentItem);
-      commentInput.value = ""; // 댓글 입력창 초기화
+    const commentItem = document.createElement("li");
+    commentItem.textContent = comment;
+    commentList.appendChild(commentItem);
+    commentInput.value = ""; // 댓글 입력창 초기화
   }
 }
 
@@ -136,40 +146,100 @@ function toggleHeart(element) {
     return;
   }
 
-  element.classList.toggle("liked"); 
+  element.classList.toggle("liked");
   const icon = element.querySelector("i");
 
   if (element.classList.contains("liked")) {
-      icon.classList.remove("bi-heart");
-      icon.classList.add("bi-heart-fill");
-      icon.style.color = "red";
+    icon.classList.remove("bi-heart");
+    icon.classList.add("bi-heart-fill");
+    icon.style.color = "red";
   } else {
-      icon.classList.remove("bi-heart-fill");
-      icon.classList.add("bi-heart");
-      icon.style.color = "gray";
+    icon.classList.remove("bi-heart-fill");
+    icon.classList.add("bi-heart");
+    icon.style.color = "gray";
   }
 }
 
 mainfeedList();
 
 // 맨 위로 가기 버튼 추가
-document.addEventListener("DOMContentLoaded", function () {
-  const backToTopButton = document.querySelector("#index-top-button");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const backToTopButton = document.querySelector("#index-top-button");
 
-  window.addEventListener("scroll", () => {
-    // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
+//   window.addEventListener("scroll", () => {
+//     // console.log("ScrollY:", window.scrollY); // 현재 스크롤 위치 확인
 
-    if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
-      backToTopButton.style.display = "block";
+//     if (window.scrollY > 100 || document.documentElement.scrollTop > 100) {
+//       backToTopButton.style.display = "block";
+//     } else {
+//       backToTopButton.style.display = "none";
+//     }
+//   });
+
+//   backToTopButton.addEventListener("click", () => {
+//     window.scrollTo({
+//       top: 0,
+//       behavior: "smooth",
+//     });
+//   });
+// });
+
+// 날씨 가져오기
+const weatherApiKey = "adf1e5487a63448d8cc201205250803"; // ⬅️ 여기에 API 키 입력!
+
+function getWeather(latitude, longitude) {
+    const query = `${latitude},${longitude}`;
+    // const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${weatherCountry}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${query}&aqi=no`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log("날씨 데이터:", data);
+            // document.getElementById("location").textContent = `📍 위치: ${data.location.name}, ${data.location.country}`;
+            // document.getElementById("temperature").textContent = `🌡 온도: ${data.current.temp_c}℃`;
+            // document.getElementById("weather").textContent = `☁️ 날씨: ${data.current.condition.text}`;
+            // document.getElementById("weatherIcon").src = `https:${data.current.condition.icon}`;
+            let message = `현재 <strong>${data.location.name}</strong>의 날씨: 
+            <strong>${data.current.temp_c}°C</strong>, 
+            습도: <strong>${data.current.humidity}%</strong>, 
+            강수량: <strong>${data.current.precip_mm}mm</strong>.`;
+           if (data.current.humidity < 40 || data.current.temp_c > 30) {
+              message += "식물이 건조할 수 있어요! 물을 주세요. 💧";
+            } else if (data.current.precip_mm > 5) {
+              message += "오늘은 비가 많이 와요! 물을 적게 주세요. ☔";
+            } else {
+              message += "현재 날씨가 적당해요! 일반적인 물 주기를 유지하세요. 🌿";
+            }
+            console.log(message)
+            document.getElementById("recommendation").innerHTML = message;
+        })
+        .catch(error => {
+            console.error("❌ 날씨 데이터를 가져오는 중 오류 발생:", error);
+            document.getElementById("recommendation").textContent = "날씨 정보를 가져올 수 없습니다.";
+        });
+
+        
+        
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`📍 위도: ${latitude}, 경도: ${longitude}`);
+                getWeather(latitude, longitude);
+            },
+            (error) => {
+                console.error("❌ GPS 위치 정보를 가져오는 중 오류 발생:", error);
+                document.getElementById("location").textContent = "위치 정보를 가져올 수 없습니다.";
+            }
+        );
     } else {
-      backToTopButton.style.display = "none";
+        document.getElementById("location").textContent = "이 브라우저는 위치 정보를 지원하지 않습니다.";
     }
-  });
+}
 
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-});
+window.onload = getLocation;
