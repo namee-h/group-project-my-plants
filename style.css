@@ -221,10 +221,6 @@ a{
   height: 350px;
   border-radius: 10px;
 
-  /* 엑박 대체 이미지 */
-  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160408_40%2Fchinaoni_1460125321404Noshz_JPEG%2FScreenshot_2016-04-08-22-02-24.jpg&type=sc960_832');  
-  background-size: cover;
-  background-position: center;
 }
 
 .index-feed-plant img {
