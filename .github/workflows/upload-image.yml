@@ -1,0 +1,29 @@
+name: Upload Image to GitHub
+
+on:
+  push:
+    branches:
+      - project_yiseul  # ✅ 특정 브랜치에서만 실행
+  workflow_dispatch:  # ✅ GitHub Actions에서 수동 실행 가능
+  schedule:
+    - cron: "0 * * * *"  # ✅ 매시간 실행 (UTC 기준)
+
+jobs:
+  upload-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Upload Image
+        run: node Update/update.js
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.TOKEN }}
