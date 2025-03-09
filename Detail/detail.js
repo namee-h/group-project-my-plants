@@ -3,7 +3,8 @@ const plantId = windowUrl.searchParams.get("plants_id");
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const imgRepoName = "namee-h";
 const imgRepo = "my-plants-img-server";
-const IMAGE_URL = `https://raw.githubusercontent.com/${imgRepoName}/${imgRepo}/main/images/`;
+// const IMAGE_URL = `https://raw.githubusercontent.com/${imgRepoName}/${imgRepo}/main/images/`;
+const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
 const envToken1 = "ghp_RutC0zghfCpx64TIng";
 const envToken2 = "SHANVOvcY6Yu1zAadV";
 const envToken = envToken1 + envToken2;
@@ -66,7 +67,12 @@ const loadPlantData = async (plantId) => {
         ? IMAGE_URL + plantData.member_id + "/" + plantData.plant_main_img
         : "/asset/detail/detail-sample-img.png";
 
-      let historyHTML = "";
+      let historyHTML = `<div class="col-auto history-img-list mb-2">
+                            <!-- 유저 업로드 이미지가 미리 보여지는 곳 -->
+                            <img class="detail-history-img" id="preview" src="../asset/로고이미지.jpg" alt="업로드 이미지">
+                            <div class="overlay-text">업로드 이미지가 보입니다</div>
+                        </div>
+                        <!-- html 고정값 out-->`;
       plantData.history_img.forEach((element, index) => {
         historyHTML += `<div class="col-auto history-img-list mb-2">
                             <!-- 도윤님이 요청한 삭제버튼 -->
@@ -75,8 +81,7 @@ const loadPlantData = async (plantId) => {
                             <!-- 식물 히스토리 업데이트날짜 -->
                         </div>`;
       });
-      document.getElementById("detail-history-gallery-board").innerHTML =
-        historyHTML;
+      document.getElementById("detail-history-gallery-board").innerHTML = historyHTML;
     })
     .catch((error) => console.error("error", error));
 };
