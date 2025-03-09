@@ -110,7 +110,7 @@
 
 // // 이미지 저장 경로 설정
 // const storage = multer.diskStorage({
-    
+
 //     destination: function (req, file, cb) {
 //         const date = new Date();
 //         const year = date.getFullYear();
@@ -164,7 +164,6 @@
 // // 추가: req.body 파싱을 위한 미들웨어
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
-
 
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -240,72 +239,81 @@
 //         res.json({ imageUrl: imageUrl });
 //     });
 // });
+require("dotenv").config();
 
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const cors = require('cors');
-const fs = require('fs');
+// 이제 process.env.GITHUB_API_URL, process.env.GITHUB_TOKEN 등 사용 가능
+console.log("GITHUB_API_URL:", process.env.GITHUB_API_URL);
+console.log("GITHUB_TOKEN:", process.env.GITHUB_TOKEN);
 
-const app = express();
-const port = 3001;
+// const express = require("express");
+// const multer = require("multer");
+// const path = require("path");
+// const cors = require("cors");
+// const fs = require("fs");
 
-// app.use(cors({
-//     origin: 'http://127.0.0.1:5501'
-// }));
-app.use(cors({
-    origin: '*'
-}));
+// const app = express();
+// const port = 3005;
 
-// app.use(cors());  // 모든 출처에서의 요청을 허용
+// // app.use(cors({
+// //     origin: 'http://127.0.0.1:5501'
+// // }));
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
 
-// 🔹 JSON 및 URL-encoded 데이터 파싱 추가
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); 
+// // app.use(cors());  // 모든 출처에서의 요청을 허용
 
-const upload = multer({ dest: 'temp/' }); // 일단 임시 폴더에 저장
+// // 🔹 JSON 및 URL-encoded 데이터 파싱 추가
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
-app.post('/upload', upload.single('plantImage'), (req, res) => {
-    console.log('req.body:', req.body); // 🔹 데이터 확인
-    console.log('req.file:', req.file); // 🔹 파일 정보 확인
+// const upload = multer({ dest: "temp/" }); // 일단 임시 폴더에 저장
 
-    const memberId = req.body.memberId;
-    const plantId = req.body.plantId;
-    const page = req.body.page;
-    const imagePath = req.body.imgPath;
+// app.post("/upload", upload.single("plantImage"), (req, res) => {
+//   console.log("req.body:", req.body); // 🔹 데이터 확인
+//   console.log("req.file:", req.file); // 🔹 파일 정보 확인
 
-    if (!memberId) {
-        return res.status(400).json({ error: "memberId가 없습니다." });
-    }
+//   const memberId = req.body.memberId;
+//   const plantId = req.body.plantId;
+//   const page = req.body.page;
+//   const imagePath = req.body.imgPath;
 
-    if (!plantId) {
-        return res.status(400).json({ error: "plantId가 없습니다." });
-    }
+//   if (!memberId) {
+//     return res.status(400).json({ error: "memberId가 없습니다." });
+//   }
 
-    // 🔹 새로운 저장 폴더 생성
-    const folder = `./asset/${memberId}_${plantId}/`;
-    if (!fs.existsSync(folder) && page === "update") {
-        fs.mkdirSync(folder, { recursive: true });
-    }
+//   if (!plantId) {
+//     return res.status(400).json({ error: "plantId가 없습니다." });
+//   }
 
-    // 🔹 원본 파일 확장자 유지
-    // const ext = path.extname(req.file.originalname);
-    // const newPath = `${folder}${memberId}_${plantId}_main${ext}`;
+//   // 🔹 새로운 저장 폴더 생성
+//   const folder = `./asset/${memberId}_${plantId}/`;
+//   if (!fs.existsSync(folder) && page === "update") {
+//     fs.mkdirSync(folder, { recursive: true });
+//   }
 
-    // 🔹 파일 이동 (임시 저장된 파일 → 지정 폴더)
-    
-    fs.rename(req.file.path, imagePath, (err) => {
-        if (err) {
-            return res.status(500).json({ error: `파일 이동 중 오류 발생 ${imagePath}` });
-        }
-        // const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
-        const imageUrl = imagePath;
-        res.json({ imageUrl: imageUrl });
-    });
-});
+//   // 🔹 원본 파일 확장자 유지
+//   // const ext = path.extname(req.file.originalname);
+//   // const newPath = `${folder}${memberId}_${plantId}_main${ext}`;
 
-app.use('/asset', express.static(path.join(__dirname, 'asset')));
+//   // 🔹 파일 이동 (임시 저장된 파일 → 지정 폴더)
 
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-});
+//   fs.rename(req.file.path, imagePath, (err) => {
+//     if (err) {
+//       return res
+//         .status(500)
+//         .json({ error: `파일 이동 중 오류 발생 ${imagePath}` });
+//     }
+//     // const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
+//     const imageUrl = imagePath;
+//     res.json({ imageUrl: imageUrl });
+//   });
+// });
+
+// app.use("/asset", express.static(path.join(__dirname, "asset")));
+
+// app.listen(port, () => {
+//   console.log(`Server listening at http://localhost:${port}`);
+// });

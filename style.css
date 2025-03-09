@@ -220,6 +220,11 @@ a{
   width: 350px; 
   height: 350px;
   border-radius: 10px;
+
+  /* 엑박 대체 이미지 */
+  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160408_40%2Fchinaoni_1460125321404Noshz_JPEG%2FScreenshot_2016-04-08-22-02-24.jpg&type=sc960_832');  
+  background-size: cover;
+  background-position: center;
 }
 
 .index-feed-plant img {
@@ -227,6 +232,17 @@ a{
   height: 90%;
   object-fit: cover;
   border-radius: 8px; 
+}
+
+/* 엑박 에러 메세지 */
+.index-feed-plant img:before {
+  content: "이미지를 불러올 수 없습니다.";
+  position: absolute;
+  color: rgb(48, 19, 152);
+  font-weight: bold;
+  background-color: #388E3C;
+  margin-top: -5px;
+  margin-left: -20px;
 }
 
 .display-none{
@@ -393,4 +409,16 @@ hr.rounded {
   padding: 0;
   margin-top: 10px;
   margin-left:15px;
+}
+
+#recommendation{
+  width:100%;
+  text-align: center;
+  font-size: 16px;
+  /* font-weight: bold; */
+  color: white;
+  margin-top: 15px;
+  background-color:#00A86B;
+  padding: 30px;
+  margin:0;
 }
