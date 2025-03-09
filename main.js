@@ -10,7 +10,7 @@ const indexMyPlantsBox = document.getElementById("index-my-plants-box");
 const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
 const ownerName = document.querySelector(".owner-name");
-const hostUrl = "https://localhost";
+const hostUrl = "";
 
 if (sessionValue !== null) {
   fetch(`${API_URL}/members`)
@@ -57,7 +57,12 @@ myPlantData = async (memberId) => {
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>`;
   for (let i = 0; i < data.length; i++) {
-    if (data[i].member_id === memberId && data[i].plant_main_img !== null && data[i].plant_main_img !== undefined && data[i].plants_name !== undefined) {
+    if (
+      data[i].member_id === memberId &&
+      data[i].plant_main_img !== null &&
+      data[i].plant_main_img !== undefined &&
+      data[i].plants_name !== undefined
+    ) {
       console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
@@ -77,13 +82,16 @@ myPlantData = async (memberId) => {
 const mainfeedList = async () => {
   const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
-  
+
   console.log(data);
   for (let i = 0; i < data.length; i++) {
-    if (data[i].plant_main_img !== null && data[i].plant_main_img !== undefined) {
+    if (
+      data[i].plant_main_img !== null &&
+      data[i].plant_main_img !== undefined
+    ) {
       const feedItem = document.createElement("div");
       feedItem.classList.add("feed-item");
-    
+
       feedItem.innerHTML = `
             <a class="index-feed-plant position-relative">
             <div class="heart-badge" onclick="toggleHeart(this)">
@@ -100,33 +108,36 @@ const mainfeedList = async () => {
             <ul id="commentList" class="comment-list"></ul>
         </div>
             `;
-  
+
       document.querySelector("#index-feed").append(feedItem);
     }
   }
-}
+};
 function addComment(event) {
-  if (event.type === "click" || (event.type === "keydown" && event.key === "Enter")) {
-      const button = event.target.closest(".comment-section"); // 클릭한 버튼이 속한 댓글 섹션 찾기
-      const commentInput = button.querySelector(".comment-input"); // 입력창 찾기
-      const commentList = button.querySelector(".comment-list"); // 해당 피드의 댓글 목록 찾기
-      const comment = commentInput.value.trim(); // 입력한 댓글 내용 가져오기
+  if (
+    event.type === "click" ||
+    (event.type === "keydown" && event.key === "Enter")
+  ) {
+    const button = event.target.closest(".comment-section"); // 클릭한 버튼이 속한 댓글 섹션 찾기
+    const commentInput = button.querySelector(".comment-input"); // 입력창 찾기
+    const commentList = button.querySelector(".comment-list"); // 해당 피드의 댓글 목록 찾기
+    const comment = commentInput.value.trim(); // 입력한 댓글 내용 가져오기
 
-      if (sessionValue === null) {
-          alert("로그인 후 이용해주세요.");
-          commentInput.value = "";
-          return;
-      }
+    if (sessionValue === null) {
+      alert("로그인 후 이용해주세요.");
+      commentInput.value = "";
+      return;
+    }
 
-      if (comment === "") {
-          alert("소중한 한마디를 남겨주세요 💬");
-          return;
-      }
+    if (comment === "") {
+      alert("소중한 한마디를 남겨주세요 💬");
+      return;
+    }
 
-      const commentItem = document.createElement("li");
-      commentItem.textContent = comment;
-      commentList.appendChild(commentItem);
-      commentInput.value = ""; // 댓글 입력창 초기화
+    const commentItem = document.createElement("li");
+    commentItem.textContent = comment;
+    commentList.appendChild(commentItem);
+    commentInput.value = ""; // 댓글 입력창 초기화
   }
 }
 
@@ -136,17 +147,17 @@ function toggleHeart(element) {
     return;
   }
 
-  element.classList.toggle("liked"); 
+  element.classList.toggle("liked");
   const icon = element.querySelector("i");
 
   if (element.classList.contains("liked")) {
-      icon.classList.remove("bi-heart");
-      icon.classList.add("bi-heart-fill");
-      icon.style.color = "red";
+    icon.classList.remove("bi-heart");
+    icon.classList.add("bi-heart-fill");
+    icon.style.color = "red";
   } else {
-      icon.classList.remove("bi-heart-fill");
-      icon.classList.add("bi-heart");
-      icon.style.color = "gray";
+    icon.classList.remove("bi-heart-fill");
+    icon.classList.add("bi-heart");
+    icon.style.color = "gray";
   }
 }
 
