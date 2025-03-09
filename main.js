@@ -10,14 +10,16 @@ const indexMyPlantsBox = document.getElementById("index-my-plants-box");
 const indexMyPlantsH6 = document.querySelector(".index-my-plants-h6");
 const indexFeed = document.querySelector("#index-feed");
 const ownerName = document.querySelector(".owner-name");
-const hostUrl = "";
+const imgRepoName = "namee-h";
+const imgRepo = "my-plants-img-server";
+const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
 
 if (sessionValue !== null) {
   fetch(`${API_URL}/members`)
     .then((response) => response.json())
     .then((data) => {
       const member = data.find((member) => member.id === sessionValue);
-      console.log("Member:", member); // 멤버 확인: undefined, DB 불일치
+
       if (member) {
         loginButton.href = "";
         loginButton.textContent = "Logout";
@@ -56,6 +58,7 @@ myPlantData = async (memberId) => {
   let feedHTML = `<div class="index-my-plants-list">
             <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
           </div>`;
+
   for (let i = 0; i < data.length; i++) {
     if (
       data[i].member_id === memberId &&
@@ -63,13 +66,10 @@ myPlantData = async (memberId) => {
       data[i].plant_main_img !== undefined &&
       data[i].plants_name !== undefined
     ) {
-      console.log(data[i]);
       feedHTML += `
       <div class="index-my-plants-list">
         <a href="/Detail/detail.html?plants_id=${data[i].id}" class="index-plant">
-
-          <img src="${hostUrl}${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
-
+          <img src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" alt="${data[i].plants_name}" onerror="this.onerror=null; this.src='/asset/default_img.webp';" />
         </a>
       </div>`;
     }
@@ -81,8 +81,6 @@ myPlantData = async (memberId) => {
 const mainfeedList = async () => {
   const response = await fetch(`${API_URL}/plants/`);
   const data = await response.json();
-
-  console.log(data);
   for (let i = 0; i < data.length; i++) {
     if (
       data[i].plant_main_img !== null &&
@@ -97,7 +95,7 @@ const mainfeedList = async () => {
               <i class="bi bi-heart"></i>
             </div>
               <img
-              src="${hostUrl}${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
+              src="${IMAGE_URL}${data[i].member_id}/${data[i].plant_main_img}" onerror="this.onerror=null; this.src='/asset/default_img.webp';"
               alt="${data[i].plants_name}"
               />
             </a>
@@ -112,6 +110,7 @@ const mainfeedList = async () => {
     }
   }
 };
+
 function addComment(event) {
   if (
     event.type === "click" ||

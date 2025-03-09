@@ -1,8 +1,8 @@
 const windowUrl = new URL(window.location.href);
 const plantId = windowUrl.searchParams.get("plants_id");
+const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const imgRepoName = "namee-h";
 const imgRepo = "my-plants-img-server";
-const API_URL = `https://silk-scandalous-boa.glitch.me`;
 const IMAGE_URL = `https://github.com/${imgRepoName}/${imgRepo}/raw/main/images/`;
 const envToken = TOKEN;
 let fileNameSet = "";
