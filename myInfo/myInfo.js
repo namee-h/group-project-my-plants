@@ -91,6 +91,51 @@ async function fetchWeather() {
   }
 }
 
+// 현재 위치 기반 날씨 API 기능
+async function fetchWeatherByLocation() {
+    if (!navigator.geolocation) {
+      alert("위치 정보를 지원하지 않는 브라우저입니다.");
+      return;
+    }
+  
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const weatherApiKey = "adf1e5487a63448d8cc201205250803";
+      const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${latitude},${longitude}&aqi=no`;
+  
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const temp = data.current.temp_c;
+        const humidity = data.current.humidity;
+        const rainfall = data.current.precip_mm;
+        const locationName = data.location.name;   // 마을 또는 도시명
+        const regionName = data.location.region;   // 행정구역 (ex: 서울특별시, 캘리포니아)
+        const countryName = data.location.country; // 국가명 (대한민국, 미국 등)
+  
+        let locationMessage = `📍 현재 위치 (${regionName}, ${countryName})의 날씨: ${temp}°C, 습도: ${humidity}%, 강수량: ${rainfall}mm. `;
+  
+        // 🌱 물 주기 추천 로직
+        if (humidity < 40 || temp > 30) {
+          locationMessage += "식물이 건조할 수 있어요! 물을 주세요. 💧";
+        } else if (rainfall > 5) {
+          locationMessage += "오늘은 비가 많이 와요! 물을 적게 주세요. ☔";
+        } else {
+          locationMessage += "현재 날씨가 적당해요! 일반적인 물 주기를 유지하세요. 🌿";
+        }
+  
+        // 내 위치 기반 메시지를 따로 출력
+        document.getElementById("locationRecommendation").innerText = locationMessage;
+      } catch (error) {
+        console.error("날씨 데이터를 가져오는 중 오류 발생:", error);
+      }
+    }, (error) => {
+      console.error("위치 정보를 가져오는 중 오류 발생:", error);
+      alert("위치 정보를 가져올 수 없습니다.");
+    });
+  }
+
 // 페이지 이동 함수
 function goHome() {
   window.location.href = "../index.html";
