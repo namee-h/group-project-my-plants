@@ -67,7 +67,12 @@ const loadPlantData = async (plantId) => {
         ? IMAGE_URL + plantData.member_id + "/" + plantData.plant_main_img
         : "/asset/detail/detail-sample-img.png";
 
-      let historyHTML = "";
+      let historyHTML = `<div class="col-auto history-img-list mb-2">
+                            <!-- 유저 업로드 이미지가 미리 보여지는 곳 -->
+                            <img class="detail-history-img" id="preview" src="../asset/로고이미지.jpg" alt="업로드 이미지">
+                            <div class="overlay-text">업로드 이미지가 보입니다</div>
+                        </div>
+                        <!-- html 고정값 out-->`;
       plantData.history_img.forEach((element, index) => {
         historyHTML += `<div class="col-auto history-img-list mb-2">
                               <!-- 도윤님이 요청한 삭제버튼 -->
@@ -97,6 +102,11 @@ deleteHistory = async (hisIndex) => {
 };
 
 const mainImgChangeBtn = document.getElementById("imgChangeBtn");
+const fileChangeTag = document.getElementById("formFile");
+
+fileChangeTag.addEventListener("change", (event) => {
+    readURL(fileChangeTag);
+});
 
 // 식물 정보 수정 및 저장
 document.querySelectorAll(".edit-btn").forEach((button) => {
