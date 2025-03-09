@@ -271,6 +271,8 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
 
     const memberId = req.body.memberId;
     const plantId = req.body.plantId;
+    const page = req.body.page;
+    const imagePath = req.body.imgPath;
 
     if (!memberId) {
         return res.status(400).json({ error: "memberId가 없습니다." });
@@ -282,24 +284,22 @@ app.post('/upload', upload.single('plantImage'), (req, res) => {
 
     // 🔹 새로운 저장 폴더 생성
     const folder = `./asset/${memberId}_${plantId}/`;
-    if (!fs.existsSync(folder)) {
+    if (!fs.existsSync(folder) && page === "update") {
         fs.mkdirSync(folder, { recursive: true });
     }
 
     // 🔹 원본 파일 확장자 유지
-    const ext = path.extname(req.file.originalname);
-    const newPath = `${folder}${memberId}_${plantId}_main${ext}`;
+    // const ext = path.extname(req.file.originalname);
+    // const newPath = `${folder}${memberId}_${plantId}_main${ext}`;
 
     // 🔹 파일 이동 (임시 저장된 파일 → 지정 폴더)
-    fs.rename(req.file.path, newPath, (err) => {
+    
+    fs.rename(req.file.path, imagePath, (err) => {
         if (err) {
-            return res.status(500).json({ error: "파일 이동 중 오류 발생" });
+            return res.status(500).json({ error: `파일 이동 중 오류 발생 ${imagePath}` });
         }
-
-        const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
-
-        
-
+        // const imageUrl = `/asset/${memberId}_${plantId}/${memberId}_${plantId}_main${ext}`;
+        const imageUrl = imagePath;
         res.json({ imageUrl: imageUrl });
     });
 });

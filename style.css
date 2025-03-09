@@ -49,20 +49,20 @@ a{
 }
 
 #index-login {
-  background-color: #4CAF50;
+  background-color: #50C878;
 }
 
 #index-login:hover {
-  background-color: #45a049;
+  background-color: #00A86B;
 }
 
 #index-signup {
-  background-color: #4CAF50;
+  background-color: #50C878;
   display: block;
 }
 
 #index-signup:hover {
-  background-color: #45a049;
+  background-color: #00A86B;
 }
 
 #index-header {
@@ -205,7 +205,7 @@ a{
 
 /* 각 피드 아이템 */
 .feed-item {  
-  display: flex;
+  /* display: flex; */
   background-color: #f8f8f8;
   width: 100%; 
   padding: 10px
@@ -291,3 +291,106 @@ ul {
   
 }
 
+
+hr.rounded {
+  /* border-top: 8px solid #bbb;
+  border-radius: 5px;
+  width:100%; */
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(to right, #4CAF50, #81C784, #C8E6C9);
+  border-radius: 2px;
+  margin: 20px 0;
+}
+
+#index-my-plants-box{
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width:100%;
+  height: 400px;
+
+}
+.divider-leaf {
+  text-align: center;
+  font-size: 24px;
+  margin: 50px 0;
+}
+
+/* 업버튼 */
+
+/* 업버튼 */
+#detailFood_top{
+  position: fixed;
+  right: 22px;
+  bottom: 70px;
+  /* z-index: 6; */
+  display: none; /* 기본적으로 숨김 */
+}
+
+#detailFood_top:hover{
+  cursor: pointer;
+}
+
+.heart-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 하트 아이콘 크기 */
+.heart-badge i {
+  font-size: 20px;
+  color: gray;
+}
+
+/* 댓글 입력창 */
+.comment-section {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.comment-input {
+  /* width: 100%; */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left:15px;
+  width: 265px;
+}
+
+.comment-button {
+  width: 50px;
+  padding: 5px;
+  background-color: #50C878;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-button:hover {
+  background-color: #45a049;
+}
+
+/* 댓글 목록 */
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  margin-left:15px;
+}

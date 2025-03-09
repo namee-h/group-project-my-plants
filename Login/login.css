@@ -29,7 +29,7 @@ body{
     height: auto;
 }
 #index-login {
-    background-color: #4CAF50;
+    background-color: #50C878;
     border: none;
     font-size: 15px;
     border-radius: 5px;
@@ -41,8 +41,18 @@ body{
   }
   
 #index-login:hover {
-    background-color: #45a049;
+    background-color: #00A86B;
 }
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #00A86B;
+    border-color: #00A86B;
+}
+.btn-outline-success{
+    border-color:#50C878;
+}
+
 
 #logo_area{
     display: flex;

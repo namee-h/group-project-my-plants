@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plants MyInfo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Permanent+Marker&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="myInfo.css">
+    <link rel="icon" type="image/x-icon" href="../asset/yiseul_logo.webp">
+</head>
+<body>
+    <header id="index-header">
+        <div id="index-logo-area" onclick="goHome()">
+            <img src="../asset/logo_sara.png" alt="logo" id="index-logo">
+            <span id="myInfo-member-name" class="display-none"></span>
+        </div>
+        <div id="nav_area">
+            <nav>
+                <button id="index-login">
+                    <a href="../index.html">Home</a>
+                </button>
+                <button id="index-logout">
+                    <a href="../index.html">Logout</a>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>회원 정보</h2>
+            <div class="form-group">
+                <label for="myInfo-name">이름</label>
+                <span id="myInfo-name"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-age">나이</label>
+                <span id="myInfo-age"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-gender">성별</label>
+                <span id="myInfo-gender"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-email">이메일</label>
+                <span id="myInfo-email"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-update-day">가입한 날짜</label>
+                <span id="myInfo-update-day"></span>
+            </div>
+            <div class="form-group">
+                <label for="myInfo-address">주소</label>
+                <span id="myInfo-address"></span>
+            </div>
+            <select id="countrySelect">
+                <option value="South Korea">대한민국</option>
+                <option value="United States">미국</option>
+                <option value="Japan">일본</option>
+                <option value="Germany">독일</option>
+            </select>
+            <button class="weater-button" onclick="fetchWeather()">날씨 확인</button>
+            <p id="recommendation"></p>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer >
+        <div >
+            <a href="/" class="me-2 text-body-secondary text-decoration-none">
+                <img src="../asset/logo_sara.png" alt="Logo" width="35">
+            </a>
+            <span class="text-body-secondary">© JS Study Group 1 </span>
+        </div>
+        <ul class="row">
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="col"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
+        </ul>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="myInfo.js"></script>
+</body>
+</html>

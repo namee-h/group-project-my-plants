@@ -11,7 +11,11 @@ body{
     font-style: normal;
   }
 
-  .parent-container {
+a{
+    text-decoration: none;
+}
+
+.parent-container {
     display: flex;
     flex-direction: column;
     justify-content: center;  /* plant-form을 세로 중앙에 배치 */
@@ -19,9 +23,9 @@ body{
     min-height: 100vh;  /* 화면을 꽉 차게 설정 */
 }
 
-  .container{
-    max-width:850px;
-  }
+.container{
+max-width:850px;
+}
 
 /* header 부분 */
 #index-logo {
@@ -29,7 +33,7 @@ body{
     height: auto;
   }
   
-  #index-login {
+  #index-login, #index-logout {
     background-color: #50C878;
     border: none;
     font-size: 15px;
@@ -37,12 +41,12 @@ body{
     padding: 5px 10px;
   }
   
-  #index-login a {
+  #index-login a, #index-logout a {
     text-decoration: none;
     color: white;
   }
   
-  #index-login:hover {
+  #index-login:hover, #index-logout:hover {
     background-color: #00A86B;
   }
   
@@ -54,7 +58,7 @@ body{
     padding: 10px 30px;
     background-color: #f0f0f0;
   }
-
+  
 /* body 시작 */
 .parent-container {
     width: 100vw;
@@ -144,6 +148,11 @@ input[type="date"] {
 
 #index-logo-area {
     cursor: pointer;
+}
+
+#update-member-name {
+    margin-left: 20px;
+    font-size: 15px;
 }
 
 /* 라디오 버튼 컨테이너 스타일 */
@@ -260,3 +269,36 @@ input[type="date"] {
     list-style: none;
     padding: 0 1em;
   }
+
+  /* alert 영역 */
+  .alert {
+    position: fixed; /* 화면에 고정 */
+    bottom: 20px;    /* 화면 하단에 위치 */
+    left: 50%;       /* 중앙 정렬 */
+    transform: translateX(-50%); /* 정확히 가운데 정렬 */
+    background-color: white;  /* 빨간색 배경 */
+    color: #00A86B;  /* 빨간색 텍스트 */
+    padding: 20px;
+    border-radius: 5px;
+    display: none;  /* 기본적으로 숨김 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#alertButton {
+    background-color: #50C878;  /* 초록색 버튼 */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#alertButton:hover {
+    background-color: #00A86B; /* 버튼 호버 시 색상 변화 */
+}

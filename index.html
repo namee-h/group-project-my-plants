@@ -27,8 +27,8 @@
         <div id="nav_area">
           <nav>
             <div id="index-auth-buttons">
-              <a href="./Login/login.html" id="index-login">Login</a>
               <a href="./Member/member.html" id="index-signup">Signup</a>
+              <a href="./Login/login.html" id="index-login">Login</a>
             </div>
           </nav>
         </div>
@@ -81,14 +81,29 @@
         </section>
   
         <!-- 내가 등록한 식물 (로그인 시 노출) -->
-        <section id="index-my-plants-section" class="display-none">
-          <div class="index-my-plants-list">
-            <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
-          </div>
-          <!-- 내 식물 이미지 보이는 곳 -->
-        </section>
+         <div id="index-my-plants-hr" class="divider-leaf display-none">
+          🌿 🌱 🍃
+         </div>
+        <!-- <hr id="index-my-plants-hr" class="rounded display-none"> -->
+        <div id="index-my-plants-box" class="card display-none">
+          <h5 id="index-my-plants-h5" class="card-title display-none"><span class="owner-name"></span></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary index-my-plants-h6 display-none">새로운 반려식물을 등록하거나 기존 반려식물의 정보를 확인하세요! 😊🌿</h6>
+
+          <section id="index-my-plants-section" class="display-none">
+  
+            <div class="index-my-plants-list">
+              <a href="/Update/update.html" id="index-add-plant" class="index-plant"> + </a>
+            </div>
+            <!-- 내 식물 이미지 보이는 곳 -->
+          </section>
+        </div>
+       
         
         <!-- 식물 피드 -->
+        <div class="divider-leaf">
+          🌿 🌱 🍃
+         </div>
+        <h5>다른 식집사들의 반려식물도 구경해보세요! ⬇️ ✨</h5>
         <div id="index-feed-section">
           <div id="index-feed"></div>
         </div>
@@ -117,9 +132,34 @@
     ></script>
     <script src="main.js"></script>
 
-    <!-- 맨 위로 가기 버튼 추가 -->
-    <button id="index-top-button">▲</button>
+    <!-- 맨 위로 가기 버튼 추가
+    <button id="index-top-button">▲</button> -->
 
-    <!-- <script src="public.js"></script> -->
+    <!-- 업버튼 -->
+    <div id="detailFood_top" onclick="scrollToTop()">
+      <img src="https://www.okitchen.co.kr/images/common/btn_top.png" alt="위로" width="50">
+   </div>
+
+   <script>
+      // 업 버튼을 페이지 하단에 스크롤 시 나타나게 하는 코드
+      window.onscroll = function() {
+          let detailFood_top = document.getElementById("detailFood_top");
+          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+              detailFood_top.style.display = "block";  // 스크롤이 일정 부분 내려가면 보이게 설정
+          } else {
+              detailFood_top.style.display = "none";  // 스크롤이 맨 위로 가면 숨김
+          }
+      };
+
+      // 클릭 시 부드럽게 페이지 상단으로 스크롤하는 함수
+      function scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+      }
+  </script>
+
+    <script src="public.js"></script>
   </body>
 </html>

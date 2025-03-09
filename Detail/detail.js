@@ -1,7 +1,7 @@
 const windowUrl = new URL(window.location.href);
-const plantId =  windowUrl.search.replace("?", "");
+const plantId =  windowUrl.searchParams.get('plants_id');
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
-let historyImgData = [];
+let hisImgData = [];
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -34,7 +34,7 @@ const loadPlantData = async (plantId) => {
   await fetch(`${API_URL}/plants`)
     .then((response) => response.json())
     .then((data) => {
-      // console.log("ddd", data);
+      console.log("ddd", data);
 
       // 첫 번째 식물 정보 가져오기
       const plantData = data.find((p) => p.id == plantId);
@@ -48,10 +48,37 @@ const loadPlantData = async (plantId) => {
       document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
       document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
       document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
-      document.getElementById("detail-img-main").src = plantData.plant_main_img ? plantData.plant_main_img : "/asset/detail/detail-sample-img.png";
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
+      console.log(plantData);
+      let historyHTML = "";
+      plantData.history_img.forEach((element, index) => {
+        let src = element.substr(1);
+        console.log(index);
+        historyHTML += `<div class="col-auto history-img-list mb-2">
+                            <!-- 도윤님이 요청한 삭제버튼 -->
+                            <i class="bi bi-trash" id="history-trash" onclick="deleteHistory(${index})"></i>
+                            <img class="detail-history-img" src="${src}" alt="">
+                            <!-- 식물 히스토리 업데이트날짜 -->
+                        </div>`;
+      });
+      document.getElementById("detail-history-gallery-board").innerHTML = historyHTML;
     })
     .catch((error) => console.error("error", error));
 };
+
+deleteHistory = async (hisIndex) => {
+  const response = await fetch(`${API_URL}/plants/${plantId}`);
+  const data = await response.json();
+  let history_img = data.history_img;
+  history_img.splice(hisIndex, 1); // 선택한 값(인덱스) 삭제
+
+  if (confirm("선택한 이미지를 삭제하시겠습니까??")) {
+    console.log(history_img);
+    const plantResult = await updatePlantData(history_img);
+    console.log("plantResult:", plantResult);
+    loadPlantData(plantId);
+  }
+}
 
 // 식물 정보 수정 및 저장
 document.querySelectorAll(".edit-btn").forEach((button) => {
@@ -119,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(`${API_URL}/plants/${plantId}`);
       const data = await response.json();
-      console.log("waterddd", data);
       return parseInt(data.water_cycle, 10); // water_cycle 값을 숫자로 변환
     } catch (error) {
       console.error("물 주기 데이터를 가져오는 데 실패했습니다:", error);
@@ -242,56 +268,77 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!plantImage) {
         alert("기록을 남기실 이미지를 넣어주세요");
         return;
-      } else {
-        historyImgData = historyImgLoad();
       }
+      const imgExt = document.getElementById("formFile").value.split('.');
+      const ext = imgExt[imgExt.length - 1];
+     
+      let historyMember = "";
+      const historyImgData = await historyImgLoad();
+
+      historyImgData.forEach(element => {
+        if (element.id === parseInt(plantId)) {
+          historyMember = element.member_id;
+          if (element.history_img.length > 0) {
+            hisImgData = element.history_img;
+          }
+          mainImg = element.plant_main_img;
+        }
+      });
+
+      //  update_data format yyyy-mm--dd
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1
+      const day = String(today.getDate()).padStart(2, "0");
+      let hours = today.getHours(); // 시
+      let minutes = today.getMinutes();  // 분
+      let seconds = today.getSeconds();  // 초
+      const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}_${seconds}`;
+
+      const oldPath = `./asset/${historyMember}_${plantId}/${historyMember}_${plantId}_${formattedDate}_img.${ext}`;
       
-      console.log(historyImgData);
+      hisImgData.push(oldPath);
+      await updatePlantData(hisImgData);
+      
+      let formData = prepareFormData({
+          memberId: historyMember,
+          plantId: plantId,
+          page: "detail",
+          imgPath: oldPath
+      }, plantImage);
 
-      let formData = {
-        id: plantId,
-        history_img: historyImgLoad,
-        history_memo :[]
-      }; 
+      try {
+          // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
+          await uploadImage(formData);          
+      } catch (error) {
+          console.log(error);
+      }
 
-      // try {
-      //     // imageUrl 업로드 후, plant_main_img에 imageUrl을 추가
-      //     const imageUrl = await uploadImage(formData);
-      //     console.log("imageUrl:", imageUrl);
-      //     plantData.history_img = imageUrl;  // imageUrl을 plant_main_img에 넣음
-      //     console.log("이미지 URL:", plantData.plant_main_img);
-      //     console.log("imageUrl넣은 후 plantData:", plantData);
-
-      //     // 이제, plantData를 다시 updatePlantData로 업데이트 (혹은 다른 필요한 작업)
-      //     const plantResult = updatePlantData(plantData);  
-      //     console.log("plantResult:", plantResult);
-
-      // } catch (error) {
-      //     console.log(error);
-      // }
-
-      // console.log("FormData 확인:");
-      // for (const pair of formData.entries()) {
-      //     console.log(pair[0], pair[1]);
-      // }
-
+      console.log("FormData 확인:");
+      for (const pair of formData.entries()) {
+          console.log(pair[0], pair[1]);
+      }
   });
 });
 
-const historyImgLoad = async () => {
-  await fetch(`${API_URL}/plants`)
-    .then((response) => response.json())
-    .then((plants) => {
-      if (plants.length > 0) {
-        for (let i=0; i < plants.length; i++) {
-          if(plants[i].id === plantId) {
-            console.log(JSON.parse(["test1","test2"]));
-          }
-        }
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+
+// 데이터 준비 함수
+function prepareFormData(plantData, plantImage) {
+  const formData = new FormData();
+  if (plantImage) {
+      formData.append("plantImage", plantImage);
+  }
+  for (const key in plantData) {
+      formData.append(key, plantData[key]);
+  }
+  console.log("초기 설정 form : ", formData);
+  return formData;
+}
+
+const historyImgLoad = async() => {
+  const response = await fetch(`${API_URL}/plants`);
+  let historyData = await response.json();
+  return historyData;
 }
 
 // API 호출 함수
@@ -303,6 +350,31 @@ async function uploadImage(formData) {
 
   const uploadResult = await response.json();
   return uploadResult.imageUrl;
+}
+
+async function updatePlantData(historyImg) {
+  console.log("plant data : ", historyImg);
+  // 업데이트할 데이터
+  let fieldName = "history_img";
+ 
+  // 🚨 여기 다시봐야됨 근데 수정-저장은 잘되고 있음
+  await fetch(`${API_URL}/plants/${plantId}`, {
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json', Accept: 'application/json'
+    },
+    body: JSON.stringify({ [fieldName]: historyImg }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`✅ ${fieldName} 수정 완료:`, data);
+      document.getElementById(field).contentEditable = "false";
+      document.getElementById(field).style.border = "none";
+
+      // 저장 후 다시 불러오기
+      // loadPlantData(plantId);
+    })
+    .catch((error) => console.error);
 }
 
 async function callApi(url, options, errorMessage) {
