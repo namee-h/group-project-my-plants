@@ -1,6 +1,7 @@
 const windowUrl = new URL(window.location.href);
 const plantId =  windowUrl.searchParams.get('plants_id');
 const API_URL = `https://silk-scandalous-boa.glitch.me`;
+const hostUrl = "https://localhost";
 let hisImgData = [];
 
 function readURL(input) {
@@ -48,7 +49,7 @@ const loadPlantData = async (plantId) => {
       document.getElementById("plants-name").textContent = plantData.plants_name ? plantData.plants_name : "이름 없음";
       document.getElementById("plants-type").textContent = plantData.category ? plantData.category : "카테고리 없음";
       document.getElementById("plants-date").textContent = plantData.update_day ? plantData.update_day : "날짜 없음";
-      document.getElementById("detail-img-main").src = plantData.plant_main_img ? plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
+      document.getElementById("detail-img-main").src = plantData.plant_main_img ? hostUrl + plantData.plant_main_img.substr(1) : "/asset/detail/detail-sample-img.png";
       console.log(plantData);
       let historyHTML = "";
       plantData.history_img.forEach((element, index) => {
@@ -57,7 +58,7 @@ const loadPlantData = async (plantId) => {
         historyHTML += `<div class="col-auto history-img-list mb-2">
                             <!-- 도윤님이 요청한 삭제버튼 -->
                             <i class="bi bi-trash" id="history-trash" onclick="deleteHistory(${index})"></i>
-                            <img class="detail-history-img" src="${src}" alt="">
+                            <img class="detail-history-img" src="${hostUrl}${src}" alt="">
                             <!-- 식물 히스토리 업데이트날짜 -->
                         </div>`;
       });
